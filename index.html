@@ -13,7 +13,8 @@
 <meta property="og:image" content="https://speedwithstyle.com.au/assets/hero.jpg">
 <meta property="og:locale" content="en_AU">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" type="image/png" href="assets/sws-logo.png">
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/favicon.png">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -46,9 +47,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,400&display=swap" rel="stylesheet">
 <style>
-  html,body{margin:0;padding:0}
+  html,body{margin:0;padding:0;overflow-x:clip}
+  section[id],#book{scroll-margin-top:84px}
   body{font-family:'Nunito Sans',sans-serif;color:#0A0A0A;background:#fff}
   *{box-sizing:border-box}
+  [hidden]{display:none !important}
   a{color:#1B76BC}a:hover{color:#2B5E8C}
   :focus-visible{outline:3px solid #142E45;outline-offset:3px}
   html{scroll-behavior:smooth}
@@ -80,7 +83,7 @@
   .rv-pop{opacity:0;transform:scale(.92) translateY(16px);transition:opacity .6s cubic-bezier(.2,0,0,1),transform .6s cubic-bezier(.34,1.4,.4,1);transition-delay:var(--d,0s)}
   .rv-pop.in{opacity:1;transform:none}
   .sws-kenburns{animation:sws-kb 22s ease-in-out infinite alternate}
-  @keyframes sws-kb{from{transform:scale(1)}to{transform:scale(1.08)}}
+  @keyframes sws-kb{from{transform:translateY(var(--py,0)) scale(1.02)}to{transform:translateY(var(--py,0)) scale(1.1)}}
   @keyframes sws-hero-in{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
   .hero-in{opacity:0;animation:sws-hero-in .8s cubic-bezier(.2,0,0,1) forwards;animation-delay:var(--d,0s)}
   .sws-card{transition:transform .3s cubic-bezier(.2,0,0,1),box-shadow .3s cubic-bezier(.2,0,0,1)}
@@ -90,10 +93,20 @@
   .sws-btn:active{transform:scale(.97)}
   .sws-arrow{display:inline-block;transition:transform .25s cubic-bezier(.2,0,0,1)}
   a:hover .sws-arrow{transform:translateX(5px)}
-  .sws-wave{display:block;width:100%;height:56px;margin-bottom:-1px}
+  .sws-wave{display:block;width:100%;height:56px;margin-bottom:-1px;overflow:hidden}
   .sws-wave svg{display:block;width:200%;height:100%;animation:sws-drift 14s linear infinite}
   @keyframes sws-drift{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  #site-header.scrolled{box-shadow:0 6px 24px rgba(20,46,69,.12)}
+  #mobile-menu{display:grid;grid-template-rows:0fr;opacity:0;visibility:hidden;transition:grid-template-rows .35s cubic-bezier(.2,0,0,1),opacity .3s ease,visibility 0s .35s}
+  #mobile-menu>div{overflow:hidden;min-height:0}
+  #mobile-menu.open{grid-template-rows:1fr;opacity:1;visibility:visible;transition:grid-template-rows .35s cubic-bezier(.2,0,0,1),opacity .25s ease}
+  .mm-item{font-weight:700;font-size:18px;color:#0A0A0A;text-decoration:none;padding:12px 8px;min-height:44px;display:flex;align-items:center;opacity:0;transform:translateY(-8px);transition:opacity .3s ease,transform .3s cubic-bezier(.2,0,0,1)}
+  #mobile-menu.open .mm-item{opacity:1;transform:none;transition-delay:var(--d,0s)}
+  a.mm-item{color:#0A0A0A}
+  #menu-icon svg{transition:transform .3s cubic-bezier(.2,0,0,1)}
+  #menu-btn[aria-expanded="true"] #menu-icon svg{transform:rotate(90deg)}
   @media(prefers-reduced-motion:reduce){
+    #mobile-menu,.mm-item,#menu-icon svg{transition:none}
     .rv,.rv-pop{opacity:1;transform:none;transition:none}
     .hero-in{opacity:1;animation:none}
     .sws-kenburns{animation:none}
@@ -106,9 +119,9 @@
 <body>
 
 <!-- ===== HEADER ===== -->
-<header style="position:sticky;top:0;z-index:100;background:#fff;border-bottom:2px solid #EDF4FA">
-  <div class="sws-wrap" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:12px;padding-bottom:12px">
-    <a href="#top" aria-label="Speed With Style — home" style="display:flex;align-items:center"><img src="assets/sws-logo.png" alt="Speed With Style" style="width:104px;height:auto"></a>
+<header id="site-header" style="position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:2px solid #EDF4FA;transition:box-shadow .3s ease">
+  <div class="sws-wrap" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:10px;padding-bottom:10px">
+    <a href="#top" aria-label="Speed With Style — home" style="display:flex;align-items:center"><img src="assets/sws-logo.png" alt="Speed With Style" style="width:132px;height:auto"></a>
     <nav class="sws-desktop" aria-label="Main" style="display:flex;align-items:center;gap:24px">
       <a href="#programs" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Programs</a>
       <a href="#why" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Why us</a>
@@ -120,19 +133,21 @@
       <span id="menu-icon" style="display:flex"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></span>
     </button>
   </div>
-  <nav id="mobile-menu" class="sws-mobileonly" aria-label="Main" hidden style="border-top:2px solid #EDF4FA;padding:12px 24px;display:flex;flex-direction:column;gap:4px">
-    <a href="#programs" style="font-weight:700;font-size:18px;color:#0A0A0A;text-decoration:none;padding:12px 8px;min-height:44px;display:flex;align-items:center">Programs</a>
-    <a href="#why" style="font-weight:700;font-size:18px;color:#0A0A0A;text-decoration:none;padding:12px 8px;min-height:44px;display:flex;align-items:center">Why us</a>
-    <a href="#visit" style="font-weight:700;font-size:18px;color:#0A0A0A;text-decoration:none;padding:12px 8px;min-height:44px;display:flex;align-items:center">Visit</a>
-    <div style="display:flex;gap:12px;padding-top:8px">
-      <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="flex:1">Call us</a>
-      <a href="#book" class="sws-btn sws-btn-primary" style="flex:1">Book</a>
-    </div>
+  <nav id="mobile-menu" class="sws-mobileonly" aria-label="Main">
+    <div><div style="border-top:2px solid #EDF4FA;padding:12px 24px 20px;display:flex;flex-direction:column;gap:4px">
+      <a href="#programs" class="mm-item" style="--d:.04s">Programs</a>
+      <a href="#why" class="mm-item" style="--d:.09s">Why us</a>
+      <a href="#visit" class="mm-item" style="--d:.14s">Visit</a>
+      <div class="mm-item" style="--d:.19s;display:flex;gap:12px;padding:8px 0 0">
+        <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="flex:1">Call us</a>
+        <a href="#book" class="sws-btn sws-btn-primary" style="flex:1">Book free lesson</a>
+      </div>
+    </div></div>
   </nav>
 </header>
 
 <!-- ===== 1 · HERO ===== -->
-<section id="top" style="position:relative;min-height:600px;display:flex;align-items:flex-end;overflow:hidden;background:#142E45">
+<section id="top" style="position:relative;min-height:min(640px,88svh);display:flex;align-items:flex-end;overflow:hidden;background:#142E45">
   <img src="assets/hero.jpg" alt="Young swimmers mid-lesson in the heated pool at Speed With Style" class="sws-kenburns" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
   <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(10,20,32,.88) 0%,rgba(10,20,32,.35) 55%,rgba(80,142,199,.15) 100%)"></div>
   <div class="sws-wrap" style="position:relative;padding-top:96px;padding-bottom:64px;display:flex;flex-direction:column;gap:24px">
@@ -209,7 +224,7 @@
           </div>
         </div>
       </article>
-      <article class="sws-card rv" style="--d:0.30000000000000004s;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(20,46,69,.12);overflow:hidden;display:flex;flex-direction:column">
+      <article class="sws-card rv" style="--d:0.3s;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(20,46,69,.12);overflow:hidden;display:flex;flex-direction:column">
         <div style="aspect-ratio:16/11;overflow:hidden;background:#EDF4FA"><img src="assets/corpus.webp" alt="Corpus Christi students in a squad session" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
         <div style="padding:24px;display:flex;flex-direction:column;gap:12px;flex:1">
           <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.14em;color:#1B76BC;text-transform:uppercase">Students &amp; staff</span>
@@ -231,9 +246,9 @@
     <div style="display:flex;flex-direction:column;gap:20px">
       <span class="sws-eyebrow" style="color:#84B4DD">The difference</span>
       <h2 class="sws-h2 rv" style="color:#fff">We teach proper swimming from lesson one.</h2>
-      <p style="margin:0;font-size:18px;line-height:1.6;color:#D6E6F4">Plenty of swim schools get kids across the pool and call it a day. We start with technique: body position, breathing, a stroke that holds up when kids get tired.</p>
-      <p style="margin:0;font-size:18px;line-height:1.6;color:#D6E6F4">So most kids who start with us at 5 or 6 are swimming 1 to 2km by the time they're 8 or 9.</p>
-      <a href="#why" class="sws-btn sws-btn-ghost" style="align-self:flex-start">See why parents choose us <span class="sws-arrow">→</span></a>
+      <p class="rv" style="--d:.1s;margin:0;font-size:18px;line-height:1.6;color:#D6E6F4">Plenty of swim schools get kids across the pool and call it a day. We start with technique: body position, breathing, a stroke that holds up when kids get tired.</p>
+      <p class="rv" style="--d:.18s;margin:0;font-size:18px;line-height:1.6;color:#D6E6F4">So most kids who start with us at 5 or 6 are swimming 1 to 2km by the time they're 8 or 9.</p>
+      <a href="#why" class="sws-btn sws-btn-ghost rv" style="--d:.26s;align-self:flex-start">See why parents choose us <span class="sws-arrow">→</span></a>
     </div>
     <div style="display:flex;flex-direction:column;gap:16px">
       <div class="rv-pop" style="background:#1E4568;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:6px">
@@ -319,14 +334,14 @@
     <div style="display:flex;flex-direction:column;gap:16px">
       <span class="sws-eyebrow">Come and see us</span>
       <h2 class="sws-h2 rv">Watch a lesson before you book</h2>
-      <p style="margin:0;font-size:18px;line-height:1.6;color:#4A5866">The best way to get a feel for how we teach is to come and watch. Drop in, see the classes of four, and chat to a coach on the deck.</p>
+      <p class="rv" style="--d:.1s;margin:0;font-size:18px;line-height:1.6;color:#4A5866">The best way to get a feel for how we teach is to come and watch. Drop in, see the classes of four, and chat to a coach on the deck.</p>
       <div style="display:flex;gap:12px;align-items:flex-start">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#1B76BC" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"></path><circle cx="12" cy="10" r="2.6"></circle></svg>
         <span style="font-size:18px;color:#0A0A0A"><strong>Corpus Christi College Aquatic Centre</strong><br>50 Murdoch Dr, Bateman WA 6150</span>
       </div>
       <a href="https://maps.google.com/?q=Corpus+Christi+College+Aquatic+Centre,+50+Murdoch+Dr,+Bateman+WA+6150" target="_blank" rel="noopener" class="sws-btn sws-btn-secondary" style="align-self:flex-start">Get directions <span class="sws-arrow">→</span></a>
     </div>
-    <div style="border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(20,46,69,.12);height:360px">
+    <div class="rv" style="--d:.15s;border-radius:16px;overflow:hidden;box-shadow:0 8px 30px rgba(20,46,69,.12);height:360px">
       <iframe title="Map to Corpus Christi College Aquatic Centre, Bateman" src="https://www.google.com/maps?q=Corpus+Christi+College+Aquatic+Centre,+50+Murdoch+Dr,+Bateman+WA+6150&output=embed" loading="lazy" style="border:0;width:100%;height:100%"></iframe>
     </div>
   </div>
@@ -426,7 +441,7 @@
   <div class="sws-wrap" style="display:flex;flex-direction:column;gap:48px">
     <div style="display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
       <div style="display:flex;flex-direction:column;gap:16px">
-        <img src="assets/sws-logo.png" alt="Speed With Style" style="width:104px;height:auto;filter:brightness(0) invert(1)">
+        <img src="assets/sws-logo-white.png" alt="Speed With Style" style="width:150px;height:auto">
         <p style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:16px;text-transform:uppercase;color:#84B4DD">Have fun, learn fast, swim fast.</p>
       </div>
       <nav style="display:flex;flex-direction:column;gap:8px" aria-label="Programs">
@@ -475,15 +490,40 @@
   var menuSvg = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>';
   var closeSvg = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12"/><path d="m18 6-12 12"/></svg>';
   function setMenu(open) {
-    menu.hidden = !open;
+    menu.classList.toggle('open', open);
     btn.setAttribute('aria-expanded', String(open));
     btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     iconWrap.innerHTML = open ? closeSvg : menuSvg;
   }
-  btn.addEventListener('click', function () { setMenu(menu.hidden); });
+  btn.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
   menu.querySelectorAll('a').forEach(function (a) {
     a.addEventListener('click', function () { setMenu(false); });
   });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); btn.focus(); }
+  });
+  document.addEventListener('click', function (e) {
+    if (menu.classList.contains('open') && !e.composedPath().includes(document.getElementById('site-header'))) setMenu(false);
+  });
+
+  // Header shadow on scroll + gentle hero parallax
+  var header = document.getElementById('site-header');
+  var heroImg = document.querySelector('#top .sws-kenburns');
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      header.classList.toggle('scrolled', window.scrollY > 8);
+      if (!reducedMotion && heroImg && window.scrollY < window.innerHeight) {
+        heroImg.style.setProperty('--py', (window.scrollY * 0.25) + 'px');
+      }
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
   // Enquiry form
   var form = document.getElementById('enquiry-form');
