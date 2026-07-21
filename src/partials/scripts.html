@@ -1,0 +1,174 @@
+<!-- ===== FLOATING "BOOK A CALL" (Calendly) — bottom right, desktop =====
+     TODO(Alex): set CALENDLY_URL in the script below when the client supplies the link.
+     Until then this falls back to the on-page enquiry form (#book) so it's never a dead end. -->
+<a id="call-cta" href="/#book" class="sws-desktop"
+   style="position:fixed;right:24px;bottom:24px;z-index:99;display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:#1B76BC;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;box-shadow:0 10px 34px rgba(20,46,69,.32);transition:transform .25s cubic-bezier(.2,0,0,1),box-shadow .25s ease">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg>
+  <span>Book a call</span>
+</a>
+
+<!-- ===== STICKY MOBILE CTA ===== -->
+<div class="sws-mobileonly" style="position:fixed;left:0;right:0;bottom:0;z-index:100;display:flex;gap:12px;padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom));background:#fff;box-shadow:0 -8px 30px rgba(20,46,69,.15)">
+  <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="flex:1;font-size:16px;padding:10px 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h4l2 5-2.5 1.5a12 12 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2Z"></path></svg>Call</a>
+  <a href="/#book" class="sws-btn sws-btn-primary" style="flex:1.4;font-size:16px;padding:10px 8px">Book a free lesson</a>
+</div>
+
+<script>
+(function () {
+  // Mobile menu
+  var btn = document.getElementById('menu-btn');
+  var menu = document.getElementById('mobile-menu');
+  var iconWrap = document.getElementById('menu-icon');
+  var menuSvg = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg>';
+  var closeSvg = '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12"/><path d="m18 6-12 12"/></svg>';
+  function setMenu(open) {
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    iconWrap.innerHTML = open ? closeSvg : menuSvg;
+  }
+  btn.addEventListener('click', function () { setMenu(!menu.classList.contains('open')); });
+  menu.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', function () { setMenu(false); });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && menu.classList.contains('open')) { setMenu(false); btn.focus(); }
+  });
+  document.addEventListener('click', function (e) {
+    if (menu.classList.contains('open') && !e.composedPath().includes(document.getElementById('site-header'))) setMenu(false);
+  });
+
+  // Header shadow on scroll + gentle hero parallax
+  var header = document.getElementById('site-header');
+  var heroImg = document.querySelector('#top .sws-kenburns');
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ticking = false;
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function () {
+      header.classList.toggle('scrolled', window.scrollY > 8);
+      if (!reducedMotion && heroImg && window.scrollY < window.innerHeight) {
+        heroImg.style.setProperty('--py', (window.scrollY * 0.25) + 'px');
+      }
+      ticking = false;
+    });
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // Floating "Book a call" CTA.
+  // TODO(Alex): paste the client's Calendly link here. While it's null the button
+  // scrolls to the on-page enquiry form instead, so the CTA is never a dead end.
+  var CALENDLY_URL = null;
+  var callCta = document.getElementById('call-cta');
+  if (callCta && CALENDLY_URL) {
+    callCta.href = CALENDLY_URL;
+    callCta.target = '_blank';
+    callCta.rel = 'noopener';
+  }
+  if (callCta) {
+    callCta.addEventListener('mouseenter', function () { callCta.style.transform = 'translateY(-3px)'; });
+    callCta.addEventListener('mouseleave', function () { callCta.style.transform = 'none'; });
+  }
+
+  // Enquiry form — only present on the homepage, so bail out elsewhere.
+  var form = document.getElementById('enquiry-form');
+  if (form) {
+    var success = document.getElementById('form-success');
+    var submitted = false;
+    var fields = {
+      'f-name': function (v) { return v.trim().length > 0; },
+      'f-phone': function (v) { return /^[\d\s+()-]{8,}$/.test(v); },
+      'f-email': function (v) { return v.trim() === '' || /^\S+@\S+\.\S+$/.test(v); },
+      'f-age': function (v) { return v !== ''; },
+      'f-prog': function (v) { return v !== ''; }
+    };
+    function validate() {
+      var ok = true;
+      Object.keys(fields).forEach(function (id) {
+        var el = document.getElementById(id);
+        var valid = fields[id](el.value);
+        el.closest('.sws-field').classList.toggle('has-error', submitted && !valid);
+        if (!valid) ok = false;
+      });
+      return ok;
+    }
+    form.addEventListener('input', function () { if (submitted) validate(); });
+    form.addEventListener('change', function () { if (submitted) validate(); });
+    var sendError = document.getElementById('form-send-error');
+    var submitBtn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      submitted = true;
+      if (!validate()) return;
+
+      // Guard: if FORM_ID hasn't been swapped for the real Formspree ID, fail loudly
+      // rather than showing a success panel for a message that was never sent.
+      if (form.action.indexOf('FORM_ID') !== -1) {
+        sendError.textContent = "This form isn't connected yet — please call Leesa on 0409 898 232.";
+        sendError.hidden = false;
+        return;
+      }
+
+      sendError.hidden = true;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Sending…';
+
+      fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      }).then(function (res) {
+        if (!res.ok) throw new Error('Formspree responded ' + res.status);
+        form.hidden = true;
+        success.hidden = false;
+      }).catch(function () {
+        sendError.textContent = 'Something went wrong sending that — please try again, or call Leesa on 0409 898 232.';
+        sendError.hidden = false;
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Book a free lesson';
+      });
+    });
+  }
+
+  // Scroll-reveal
+  var revealEls = document.querySelectorAll('.rv, .rv-pop');
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!reduced && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Count-up stats
+  document.querySelectorAll('[data-countup]').forEach(function (el) {
+    var target = parseInt(el.getAttribute('data-countup'), 10);
+    if (reduced || !('IntersectionObserver' in window)) return;
+    el.textContent = '0';
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        cio.unobserve(el);
+        var start = null;
+        function step(t) {
+          if (!start) start = t;
+          var p = Math.min((t - start) / 900, 1);
+          el.textContent = String(Math.round(target * (1 - Math.pow(1 - p, 3))));
+          if (p < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.5 });
+    cio.observe(el);
+  });
+})();
+</script>
+</body>
+</html>
