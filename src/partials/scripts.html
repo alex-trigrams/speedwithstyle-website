@@ -108,7 +108,7 @@
       // placeholder, fail loudly rather than showing a success panel for a
       // message that was never sent.
       if (form.action.indexOf('FORM_ID') !== -1) {
-        sendError.textContent = "This form isn't connected yet — please call Leesa on 0409 898 232.";
+        sendError.textContent = "This form isn't connected yet. Please call Leesa on 0409 898 232.";
         sendError.hidden = false;
         return;
       }
@@ -126,7 +126,7 @@
         form.hidden = true;
         success.hidden = false;
       }).catch(function () {
-        sendError.textContent = 'Something went wrong sending that — please try again, or call Leesa on 0409 898 232.';
+        sendError.textContent = 'Something went wrong sending that. Try again, or call Leesa on 0409 898 232.';
         sendError.hidden = false;
         submitBtn.disabled = false;
         submitBtn.textContent = 'Book a free lesson';

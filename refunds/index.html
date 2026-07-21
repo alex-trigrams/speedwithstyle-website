@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Refund & Cancellation Policy — Speed With Style</title>
+<title>Refund & Cancellation Policy: Speed With Style</title>
 <meta name="description" content="Speed With Style's refund and cancellation policy, and the reasoning behind it.">
 <link rel="canonical" href="https://speedwithstyle.com.au/refunds/">
 <meta name="robots" content="noindex,nofollow">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Refund & Cancellation Policy — Speed With Style">
+<meta property="og:title" content="Refund & Cancellation Policy: Speed With Style">
 <meta property="og:description" content="Speed With Style's refund and cancellation policy, and the reasoning behind it.">
 <meta property="og:url" content="https://speedwithstyle.com.au/refunds/">
 <meta property="og:image" content="https://speedwithstyle.com.au/assets/hero.jpg">
@@ -167,6 +167,58 @@
   .sws-chip{flex:0 0 auto;display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #EDF4FA;border-radius:999px;padding:12px 22px;font-weight:800;font-size:16px;color:#142E45;white-space:nowrap}
   .sws-chip svg{color:#1B76BC;flex-shrink:0}
 
+  /* ===== Bento "why choose us" grid =====
+     6-col grid so the five tiles resolve cleanly instead of leaving an orphan
+     row: hero spans 4, pool spans 2, then three tiles of 2 across the bottom. */
+  .sws-bento{display:grid;gap:16px;grid-template-columns:repeat(6,1fr)}
+  .sws-bento>*{border-radius:20px;position:relative;overflow:hidden}
+  .sws-bento-hero{grid-column:span 4}
+  .sws-bento-pool{grid-column:span 2}
+  .sws-bento-sm{grid-column:span 2}
+  @media(max-width:900px){
+    .sws-bento{grid-template-columns:1fr}
+    .sws-bento-hero,.sws-bento-pool,.sws-bento-sm{grid-column:span 1}
+  }
+
+  /* Hero tile — the "max 4" claim, the whole brand in one number. */
+  .sws-bhero{background:linear-gradient(135deg,#142E45 0%,#1B76BC 100%);color:#fff;padding:36px 32px;display:flex;flex-direction:column;gap:18px;justify-content:center;min-height:280px}
+  .sws-bhero::after{content:"";position:absolute;right:-40px;top:-40px;width:220px;height:220px;border-radius:50%;background:rgba(255,255,255,.07);transition:transform .6s cubic-bezier(.2,0,0,1)}
+  .sws-bhero:hover::after{transform:scale(1.25)}
+  .sws-bnum{display:flex;align-items:baseline;gap:14px;position:relative;z-index:1}
+  .sws-bnum b{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:clamp(4.5rem,11vw,7rem);line-height:.85;color:#fff}
+  .sws-bnum span{font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;letter-spacing:.16em;text-transform:uppercase;color:#84B4DD;max-width:110px;line-height:1.3}
+  /* Four pips = the four kids. They fill in sequence once the tile reveals. */
+  .sws-pips{display:flex;gap:10px;position:relative;z-index:1}
+  .sws-pips span{width:38px;height:38px;border-radius:12px;background:rgba(255,255,255,.14);border:2px solid rgba(255,255,255,.3);display:flex;align-items:center;justify-content:center;color:#fff;opacity:.35;transform:translateY(6px) scale(.9);transition:opacity .45s cubic-bezier(.2,0,0,1),transform .45s cubic-bezier(.34,1.4,.4,1),background .45s}
+  .sws-bento-hero.in .sws-pips span{opacity:1;transform:none;background:rgba(255,255,255,.28)}
+  .sws-bento-hero.in .sws-pips span:nth-child(1){transition-delay:.35s}
+  .sws-bento-hero.in .sws-pips span:nth-child(2){transition-delay:.5s}
+  .sws-bento-hero.in .sws-pips span:nth-child(3){transition-delay:.65s}
+  .sws-bento-hero.in .sws-pips span:nth-child(4){transition-delay:.8s}
+  .sws-bhero p{margin:0;font-size:17px;line-height:1.5;color:#D6E6F4;position:relative;z-index:1;max-width:420px}
+
+  /* Pool tile — water rises to fill the tile as it scrolls into view. */
+  .sws-bpool{background:#0E2438;color:#fff;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;gap:8px;min-height:280px}
+  .sws-water{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(180deg,rgba(27,118,188,.25),rgba(27,118,188,.8));transition:height 1.4s cubic-bezier(.2,0,0,1) .2s}
+  .sws-bento-pool.in .sws-water{height:100%}
+  .sws-water::before{content:"";position:absolute;left:0;top:-8px;width:200%;height:16px;background:radial-gradient(circle at 50% 100%,rgba(27,118,188,.5) 48%,transparent 50%) repeat-x;background-size:40px 16px;animation:sws-drift 5s linear infinite}
+  .sws-btemps{display:flex;gap:18px;position:relative;z-index:1}
+  .sws-btemp{display:flex;flex-direction:column}
+  .sws-btemp b{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:32px;line-height:1;color:#fff}
+  /* Direct child only — the count-up numeral is a <span> nested inside the <b>,
+     and an unscoped .sws-btemp span rule shrinks it to label size. */
+  .sws-btemp>span{font-size:13px;font-weight:700;color:#84B4DD;letter-spacing:.04em}
+  .sws-bpool h3{margin:0;font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;position:relative;z-index:1}
+  .sws-bpool p{margin:0;font-size:15px;line-height:1.5;color:#C9DCEC;position:relative;z-index:1}
+
+  /* Three supporting tiles */
+  .sws-bsm{background:#fff;padding:28px;display:flex;flex-direction:column;gap:12px;min-height:190px;border:2px solid transparent;transition:border-color .3s,transform .3s cubic-bezier(.2,0,0,1),box-shadow .3s}
+  .sws-bsm:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(20,46,69,.14);border-color:#ADCDE9}
+  .sws-bsm h3{margin:0;font-family:'Montserrat',sans-serif;font-weight:800;font-size:20px;line-height:1.3;color:#0A0A0A}
+  .sws-bsm p{margin:0;font-size:16px;line-height:1.5;color:#4A5866}
+  .sws-bicon{width:52px;height:52px;border-radius:14px;background:#EDF4FA;color:#142E45;display:flex;align-items:center;justify-content:center;transition:transform .45s cubic-bezier(.34,1.4,.4,1),background .3s,color .3s}
+  .sws-bsm:hover .sws-bicon{background:#1B76BC;color:#fff;transform:rotate(-8deg) scale(1.1)}
+
   /* ===== Link cards (onboarding hub) ===== */
   .sws-linkgrid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
   .sws-link{position:relative;display:flex;flex-direction:column;gap:8px;padding:24px;border-radius:16px;background:#fff;border:2px solid #EDF4FA;text-decoration:none;overflow:hidden;transition:transform .3s cubic-bezier(.2,0,0,1),box-shadow .3s,border-color .3s}
@@ -187,6 +239,11 @@
     .sws-marquee-track{animation:none;width:auto;flex-wrap:wrap}
     .sws-marquee{-webkit-mask-image:none;mask-image:none}
     .sws-val::before{transition:none;transform:scaleX(1)}
+    .sws-water{transition:none;height:62%}
+    .sws-water::before{animation:none}
+    .sws-pips span{transition:none;opacity:1;transform:none;background:rgba(255,255,255,.28)}
+    .sws-bhero::after,.sws-bsm,.sws-bicon{transition:none}
+    .sws-bsm:hover{transform:none}
     .sws-valicon,.sws-step::before,.sws-link{transition:none}
     .sws-link:hover{transform:none}
     .rv,.rv-pop{opacity:1;transform:none;transition:none}
@@ -204,7 +261,7 @@
 <!-- ===== HEADER ===== -->
 <header id="site-header" style="position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:2px solid #EDF4FA;transition:box-shadow .3s ease">
   <div class="sws-wrap" style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:10px;padding-bottom:10px">
-    <a href="/#top" aria-label="Speed With Style — home" style="display:flex;align-items:center"><img src="/assets/sws-logo.png" alt="Speed With Style" style="width:132px;height:auto"></a>
+    <a href="/#top" aria-label="Speed With Style, home" style="display:flex;align-items:center"><img src="/assets/sws-logo.png" alt="Speed With Style" style="width:132px;height:auto"></a>
     <nav class="sws-desktop" aria-label="Main" style="display:flex;align-items:center;gap:24px">
       <a href="/#programs" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Programs</a>
       <a href="/#why" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Why us</a>
@@ -432,7 +489,7 @@
       // placeholder, fail loudly rather than showing a success panel for a
       // message that was never sent.
       if (form.action.indexOf('FORM_ID') !== -1) {
-        sendError.textContent = "This form isn't connected yet — please call Leesa on 0409 898 232.";
+        sendError.textContent = "This form isn't connected yet. Please call Leesa on 0409 898 232.";
         sendError.hidden = false;
         return;
       }
@@ -450,7 +507,7 @@
         form.hidden = true;
         success.hidden = false;
       }).catch(function () {
-        sendError.textContent = 'Something went wrong sending that — please try again, or call Leesa on 0409 898 232.';
+        sendError.textContent = 'Something went wrong sending that. Try again, or call Leesa on 0409 898 232.';
         sendError.hidden = false;
         submitBtn.disabled = false;
         submitBtn.textContent = 'Book a free lesson';
