@@ -167,6 +167,18 @@
   .sws-chip{flex:0 0 auto;display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #EDF4FA;border-radius:999px;padding:12px 22px;font-weight:800;font-size:16px;color:#142E45;white-space:nowrap}
   .sws-chip svg{color:#1B76BC;flex-shrink:0}
 
+  /* ===== Header dropdown ===== */
+  .sws-dd{position:relative}
+  .sws-dd-btn{display:flex;align-items:center;gap:5px;background:none;border:0;padding:8px 0;font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:16px;color:#0A0A0A;cursor:pointer}
+  .sws-dd-btn svg{transition:transform .25s cubic-bezier(.2,0,0,1)}
+  .sws-dd-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+  .sws-dd-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:210px;background:#fff;border:2px solid #EDF4FA;border-radius:14px;box-shadow:0 18px 44px rgba(20,46,69,.18);padding:8px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .22s ease,transform .22s cubic-bezier(.2,0,0,1),visibility 0s .22s;z-index:10}
+  /* A gap between button and menu would drop the hover; this bridges it. */
+  .sws-dd-menu::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+  .sws-dd:hover .sws-dd-menu,.sws-dd:focus-within .sws-dd-menu,.sws-dd-btn[aria-expanded="true"]+.sws-dd-menu{opacity:1;visibility:visible;transform:translateX(-50%);transition:opacity .22s ease,transform .22s cubic-bezier(.2,0,0,1)}
+  .sws-dd-item{padding:10px 12px;border-radius:9px;font-weight:700;font-size:15px;color:#0A0A0A;text-decoration:none;white-space:nowrap;transition:background .18s,color .18s,padding-left .18s}
+  .sws-dd-item:hover{background:#EDF4FA;color:#1B76BC;padding-left:16px}
+
   /* ===== Bento "why choose us" grid =====
      6-col grid so the five tiles resolve cleanly instead of leaving an orphan
      row: hero spans 4, pool spans 2, then three tiles of 2 across the bottom. */
@@ -244,6 +256,7 @@
     .sws-pips span{transition:none;opacity:1;transform:none;background:rgba(255,255,255,.28)}
     .sws-bhero::after,.sws-bsm,.sws-bicon{transition:none}
     .sws-bsm:hover{transform:none}
+    .sws-dd-menu,.sws-dd-btn svg,.sws-dd-item{transition:none}
     .sws-valicon,.sws-step::before,.sws-link{transition:none}
     .sws-link:hover{transform:none}
     .rv,.rv-pop{opacity:1;transform:none;transition:none}

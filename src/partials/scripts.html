@@ -148,6 +148,30 @@
     revealEls.forEach(function (el) { el.classList.add('in'); });
   }
 
+  // Header dropdown. CSS covers hover; this adds click and keyboard, and closes
+  // on Escape or an outside click.
+  var ddBtn = document.getElementById('dd-btn');
+  var ddMenu = document.getElementById('dd-menu');
+  if (ddBtn && ddMenu) {
+    var setDd = function (open) { ddBtn.setAttribute('aria-expanded', String(open)); };
+    ddBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setDd(ddBtn.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && ddBtn.getAttribute('aria-expanded') === 'true') {
+        setDd(false);
+        ddBtn.focus();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.composedPath().includes(ddMenu) && e.target !== ddBtn) setDd(false);
+    });
+    ddMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setDd(false); });
+    });
+  }
+
   // Coach flip cards. CSS handles the flip on hover for pointer devices; this
   // adds click/tap and keyboard toggling, which is the only way in on touch.
   document.querySelectorAll('.sws-flip').forEach(function (card) {

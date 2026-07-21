@@ -6,7 +6,18 @@
       <a href="/#programs" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Programs</a>
       <a href="/#why" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Why us</a>
       <a href="/#visit" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Visit</a>
-      {{navdesktop}}
+      <!-- Grouped dropdown: the interior pages would overflow the bar if listed
+           flat. Opens on hover and on click/keyboard (hover alone locks out
+           keyboard users). -->
+      <div class="sws-dd">
+        <button type="button" id="dd-btn" class="sws-dd-btn" aria-expanded="false" aria-haspopup="true" aria-controls="dd-menu">
+          More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div id="dd-menu" class="sws-dd-menu" role="menu" aria-labelledby="dd-btn">
+        {{navdesktop}}
+        </div>
+      </div>
       <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="font-size:16px;padding:8px 18px">Call 0409 898 232</a>
       <a href="/#book" class="sws-btn sws-btn-primary" style="font-size:16px;padding:8px 20px">Book a free lesson</a>
     </nav>

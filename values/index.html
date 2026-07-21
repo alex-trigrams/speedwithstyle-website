@@ -167,6 +167,18 @@
   .sws-chip{flex:0 0 auto;display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #EDF4FA;border-radius:999px;padding:12px 22px;font-weight:800;font-size:16px;color:#142E45;white-space:nowrap}
   .sws-chip svg{color:#1B76BC;flex-shrink:0}
 
+  /* ===== Header dropdown ===== */
+  .sws-dd{position:relative}
+  .sws-dd-btn{display:flex;align-items:center;gap:5px;background:none;border:0;padding:8px 0;font-family:'Nunito Sans',sans-serif;font-weight:700;font-size:16px;color:#0A0A0A;cursor:pointer}
+  .sws-dd-btn svg{transition:transform .25s cubic-bezier(.2,0,0,1)}
+  .sws-dd-btn[aria-expanded="true"] svg{transform:rotate(180deg)}
+  .sws-dd-menu{position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(-6px);min-width:210px;background:#fff;border:2px solid #EDF4FA;border-radius:14px;box-shadow:0 18px 44px rgba(20,46,69,.18);padding:8px;display:flex;flex-direction:column;opacity:0;visibility:hidden;transition:opacity .22s ease,transform .22s cubic-bezier(.2,0,0,1),visibility 0s .22s;z-index:10}
+  /* A gap between button and menu would drop the hover; this bridges it. */
+  .sws-dd-menu::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px}
+  .sws-dd:hover .sws-dd-menu,.sws-dd:focus-within .sws-dd-menu,.sws-dd-btn[aria-expanded="true"]+.sws-dd-menu{opacity:1;visibility:visible;transform:translateX(-50%);transition:opacity .22s ease,transform .22s cubic-bezier(.2,0,0,1)}
+  .sws-dd-item{padding:10px 12px;border-radius:9px;font-weight:700;font-size:15px;color:#0A0A0A;text-decoration:none;white-space:nowrap;transition:background .18s,color .18s,padding-left .18s}
+  .sws-dd-item:hover{background:#EDF4FA;color:#1B76BC;padding-left:16px}
+
   /* ===== Bento "why choose us" grid =====
      6-col grid so the five tiles resolve cleanly instead of leaving an orphan
      row: hero spans 4, pool spans 2, then three tiles of 2 across the bottom. */
@@ -244,6 +256,7 @@
     .sws-pips span{transition:none;opacity:1;transform:none;background:rgba(255,255,255,.28)}
     .sws-bhero::after,.sws-bsm,.sws-bicon{transition:none}
     .sws-bsm:hover{transform:none}
+    .sws-dd-menu,.sws-dd-btn svg,.sws-dd-item{transition:none}
     .sws-valicon,.sws-step::before,.sws-link{transition:none}
     .sws-link:hover{transform:none}
     .rv,.rv-pop{opacity:1;transform:none;transition:none}
@@ -266,7 +279,22 @@
       <a href="/#programs" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Programs</a>
       <a href="/#why" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Why us</a>
       <a href="/#visit" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Visit</a>
-      
+      <!-- Grouped dropdown: the interior pages would overflow the bar if listed
+           flat. Opens on hover and on click/keyboard (hover alone locks out
+           keyboard users). -->
+      <div class="sws-dd">
+        <button type="button" id="dd-btn" class="sws-dd-btn" aria-expanded="false" aria-haspopup="true" aria-controls="dd-menu">
+          More
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div id="dd-menu" class="sws-dd-menu" role="menu" aria-labelledby="dd-btn">
+        <a href="/about/" role="menuitem" class="sws-dd-item">About</a>
+        <a href="/values/" role="menuitem" class="sws-dd-item">Our values</a>
+        <a href="/what-to-expect/" role="menuitem" class="sws-dd-item">What to expect</a>
+        <a href="/onboarding/" role="menuitem" class="sws-dd-item">New families</a>
+        <a href="/refunds/" role="menuitem" class="sws-dd-item">Refunds</a>
+        </div>
+      </div>
       <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="font-size:16px;padding:8px 18px">Call 0409 898 232</a>
       <a href="/#book" class="sws-btn sws-btn-primary" style="font-size:16px;padding:8px 20px">Book a free lesson</a>
     </nav>
@@ -279,7 +307,11 @@
       <a href="/#programs" class="mm-item" style="--d:.04s">Programs</a>
       <a href="/#why" class="mm-item" style="--d:.09s">Why us</a>
       <a href="/#visit" class="mm-item" style="--d:.14s">Visit</a>
-      
+      <a href="/about/" class="mm-item" style="--d:.19s">About</a>
+      <a href="/values/" class="mm-item" style="--d:.24s">Our values</a>
+      <a href="/what-to-expect/" class="mm-item" style="--d:.29s">What to expect</a>
+      <a href="/onboarding/" class="mm-item" style="--d:.34s">New families</a>
+      <a href="/refunds/" class="mm-item" style="--d:.39s">Refunds</a>
       <div class="mm-item" style="--d:.19s;display:flex;gap:12px;padding:8px 0 0">
         <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="flex:1">Call us</a>
         <a href="/#book" class="sws-btn sws-btn-primary" style="flex:1">Book free lesson</a>
@@ -364,8 +396,11 @@
       </nav>
       <nav style="display:flex;flex-direction:column;gap:8px" aria-label="School">
         <h3 style="margin:0;font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#84B4DD">School</h3>
-        <a href="/#why" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">About</a>
-        
+        <a href="/about/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">About</a>
+        <a href="/values/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">Our values</a>
+        <a href="/what-to-expect/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">What to expect</a>
+        <a href="/onboarding/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">New families</a>
+        <a href="/refunds/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">Refunds</a>
         <a href="/#book" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">Contact</a>
       </nav>
       <div style="display:flex;flex-direction:column;gap:8px">
@@ -535,6 +570,30 @@
     revealEls.forEach(function (el) { io.observe(el); });
   } else {
     revealEls.forEach(function (el) { el.classList.add('in'); });
+  }
+
+  // Header dropdown. CSS covers hover; this adds click and keyboard, and closes
+  // on Escape or an outside click.
+  var ddBtn = document.getElementById('dd-btn');
+  var ddMenu = document.getElementById('dd-menu');
+  if (ddBtn && ddMenu) {
+    var setDd = function (open) { ddBtn.setAttribute('aria-expanded', String(open)); };
+    ddBtn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      setDd(ddBtn.getAttribute('aria-expanded') !== 'true');
+    });
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && ddBtn.getAttribute('aria-expanded') === 'true') {
+        setDd(false);
+        ddBtn.focus();
+      }
+    });
+    document.addEventListener('click', function (e) {
+      if (!e.composedPath().includes(ddMenu) && e.target !== ddBtn) setDd(false);
+    });
+    ddMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () { setDd(false); });
+    });
   }
 
   // Coach flip cards. CSS handles the flip on hover for pointer devices; this

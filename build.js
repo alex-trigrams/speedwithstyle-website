@@ -77,25 +77,31 @@ function outputPathFor(meta, file) {
 }
 
 /**
- * Nav links are derived from the pages themselves, so a page can never be
- * linked before it is ready: drafts are skipped everywhere. Give a page a
- * "nav": { "label": "About", "order": 1 } block to have it appear once its
- * draft flag comes off.
+ * Nav links are derived from the pages themselves. Give a page a
+ * "nav": { "label": "About", "order": 1 } block to have it appear, and add
+ * "header": true to also put it in the top bar (which only has room for a
+ * couple — everything else lives in the footer).
+ *
+ * Draft pages ARE linked, so the whole skeleton can be clicked through while
+ * copy is still being written. Draft only controls indexing: those pages stay
+ * noindex and out of sitemap.xml until the flag comes off.
  */
 function navEntries(pages) {
   return pages
-    .filter((p) => !p.meta.draft && p.meta.nav && p.meta.nav.label)
+    .filter((p) => p.meta.nav && p.meta.nav.label)
     .sort((a, b) => (a.meta.nav.order || 99) - (b.meta.nav.order || 99));
 }
 
 function buildNav(pages) {
   const entries = navEntries(pages);
+  // Desktop: one grouped dropdown. Listing every page flat overflows the bar.
   const desktop = entries
     .map(
       (p) =>
-        `<a href="${p.meta.path}" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">${p.meta.nav.label}</a>`
+        `<a href="${p.meta.path}" role="menuitem" class="sws-dd-item">${p.meta.nav.label}</a>`
     )
-    .join('\n      ');
+    .join('\n        ');
+  // The mobile panel has room for the full set, unlike the top bar.
   const mobile = entries
     .map(
       (p, i) =>
