@@ -436,8 +436,9 @@
       submitted = true;
       if (!validate()) return;
 
-      // Guard: if FORM_ID hasn't been swapped for the real Formspree ID, fail loudly
-      // rather than showing a success panel for a message that was never sent.
+      // Safety net, kept after wiring: if the endpoint is ever reverted to a
+      // placeholder, fail loudly rather than showing a success panel for a
+      // message that was never sent.
       if (form.action.indexOf('FORM_ID') !== -1) {
         sendError.textContent = "This form isn't connected yet — please call Leesa on 0409 898 232.";
         sendError.hidden = false;
