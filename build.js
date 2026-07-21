@@ -76,36 +76,89 @@ function outputPathFor(meta, file) {
   return clean === '' ? 'index.html' : path.join(clean, 'index.html');
 }
 
+/**
+ * Nav links are derived from the pages themselves, so a page can never be
+ * linked before it is ready: drafts are skipped everywhere. Give a page a
+ * "nav": { "label": "About", "order": 1 } block to have it appear once its
+ * draft flag comes off.
+ */
+function navEntries(pages) {
+  return pages
+    .filter((p) => !p.meta.draft && p.meta.nav && p.meta.nav.label)
+    .sort((a, b) => (a.meta.nav.order || 99) - (b.meta.nav.order || 99));
+}
+
+function buildNav(pages) {
+  const entries = navEntries(pages);
+  const desktop = entries
+    .map(
+      (p) =>
+        `<a href="${p.meta.path}" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">${p.meta.nav.label}</a>`
+    )
+    .join('\n      ');
+  const mobile = entries
+    .map(
+      (p, i) =>
+        `<a href="${p.meta.path}" class="mm-item" style="--d:.${19 + i * 5}s">${p.meta.nav.label}</a>`
+    )
+    .join('\n      ');
+  const footer = entries
+    .map(
+      (p) =>
+        `<a href="${p.meta.path}" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">${p.meta.nav.label}</a>`
+    )
+    .join('\n        ');
+  return { navdesktop: desktop, navmobile: mobile, navfooter: footer };
+}
+
 function build() {
   const files = fs.readdirSync(PAGES).filter((f) => f.endsWith('.html'));
   if (!files.length) throw new Error('No pages found in src/pages/');
 
+  // Two passes: parse everything first so nav can be derived from the full set.
+  const pages = files.map((file) => ({ file, ...parsePage(file) }));
+  const nav = buildNav(pages);
+
   const built = [];
-  for (const file of files) {
-    const { meta, body } = parsePage(file);
-    const html = substitute(expandIncludes(layout(body)), meta);
+  for (const { file, meta, body } of pages) {
+    const data = {
+      ...meta,
+      ...nav,
+      // Unfinished pages must never be indexed. This is derived from the draft
+      // flag rather than hand-written per page so the two can't drift apart.
+      robots: meta.draft
+        ? '<meta name="robots" content="noindex,nofollow">'
+        : '',
+    };
+    const html = substitute(expandIncludes(layout(body)), data);
     const out = outputPathFor(meta, file);
     fs.mkdirSync(path.dirname(path.join(ROOT, out)), { recursive: true });
     fs.writeFileSync(path.join(ROOT, out), html);
-    built.push({ out, path: meta.path });
+    built.push({ out, path: meta.path, draft: !!meta.draft });
   }
 
   built.sort((a, b) => a.path.localeCompare(b.path));
-  for (const b of built) console.log(`  ${b.path.padEnd(18)} -> ${b.out}`);
-  console.log(`\nBuilt ${built.length} page${built.length === 1 ? '' : 's'}.`);
+  for (const b of built) {
+    console.log(`  ${b.path.padEnd(18)} -> ${b.out}${b.draft ? '   [draft: noindex, not in sitemap]' : ''}`);
+  }
+  const drafts = built.filter((b) => b.draft).length;
+  console.log(`\nBuilt ${built.length} page${built.length === 1 ? '' : 's'}${drafts ? ` (${drafts} draft)` : ''}.`);
 
   writeSitemap(built);
 }
 
 function writeSitemap(built) {
-  const urls = built
+  // Drafts are deliberately excluded — an unfinished page in the sitemap is an
+  // active invitation for Google to index placeholder copy.
+  const live = built.filter((b) => !b.draft);
+  const urls = live
     .map((b) => `  <url><loc>https://speedwithstyle.com.au${b.path}</loc></url>`)
     .join('\n');
   fs.writeFileSync(
     path.join(ROOT, 'sitemap.xml'),
     `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`
   );
-  console.log('Wrote sitemap.xml');
+  console.log(`Wrote sitemap.xml (${live.length} live URL${live.length === 1 ? '' : 's'})`);
 }
 
 try {

@@ -147,6 +147,30 @@
     revealEls.forEach(function (el) { el.classList.add('in'); });
   }
 
+  // Coach flip cards. CSS handles the flip on hover for pointer devices; this
+  // adds click/tap and keyboard toggling, which is the only way in on touch.
+  document.querySelectorAll('.sws-flip').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var open = card.getAttribute('aria-pressed') === 'true';
+      card.setAttribute('aria-pressed', String(!open));
+    });
+  });
+
+  // Marquee: duplicate the visible chips so the -50% translate loops seamlessly.
+  // Done here rather than in markup so the source only lists each item once.
+  document.querySelectorAll('.sws-marquee-track').forEach(function (track) {
+    if (reduced) return;
+    track.querySelectorAll('[aria-hidden="true"]').forEach(function (dupe) {
+      dupe.remove();
+    });
+    var originals = Array.prototype.slice.call(track.children);
+    originals.forEach(function (node) {
+      var clone = node.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+  });
+
   // Count-up stats
   document.querySelectorAll('[data-countup]').forEach(function (el) {
     var target = parseInt(el.getAttribute('data-countup'), 10);

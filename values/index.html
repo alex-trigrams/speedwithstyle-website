@@ -6,6 +6,7 @@
 <title>Our Values — Speed With Style Swim School</title>
 <meta name="description" content="The coaching principles behind Speed With Style: technique first, small classes, and process over pressure.">
 <link rel="canonical" href="https://speedwithstyle.com.au/values/">
+<meta name="robots" content="noindex,nofollow">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Our Values — Speed With Style Swim School">
 <meta property="og:description" content="The coaching principles behind Speed With Style: technique first, small classes, and process over pressure.">
@@ -105,8 +106,89 @@
   a.mm-item{color:#0A0A0A}
   #menu-icon svg{transition:transform .3s cubic-bezier(.2,0,0,1)}
   #menu-btn[aria-expanded="true"] #menu-icon svg{transform:rotate(90deg)}
+  /* ===== Interior page shell ===== */
+  .sws-phero{position:relative;background:#142E45;color:#fff;padding:80px 0 72px;overflow:hidden}
+  .sws-phero::after{content:"";position:absolute;inset:0;background:radial-gradient(900px 380px at 78% -12%,rgba(27,118,188,.55),transparent 70%);pointer-events:none}
+  .sws-phero .sws-wrap{position:relative;z-index:1;display:flex;flex-direction:column;gap:16px}
+  .sws-phero .sws-eyebrow{color:#84B4DD}
+  .sws-phero h1{color:#fff;max-width:820px}
+  .sws-lede{margin:0;font-size:18px;line-height:1.6;color:#D6E6F4;max-width:640px}
+  .sws-sect{background:#fff;padding:64px 0}
+  .sws-sect-alt{background:#F7FBFD}
+  .sws-prose{max-width:760px;display:flex;flex-direction:column;gap:28px}
+  .sws-h3{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:26px;text-transform:uppercase;line-height:1.15;color:#0A0A0A}
+  .sws-body{margin:0;font-size:17px;line-height:1.65;color:#4A5866}
+  .sws-todo{border:2px dashed #C9DCEC;border-radius:16px;padding:24px;background:#F7FBFD;display:flex;flex-direction:column;gap:8px}
+  .sws-todo strong{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:18px;text-transform:uppercase;color:#1B76BC}
+  .sws-todo p{margin:0;font-size:15px;line-height:1.6;color:#4A5866}
+
+  /* ===== Flip cards (coach profiles) ===== */
+  .sws-flipgrid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .sws-flip{perspective:1200px;background:none;border:0;padding:0;font:inherit;text-align:left;cursor:pointer;width:100%}
+  /* display:block matters — the inner/faces are spans, and min-height is
+     ignored on inline elements, which collapses the whole card to nothing. */
+  .sws-flip-inner{display:block;position:relative;width:100%;min-height:340px;transition:transform .65s cubic-bezier(.2,.7,.3,1);transform-style:preserve-3d}
+  .sws-flip:hover .sws-flip-inner,.sws-flip[aria-pressed="true"] .sws-flip-inner{transform:rotateY(180deg)}
+  .sws-flip:focus-visible{outline:3px solid #142E45;outline-offset:4px;border-radius:18px}
+  .sws-flip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(20,46,69,.14)}
+  .sws-flip-front{background:#EDF4FA}
+  .sws-flip-photo{flex:1;background:#C9DCEC;display:flex;align-items:center;justify-content:center;color:#5E7F9E}
+  .sws-flip-name{padding:16px 18px;background:#fff;display:flex;flex-direction:column;gap:2px}
+  .sws-flip-name strong{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:19px;text-transform:uppercase;color:#0A0A0A}
+  .sws-flip-name span{font-size:14px;font-weight:700;color:#1B76BC}
+  .sws-flip-back{background:#1B76BC;color:#fff;transform:rotateY(180deg);padding:24px;justify-content:center;gap:10px}
+  .sws-flip-back p{margin:0;font-size:16px;line-height:1.6;color:#EAF3FB}
+  .sws-flip-hint{position:absolute;right:12px;bottom:12px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1B76BC;background:rgba(255,255,255,.92);padding:5px 9px;border-radius:999px;z-index:2}
+
+  /* ===== Value cards ===== */
+  .sws-valgrid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .sws-val{position:relative;background:#fff;border-radius:18px;padding:28px 24px 26px;border:2px solid #EDF4FA;overflow:hidden;display:flex;flex-direction:column;gap:12px}
+  .sws-val::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,#1B76BC,#84B4DD);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,0,0,1)}
+  .sws-val:hover::before{transform:scaleX(1)}
+  .sws-valicon{width:52px;height:52px;border-radius:14px;background:#EDF4FA;color:#1B76BC;display:flex;align-items:center;justify-content:center;transition:transform .45s cubic-bezier(.34,1.4,.4,1),background .3s}
+  .sws-val:hover .sws-valicon{transform:rotate(-8deg) scale(1.1);background:#1B76BC;color:#fff}
+  .sws-valnum{position:absolute;right:18px;top:14px;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:56px;line-height:1;color:#F2F7FB;pointer-events:none;transition:color .3s}
+  .sws-val:hover .sws-valnum{color:#E4EFF8}
+
+  /* ===== Numbered steps ===== */
+  .sws-steps{display:flex;flex-direction:column;gap:0;counter-reset:step;list-style:none;margin:0;padding:0}
+  .sws-step{position:relative;padding:0 0 32px 62px;counter-increment:step}
+  .sws-step::before{content:counter(step);position:absolute;left:0;top:0;width:42px;height:42px;border-radius:50%;background:#1B76BC;color:#fff;font-family:'Montserrat',sans-serif;font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.34,1.4,.4,1)}
+  .sws-step:hover::before{transform:scale(1.14)}
+  .sws-step::after{content:"";position:absolute;left:20px;top:46px;bottom:2px;width:2px;background:linear-gradient(#C9DCEC,#EDF4FA)}
+  .sws-step:last-child{padding-bottom:0}
+  .sws-step:last-child::after{display:none}
+
+  /* ===== Auto-scrolling marquee ===== */
+  .sws-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .sws-marquee-track{display:flex;gap:16px;width:max-content;animation:sws-marquee var(--speed,38s) linear infinite}
+  .sws-marquee:hover .sws-marquee-track,.sws-marquee:focus-within .sws-marquee-track{animation-play-state:paused}
+  @keyframes sws-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .sws-chip{flex:0 0 auto;display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #EDF4FA;border-radius:999px;padding:12px 22px;font-weight:800;font-size:16px;color:#142E45;white-space:nowrap}
+  .sws-chip svg{color:#1B76BC;flex-shrink:0}
+
+  /* ===== Link cards (onboarding hub) ===== */
+  .sws-linkgrid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .sws-link{position:relative;display:flex;flex-direction:column;gap:8px;padding:24px;border-radius:16px;background:#fff;border:2px solid #EDF4FA;text-decoration:none;overflow:hidden;transition:transform .3s cubic-bezier(.2,0,0,1),box-shadow .3s,border-color .3s}
+  .sws-link:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(20,46,69,.16);border-color:#ADCDE9}
+  .sws-link strong{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:19px;text-transform:uppercase;color:#0A0A0A}
+  .sws-link span{font-size:15px;line-height:1.55;color:#4A5866}
+  .sws-link em{font-style:normal;font-weight:800;font-size:15px;color:#1B76BC;display:inline-flex;align-items:center;gap:6px;margin-top:4px}
+
   @media(prefers-reduced-motion:reduce){
     #mobile-menu,.mm-item,#menu-icon svg{transition:none}
+    /* No flip: stack both faces so the bio is still reachable without motion. */
+    .sws-flip{cursor:default}
+    .sws-flip-inner{transition:none;transform:none !important;min-height:0;display:flex;flex-direction:column;gap:12px}
+    .sws-flip-face{position:static;backface-visibility:visible;-webkit-backface-visibility:visible}
+    .sws-flip-front{min-height:280px}
+    .sws-flip-back{transform:none}
+    .sws-flip-hint{display:none}
+    .sws-marquee-track{animation:none;width:auto;flex-wrap:wrap}
+    .sws-marquee{-webkit-mask-image:none;mask-image:none}
+    .sws-val::before{transition:none;transform:scaleX(1)}
+    .sws-valicon,.sws-step::before,.sws-link{transition:none}
+    .sws-link:hover{transform:none}
     .rv,.rv-pop{opacity:1;transform:none;transition:none}
     .hero-in{opacity:1;animation:none}
     .sws-kenburns{animation:none}
@@ -127,6 +209,7 @@
       <a href="/#programs" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Programs</a>
       <a href="/#why" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Why us</a>
       <a href="/#visit" style="font-weight:700;font-size:16px;color:#0A0A0A;text-decoration:none">Visit</a>
+      
       <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="font-size:16px;padding:8px 18px">Call 0409 898 232</a>
       <a href="/#book" class="sws-btn sws-btn-primary" style="font-size:16px;padding:8px 20px">Book a free lesson</a>
     </nav>
@@ -139,6 +222,7 @@
       <a href="/#programs" class="mm-item" style="--d:.04s">Programs</a>
       <a href="/#why" class="mm-item" style="--d:.09s">Why us</a>
       <a href="/#visit" class="mm-item" style="--d:.14s">Visit</a>
+      
       <div class="mm-item" style="--d:.19s;display:flex;gap:12px;padding:8px 0 0">
         <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="flex:1">Call us</a>
         <a href="/#book" class="sws-btn sws-btn-primary" style="flex:1">Book free lesson</a>
@@ -147,40 +231,61 @@
   </nav>
 </header>
 
-<section style="background:#142E45;color:#fff;padding:72px 0 64px">
-  <div class="sws-wrap" style="display:flex;flex-direction:column;gap:16px">
-    <span class="sws-eyebrow" style="color:#84B4DD">Our values</span>
-    <h1 class="sws-h2" style="color:#fff;max-width:820px">What we believe about coaching kids.</h1>
-    <p style="margin:0;font-size:18px;line-height:1.6;color:#D6E6F4;max-width:640px">The principles that decide how we run every session — and why we cap classes at four.</p>
+<section class="sws-phero">
+  <div class="sws-wrap">
+    <span class="sws-eyebrow hero-in" style="--d:.05s">Our values</span>
+    <h1 class="sws-h2 hero-in" style="--d:.15s">What we believe about coaching kids.</h1>
+    <p class="sws-lede hero-in" style="--d:.25s">The principles that decide how we run every session — and why we cap classes at four.</p>
   </div>
 </section>
 
-<section style="background:#fff;padding:64px 0">
-  <div class="sws-wrap" style="display:flex;flex-direction:column;gap:28px;max-width:760px">
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <h2 style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:26px;text-transform:uppercase;line-height:1.15;color:#0A0A0A">Technique before speed</h2>
-      <p style="margin:0;font-size:17px;line-height:1.65;color:#4A5866">Why we teach a stroke that holds up when kids get tired, rather than rushing them across the pool.</p>
+<div class="sws-wave" style="background:#142E45">
+  <svg viewBox="0 0 1200 56" preserveAspectRatio="none" fill="#fff"><path d="M0 28c150 24 300 24 450 0s300-24 450 0 300 24 450 0v28H0Z"/></svg>
+</div>
+
+<section class="sws-sect">
+  <div class="sws-wrap" style="display:flex;flex-direction:column;gap:32px">
+    <!-- TODO(copy): replace each card's body text with the client's own wording.
+         The three headings are the client's existing values and can stay. -->
+    <div class="sws-valgrid">
+      <article class="sws-val rv-pop" style="--d:.05s">
+        <span class="sws-valnum" aria-hidden="true">1</span>
+        <span class="sws-valicon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 16c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><path d="M2 21c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2"/><circle cx="15" cy="5" r="2"/><path d="m5 13 4-4 4 2"/></svg>
+        </span>
+        <h2 class="sws-h3">Technique before speed</h2>
+        <p class="sws-body">TODO(copy): why we teach a stroke that holds up when kids get tired, rather than rushing them across the pool.</p>
+      </article>
+
+      <article class="sws-val rv-pop" style="--d:.13s">
+        <span class="sws-valnum" aria-hidden="true">2</span>
+        <span class="sws-valicon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><path d="M2 20a7 7 0 0 1 14 0"/><circle cx="18" cy="9" r="2.2"/><path d="M17 20a6 6 0 0 1 5-5.9"/></svg>
+        </span>
+        <h2 class="sws-h3">Four per class, guaranteed</h2>
+        <p class="sws-body">TODO(copy): the reasoning behind the cap, and what it changes about how much attention each swimmer gets.</p>
+      </article>
+
+      <article class="sws-val rv-pop" style="--d:.21s">
+        <span class="sws-valnum" aria-hidden="true">3</span>
+        <span class="sws-valicon">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-9.5A4.5 4.5 0 0 1 12 8a4.5 4.5 0 0 1 7 3.5c0 5-7 9.5-7 9.5Z"/></svg>
+        </span>
+        <h2 class="sws-h3">Process over pressure</h2>
+        <p class="sws-body">TODO(copy): our anti-burnout approach to squad coaching.</p>
+      </article>
     </div>
 
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <h2 style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:26px;text-transform:uppercase;line-height:1.15;color:#0A0A0A">Four per class, guaranteed</h2>
-      <p style="margin:0;font-size:17px;line-height:1.65;color:#4A5866">The reasoning behind the cap, and what it changes about how much attention each swimmer gets.</p>
-    </div>
+    <div class="sws-prose rv" style="margin:0 auto">
+      <div class="sws-todo">
+        <strong>Content coming</strong>
+        <p>Awaiting client copy: the client's own wording for each value. Structure, icons and animation are in place — drop the real text into the three cards above.</p>
+      </div>
 
-    <div style="display:flex;flex-direction:column;gap:10px">
-      <h2 style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:26px;text-transform:uppercase;line-height:1.15;color:#0A0A0A">Process over pressure</h2>
-      <p style="margin:0;font-size:17px;line-height:1.65;color:#4A5866">Our anti-burnout approach to squad coaching.</p>
-    </div>
-
-    <!-- PLACEHOLDER: structure only. Client copy drops in here. -->
-    <div style="border:2px dashed #C9DCEC;border-radius:16px;padding:28px;background:#F7FBFD;display:flex;flex-direction:column;gap:10px">
-      <strong style="font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:20px;text-transform:uppercase;color:#1B76BC">Content coming</strong>
-      <p style="margin:0;font-size:16px;line-height:1.6;color:#4A5866">Awaiting client copy: the client's own wording for each value. Structure is in place — drop the real text into the blocks above.</p>
-    </div>
-
-    <div style="display:flex;gap:12px;flex-wrap:wrap;padding-top:8px">
-      <a href="/#book" class="sws-btn sws-btn-primary">Book a free lesson</a>
-      <a href="tel:0409898232" class="sws-btn sws-btn-secondary">Call 0409 898 232</a>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a href="/#book" class="sws-btn sws-btn-primary">Book a free lesson</a>
+        <a href="tel:0409898232" class="sws-btn sws-btn-secondary">Call 0409 898 232</a>
+      </div>
     </div>
   </div>
 </section>
@@ -203,6 +308,7 @@
       <nav style="display:flex;flex-direction:column;gap:8px" aria-label="School">
         <h3 style="margin:0;font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#84B4DD">School</h3>
         <a href="/#why" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">About</a>
+        
         <a href="/#book" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">Contact</a>
       </nav>
       <div style="display:flex;flex-direction:column;gap:8px">
@@ -372,6 +478,30 @@
   } else {
     revealEls.forEach(function (el) { el.classList.add('in'); });
   }
+
+  // Coach flip cards. CSS handles the flip on hover for pointer devices; this
+  // adds click/tap and keyboard toggling, which is the only way in on touch.
+  document.querySelectorAll('.sws-flip').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var open = card.getAttribute('aria-pressed') === 'true';
+      card.setAttribute('aria-pressed', String(!open));
+    });
+  });
+
+  // Marquee: duplicate the visible chips so the -50% translate loops seamlessly.
+  // Done here rather than in markup so the source only lists each item once.
+  document.querySelectorAll('.sws-marquee-track').forEach(function (track) {
+    if (reduced) return;
+    track.querySelectorAll('[aria-hidden="true"]').forEach(function (dupe) {
+      dupe.remove();
+    });
+    var originals = Array.prototype.slice.call(track.children);
+    originals.forEach(function (node) {
+      var clone = node.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      track.appendChild(clone);
+    });
+  });
 
   // Count-up stats
   document.querySelectorAll('[data-countup]').forEach(function (el) {

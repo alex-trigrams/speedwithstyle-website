@@ -6,6 +6,7 @@
 <title>{{title}}</title>
 <meta name="description" content="{{description}}">
 <link rel="canonical" href="https://speedwithstyle.com.au{{path}}">
+{{robots}}
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{title}}">
 <meta property="og:description" content="{{description}}">
@@ -105,8 +106,89 @@
   a.mm-item{color:#0A0A0A}
   #menu-icon svg{transition:transform .3s cubic-bezier(.2,0,0,1)}
   #menu-btn[aria-expanded="true"] #menu-icon svg{transform:rotate(90deg)}
+  /* ===== Interior page shell ===== */
+  .sws-phero{position:relative;background:#142E45;color:#fff;padding:80px 0 72px;overflow:hidden}
+  .sws-phero::after{content:"";position:absolute;inset:0;background:radial-gradient(900px 380px at 78% -12%,rgba(27,118,188,.55),transparent 70%);pointer-events:none}
+  .sws-phero .sws-wrap{position:relative;z-index:1;display:flex;flex-direction:column;gap:16px}
+  .sws-phero .sws-eyebrow{color:#84B4DD}
+  .sws-phero h1{color:#fff;max-width:820px}
+  .sws-lede{margin:0;font-size:18px;line-height:1.6;color:#D6E6F4;max-width:640px}
+  .sws-sect{background:#fff;padding:64px 0}
+  .sws-sect-alt{background:#F7FBFD}
+  .sws-prose{max-width:760px;display:flex;flex-direction:column;gap:28px}
+  .sws-h3{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:26px;text-transform:uppercase;line-height:1.15;color:#0A0A0A}
+  .sws-body{margin:0;font-size:17px;line-height:1.65;color:#4A5866}
+  .sws-todo{border:2px dashed #C9DCEC;border-radius:16px;padding:24px;background:#F7FBFD;display:flex;flex-direction:column;gap:8px}
+  .sws-todo strong{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:18px;text-transform:uppercase;color:#1B76BC}
+  .sws-todo p{margin:0;font-size:15px;line-height:1.6;color:#4A5866}
+
+  /* ===== Flip cards (coach profiles) ===== */
+  .sws-flipgrid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+  .sws-flip{perspective:1200px;background:none;border:0;padding:0;font:inherit;text-align:left;cursor:pointer;width:100%}
+  /* display:block matters — the inner/faces are spans, and min-height is
+     ignored on inline elements, which collapses the whole card to nothing. */
+  .sws-flip-inner{display:block;position:relative;width:100%;min-height:340px;transition:transform .65s cubic-bezier(.2,.7,.3,1);transform-style:preserve-3d}
+  .sws-flip:hover .sws-flip-inner,.sws-flip[aria-pressed="true"] .sws-flip-inner{transform:rotateY(180deg)}
+  .sws-flip:focus-visible{outline:3px solid #142E45;outline-offset:4px;border-radius:18px}
+  .sws-flip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(20,46,69,.14)}
+  .sws-flip-front{background:#EDF4FA}
+  .sws-flip-photo{flex:1;background:#C9DCEC;display:flex;align-items:center;justify-content:center;color:#5E7F9E}
+  .sws-flip-name{padding:16px 18px;background:#fff;display:flex;flex-direction:column;gap:2px}
+  .sws-flip-name strong{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:19px;text-transform:uppercase;color:#0A0A0A}
+  .sws-flip-name span{font-size:14px;font-weight:700;color:#1B76BC}
+  .sws-flip-back{background:#1B76BC;color:#fff;transform:rotateY(180deg);padding:24px;justify-content:center;gap:10px}
+  .sws-flip-back p{margin:0;font-size:16px;line-height:1.6;color:#EAF3FB}
+  .sws-flip-hint{position:absolute;right:12px;bottom:12px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1B76BC;background:rgba(255,255,255,.92);padding:5px 9px;border-radius:999px;z-index:2}
+
+  /* ===== Value cards ===== */
+  .sws-valgrid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+  .sws-val{position:relative;background:#fff;border-radius:18px;padding:28px 24px 26px;border:2px solid #EDF4FA;overflow:hidden;display:flex;flex-direction:column;gap:12px}
+  .sws-val::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;background:linear-gradient(90deg,#1B76BC,#84B4DD);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,0,0,1)}
+  .sws-val:hover::before{transform:scaleX(1)}
+  .sws-valicon{width:52px;height:52px;border-radius:14px;background:#EDF4FA;color:#1B76BC;display:flex;align-items:center;justify-content:center;transition:transform .45s cubic-bezier(.34,1.4,.4,1),background .3s}
+  .sws-val:hover .sws-valicon{transform:rotate(-8deg) scale(1.1);background:#1B76BC;color:#fff}
+  .sws-valnum{position:absolute;right:18px;top:14px;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:56px;line-height:1;color:#F2F7FB;pointer-events:none;transition:color .3s}
+  .sws-val:hover .sws-valnum{color:#E4EFF8}
+
+  /* ===== Numbered steps ===== */
+  .sws-steps{display:flex;flex-direction:column;gap:0;counter-reset:step;list-style:none;margin:0;padding:0}
+  .sws-step{position:relative;padding:0 0 32px 62px;counter-increment:step}
+  .sws-step::before{content:counter(step);position:absolute;left:0;top:0;width:42px;height:42px;border-radius:50%;background:#1B76BC;color:#fff;font-family:'Montserrat',sans-serif;font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.34,1.4,.4,1)}
+  .sws-step:hover::before{transform:scale(1.14)}
+  .sws-step::after{content:"";position:absolute;left:20px;top:46px;bottom:2px;width:2px;background:linear-gradient(#C9DCEC,#EDF4FA)}
+  .sws-step:last-child{padding-bottom:0}
+  .sws-step:last-child::after{display:none}
+
+  /* ===== Auto-scrolling marquee ===== */
+  .sws-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+  .sws-marquee-track{display:flex;gap:16px;width:max-content;animation:sws-marquee var(--speed,38s) linear infinite}
+  .sws-marquee:hover .sws-marquee-track,.sws-marquee:focus-within .sws-marquee-track{animation-play-state:paused}
+  @keyframes sws-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  .sws-chip{flex:0 0 auto;display:flex;align-items:center;gap:10px;background:#fff;border:2px solid #EDF4FA;border-radius:999px;padding:12px 22px;font-weight:800;font-size:16px;color:#142E45;white-space:nowrap}
+  .sws-chip svg{color:#1B76BC;flex-shrink:0}
+
+  /* ===== Link cards (onboarding hub) ===== */
+  .sws-linkgrid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+  .sws-link{position:relative;display:flex;flex-direction:column;gap:8px;padding:24px;border-radius:16px;background:#fff;border:2px solid #EDF4FA;text-decoration:none;overflow:hidden;transition:transform .3s cubic-bezier(.2,0,0,1),box-shadow .3s,border-color .3s}
+  .sws-link:hover{transform:translateY(-5px);box-shadow:0 16px 40px rgba(20,46,69,.16);border-color:#ADCDE9}
+  .sws-link strong{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:19px;text-transform:uppercase;color:#0A0A0A}
+  .sws-link span{font-size:15px;line-height:1.55;color:#4A5866}
+  .sws-link em{font-style:normal;font-weight:800;font-size:15px;color:#1B76BC;display:inline-flex;align-items:center;gap:6px;margin-top:4px}
+
   @media(prefers-reduced-motion:reduce){
     #mobile-menu,.mm-item,#menu-icon svg{transition:none}
+    /* No flip: stack both faces so the bio is still reachable without motion. */
+    .sws-flip{cursor:default}
+    .sws-flip-inner{transition:none;transform:none !important;min-height:0;display:flex;flex-direction:column;gap:12px}
+    .sws-flip-face{position:static;backface-visibility:visible;-webkit-backface-visibility:visible}
+    .sws-flip-front{min-height:280px}
+    .sws-flip-back{transform:none}
+    .sws-flip-hint{display:none}
+    .sws-marquee-track{animation:none;width:auto;flex-wrap:wrap}
+    .sws-marquee{-webkit-mask-image:none;mask-image:none}
+    .sws-val::before{transition:none;transform:scaleX(1)}
+    .sws-valicon,.sws-step::before,.sws-link{transition:none}
+    .sws-link:hover{transform:none}
     .rv,.rv-pop{opacity:1;transform:none;transition:none}
     .hero-in{opacity:1;animation:none}
     .sws-kenburns{animation:none}
