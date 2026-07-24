@@ -71,7 +71,27 @@
   </div>
 </section>
 
+<!-- ===== SEE US IN THE WATER =====
+     Reuses the instructor training video. The client wants a short edited
+     lesson video eventually (separate video-production job) — when it exists,
+     swap the source here and update the copy. -->
 <section class="sws-sect">
+  <div class="sws-wrap" style="display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:center">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <h2 class="sws-h3 rv">Get a feel for it before you come</h2>
+      <p class="sws-body rv" style="--d:.08s">The best way to see how we teach is to come and watch a class in person. In the meantime, here are our instructors in the water at a recent staff training session. Every one of them is a current or former squad swimmer.</p>
+      <p class="sws-body rv" style="--d:.14s;font-size:15px;color:#4A5866"><em>A short edited video of a real lesson is coming, and this spot is reserved for it.</em></p>
+      <div class="rv" style="--d:.2s"><a href="/about/" class="sws-btn sws-btn-secondary">Meet the instructors <span class="sws-arrow">→</span></a></div>
+    </div>
+    <div class="sws-video rv" style="--d:.12s">
+      <video controls preload="none" poster="/assets/instructors-poster.jpg" playsinline>
+        <source src="/assets/instructors-training-web.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<section class="sws-sect sws-sect-alt">
   <div class="sws-wrap sws-prose rv">
     <div class="sws-todo">
       <strong>Content coming</strong>
@@ -79,7 +99,7 @@
     </div>
 
     <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a href="/#book" class="sws-btn sws-btn-primary">Book a free lesson</a>
+      <a href="/#book" data-book-open class="sws-btn sws-btn-primary">Book a free lesson</a>
       <a href="tel:0409898232" class="sws-btn sws-btn-secondary">Call 0409 898 232</a>
     </div>
   </div>

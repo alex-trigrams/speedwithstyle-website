@@ -14,7 +14,7 @@
     <h1 class="hero-in" style="--d:.25s;margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:clamp(2.5rem,7vw,3.5rem);line-height:1.05;letter-spacing:0.01em;text-transform:uppercase;color:#fff;max-width:820px">First comes style,<br>then comes speed.</h1>
     <p class="hero-in" style="--d:.4s;margin:0;font-size:20px;line-height:1.6;color:#D6E6F4;max-width:560px">A learn-to-swim-properly school. Max 4 kids per class, guaranteed.</p>
     <div class="hero-in" style="--d:.55s;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
-      <a href="/#book" class="sws-btn sws-btn-primary sws-btn-lg">Book a free lesson</a>
+      <a href="/#book" data-book-open class="sws-btn sws-btn-primary sws-btn-lg">Book a free lesson</a>
       <a href="tel:0409898232" class="sws-btn sws-btn-ghost sws-btn-lg"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h4l2 5-2.5 1.5a12 12 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2Z"></path></svg>0409 898 232</a>
     </div>
   </div>
@@ -22,7 +22,7 @@
 
 <!-- ===== 2 · TRUST BAR ===== -->
 <section style="background:#142E45;padding:20px 0 0">
-  <div class="sws-wrap" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;padding-bottom:20px">
+  <div class="sws-wrap sws-trustbar" style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;padding-bottom:20px">
     <span class="rv-pop" style="--d:0.0s;display:inline-flex;align-items:center;gap:10px;min-height:44px;padding:8px 18px;border-radius:999px;background:rgba(255,255,255,.10);border:1.5px solid rgba(255,255,255,.25);color:#fff;font-weight:800;font-size:15px">
       <span style="display:flex;color:#84B4DD"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 14.5V4a2 2 0 0 1 4 0v10.5a4 4 0 1 1-4 0Z"/><circle cx="12" cy="18" r="1.4" fill="currentColor" stroke="none"/></svg></span>Heated pools · 33°C &amp; 28°C
     </span>
@@ -39,62 +39,114 @@
   <div class="sws-wave" aria-hidden="true"><svg viewBox="0 0 2880 56" preserveAspectRatio="none"><path fill="#fff" d="M0 32c120 14 240 22 360 22s240-8 360-22 240-22 360-22 240 8 360 22 240 22 360 22 240-8 360-22 240-22 360-22 240 8 360 22v24H0Z"/></svg></div>
 </section>
 
-<!-- ===== 3 · PROGRAMS GRID ===== -->
+<!-- ===== 3 · PROGRAMS PATHWAY =====
+     The three programs are stages on one journey, not parallel options — the
+     numbered badges and connector line make the progression legible at a
+     glance. The Corpus program is an audience filter, not a stage, so it sits
+     apart in its own strip below. -->
 <section id="programs" style="background:#fff;padding:64px 0">
   <div class="sws-wrap" style="display:flex;flex-direction:column;gap:32px">
     <div style="display:flex;flex-direction:column;gap:12px">
       <span class="sws-eyebrow">Our programs</span>
-      <h2 class="sws-h2 rv">Pick a starting point</h2>
+      <h2 class="sws-h2 rv">One pathway, three stages</h2>
+      <p class="rv" style="--d:.08s;margin:0;font-size:18px;line-height:1.6;color:#4A5866;max-width:640px">Kids start in Learn to Swim and progress at their own pace: same school, same approach, all the way to squad. (A squad is a coached training group that swims sessions together.)</p>
     </div>
-    <div class="sws-grid" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
-      <article class="sws-card rv" style="--d:0.0s;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(20,46,69,.12);overflow:hidden;display:flex;flex-direction:column">
-        <div style="aspect-ratio:16/11;overflow:hidden;background:#EDF4FA"><img src="/assets/learn-to-swim.jpg" alt="Instructor guiding a young child's freestyle in the pool" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-        <div style="padding:24px;display:flex;flex-direction:column;gap:12px;flex:1">
-          <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.14em;color:#1B76BC;text-transform:uppercase">Ages 4+</span>
-          <h3 style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:24px;text-transform:uppercase;line-height:1.15">Learn to Swim</h3>
-          <p style="margin:0;font-size:16px;line-height:1.5;color:#4A5866;flex:1">Technique-first lessons in classes of 4, so kids learn to swim properly from the start.</p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:4px">
-            <a href="/#book" class="sws-btn sws-btn-primary" style="font-size:16px;padding:8px 20px">Book a free lesson</a>
-            
-          </div>
-        </div>
+    <div class="sws-pathgrid">
+      <article class="sws-stagecard rv" style="--d:0.0s">
+        <div class="sws-stagebadge"><b>1</b><span>Start here</span></div>
+        <button type="button" class="sws-pflip" aria-pressed="false" data-analytics-action="flip-learn-to-swim">
+          <span class="sws-pflip-inner">
+            <span class="sws-pflip-face sws-pflip-front">
+              <span class="sws-pflip-photo"><img src="/assets/learn-to-swim.jpg" alt="Instructor guiding a young child's freestyle in the pool" loading="lazy"></span>
+              <span class="sws-pflip-copy">
+                <span class="sws-pflip-kicker">Ages 4+</span>
+                <h3>Learn to Swim</h3>
+                <p>Correct technique taught by highly skilled instructors, in a class of 4 or less. Guaranteed.</p>
+                <span class="sws-pflip-hint">Quick facts
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+                </span>
+              </span>
+            </span>
+            <span class="sws-pflip-face sws-pflip-back">
+              <h4>Learn to Swim</h4>
+              <ul class="sws-pflip-facts">
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Who it's for:</b> beginners from age 4, and any child still building correct technique</span></li>
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Class size:</b> 4 kids maximum, guaranteed</span></li>
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Lesson length:</b> 30 minutes, in the heated 33°C pool</span></li>
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>The focus:</b> body position, head position, and how your child engages with the water</span></li>
+              </ul>
+              <span class="sws-pflip-more">Read what happens in a first lesson, linked below.</span>
+            </span>
+          </span>
+        </button>
       </article>
-      <article class="sws-card rv" style="--d:0.1s;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(20,46,69,.12);overflow:hidden;display:flex;flex-direction:column">
-        <div style="aspect-ratio:16/11;overflow:hidden;background:#EDF4FA"><img src="/assets/pre-squad.jpg" alt="Older kids swimming laps in the pre-squad program" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-        <div style="padding:24px;display:flex;flex-direction:column;gap:12px;flex:1">
-          <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.14em;color:#1B76BC;text-transform:uppercase">The next step</span>
-          <h3 style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:24px;text-transform:uppercase;line-height:1.15">Pre-Squad</h3>
-          <p style="margin:0;font-size:16px;line-height:1.5;color:#4A5866;flex:1">600m–1km per session. Fitness and endurance without ever sacrificing technique.</p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:4px">
-            <a href="/#book" class="sws-btn sws-btn-primary" style="font-size:16px;padding:8px 20px">Book a free trial</a>
-            
-          </div>
-        </div>
+      <article class="sws-stagecard rv" style="--d:0.1s">
+        <div class="sws-stagebadge"><b>2</b><span>The next step</span></div>
+        <button type="button" class="sws-pflip" aria-pressed="false" data-analytics-action="flip-pre-squad">
+          <span class="sws-pflip-inner">
+            <span class="sws-pflip-face sws-pflip-front">
+              <span class="sws-pflip-photo"><img src="/assets/pre-squad.jpg" alt="Older kids swimming laps in the pre-squad program" loading="lazy"></span>
+              <span class="sws-pflip-copy">
+                <span class="sws-pflip-kicker">After Learn to Swim</span>
+                <h3>Pre-Squad</h3>
+                <p>Where we develop fitness and endurance, without sacrificing technique and efficiency.</p>
+                <span class="sws-pflip-hint">Quick facts
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+                </span>
+              </span>
+            </span>
+            <span class="sws-pflip-face sws-pflip-back">
+              <h4>Pre-Squad</h4>
+              <ul class="sws-pflip-facts">
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Who it's for:</b> swimmers with solid technique who are ready to build distance</span></li>
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Typical session:</b> 600m to 1km<!-- TODO(confirm): carried over from the earlier build. Check with client before launch. --></span></li>
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>The focus:</b> fitness and endurance, with technique held to the same standard</span></li>
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Where it leads:</b> squad, when your child is ready for it</span></li>
+              </ul>
+              <span class="sws-pflip-more">Not sure if your child is ready? We'll tell you after a free session.</span>
+            </span>
+          </span>
+        </button>
       </article>
-      <article class="sws-card rv" style="--d:0.2s;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(20,46,69,.12);overflow:hidden;display:flex;flex-direction:column">
-        <div style="aspect-ratio:16/11;overflow:hidden;background:#EDF4FA"><img src="/assets/squad.jpg" alt="Squad swimmer diving from the blocks" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-        <div style="padding:24px;display:flex;flex-direction:column;gap:12px;flex:1">
-          <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.14em;color:#1B76BC;text-transform:uppercase">Ages 15+</span>
-          <h3 style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:24px;text-transform:uppercase;line-height:1.15">Squad</h3>
-          <p style="margin:0;font-size:16px;line-height:1.5;color:#4A5866;flex:1">Process-driven, anti-burnout coaching from JJ Williams. Technique over volume, up to 11 sessions a week.</p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:4px">
-            <a href="/#book" class="sws-btn sws-btn-primary" style="font-size:16px;padding:8px 20px">Book a free session</a>
-            
-          </div>
-        </div>
+      <article class="sws-stagecard rv" style="--d:0.2s">
+        <div class="sws-stagebadge"><b>3</b><span>The destination</span></div>
+        <button type="button" class="sws-pflip" aria-pressed="false" data-analytics-action="flip-squad">
+          <span class="sws-pflip-inner">
+            <span class="sws-pflip-face sws-pflip-front">
+              <span class="sws-pflip-photo"><img src="/assets/squad.jpg" alt="Squad swimmer diving from the blocks" loading="lazy"></span>
+              <span class="sws-pflip-copy">
+                <span class="sws-pflip-kicker">Competitive &amp; fitness</span>
+                <h3>Squad</h3>
+                <p>Process and skills driven, not just following the black line. Being a squad swimmer doesn't have to be a miserable experience.</p>
+                <span class="sws-pflip-hint">Quick facts
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/></svg>
+                </span>
+              </span>
+            </span>
+            <span class="sws-pflip-face sws-pflip-back">
+              <h4>Squad</h4>
+              <ul class="sws-pflip-facts">
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Who it's for:</b> swimmers training for competition, or for fitness</span></li>
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Coached by:</b> JJ Williams and the SWS coaching team</span></li>
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>The approach:</b> process over pressure, so kids improve without burning out</span></li>
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Also runs:</b> the Celts club squads, coached by SWS</span></li>
+              </ul>
+              <span class="sws-pflip-more">Squad swimmers are welcome to trial a session first.</span>
+            </span>
+          </span>
+        </button>
       </article>
-      <article class="sws-card rv" style="--d:0.3s;background:#fff;border-radius:16px;box-shadow:0 8px 30px rgba(20,46,69,.12);overflow:hidden;display:flex;flex-direction:column">
-        <div style="aspect-ratio:16/11;overflow:hidden;background:#EDF4FA"><img src="/assets/corpus.webp" alt="Corpus Christi students in a squad session" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div>
-        <div style="padding:24px;display:flex;flex-direction:column;gap:12px;flex:1">
-          <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.14em;color:#1B76BC;text-transform:uppercase">Students &amp; staff</span>
-          <h3 style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:24px;text-transform:uppercase;line-height:1.15">Corpus Christi Program</h3>
-          <p style="margin:0;font-size:16px;line-height:1.5;color:#4A5866;flex:1">Exclusive squad and water polo for the Corpus community. Family discount and a free first lesson.</p>
-          <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:4px">
-            <a href="/#book" class="sws-btn sws-btn-primary" style="font-size:16px;padding:8px 20px">Book a free lesson</a>
-            
-          </div>
-        </div>
-      </article>
+    </div>
+    <p class="rv" style="margin:0;font-size:16px;color:#4A5866">Not sure where your child fits? Pick <strong>"Not sure yet"</strong> when you <a href="/#book" data-book-open style="font-weight:800">book a free lesson</a> and we'll suggest a class when we call. You can also read <a href="/what-to-expect/" style="font-weight:800">what happens in a first lesson</a> or <a href="/values/" style="font-weight:800">how we coach</a>.</p>
+
+    <div class="sws-corpus rv" style="--d:.1s">
+      <div class="sws-corpus-img"><img src="/assets/corpus.webp" alt="Corpus Christi students in a squad session" loading="lazy"></div>
+      <div class="sws-corpus-body">
+        <span class="sws-eyebrow" style="color:#84B4DD">For Corpus Christi students &amp; staff</span>
+        <h3 style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:24px;text-transform:uppercase;line-height:1.15;color:#fff">Corpus Christi Program</h3>
+        <p style="margin:0;font-size:16px;line-height:1.55;color:#D6E6F4">Exclusive squad and water polo for the Corpus community. Family discount and a free first lesson.</p>
+        <div style="margin-top:6px"><a href="/#book" data-book-open class="sws-btn sws-btn-ghost" style="font-size:16px;padding:8px 20px">Book a free lesson</a></div>
+      </div>
     </div>
   </div>
 </section>
@@ -104,9 +156,13 @@
   <div class="sws-wrap" style="display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:center;padding-bottom:80px">
     <div style="display:flex;flex-direction:column;gap:20px">
       <span class="sws-eyebrow" style="color:#84B4DD">The difference</span>
-      <h2 class="sws-h2 rv" style="color:#fff">We teach proper swimming from lesson one.</h2>
-      <p class="rv" style="--d:.1s;margin:0;font-size:18px;line-height:1.6;color:#D6E6F4">Plenty of swim schools get kids across the pool and call it a day. We start with technique: body position, breathing, a stroke that holds up when kids get tired.</p>
-      <p class="rv" style="--d:.18s;margin:0;font-size:18px;line-height:1.6;color:#D6E6F4">So most kids who start with us at 5 or 6 are swimming 1 to 2km by the time they're 8 or 9.</p>
+      <h2 class="sws-h2 rv" style="color:#fff">We teach correct technique from day one.</h2>
+      <ul class="sws-checklist rv" style="--d:.1s">
+        <li><span class="sws-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>Correct body position</li>
+        <li><span class="sws-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>Correct head position</li>
+        <li><span class="sws-tick"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg></span>Correct engagement with the water</li>
+      </ul>
+      <p class="rv" style="--d:.18s;margin:0;font-size:18px;line-height:1.6;color:#D6E6F4">We don't want your kids flapping around the pool with their head and body position all over the place, as we see so often. We want them to swim efficiently, become safe, and have fun.</p>
       <div class="rv" style="--d:.26s;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
         <a href="/#why" class="sws-btn sws-btn-ghost">See why parents choose us <span class="sws-arrow">→</span></a>
         <a href="/values/" style="font-weight:800;font-size:16px;color:#84B4DD;text-decoration:none">How we coach <span class="sws-arrow">→</span></a>
@@ -114,12 +170,12 @@
     </div>
     <div style="display:flex;flex-direction:column;gap:16px">
       <div class="rv-pop" style="background:#1E4568;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:6px">
-        <span style="font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:44px;line-height:1;color:#84B4DD">1–2km</span>
-        <span style="font-size:16px;font-weight:700;color:#D6E6F4">swum by age 8–9, starting at 5–6</span>
+        <span style="font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:clamp(2.2rem,6vw,2.75rem);line-height:1;color:#84B4DD">1–2km</span>
+        <span style="font-size:16px;font-weight:700;color:#D6E6F4">the distance most of our kids can swim by age 8–9, with beautiful, efficient technique (no flapping around)</span>
       </div>
       <div class="rv-pop" style="--d:.12s;background:#1E4568;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:6px">
-        <span data-countup="4" style="font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:44px;line-height:1;color:#84B4DD">4</span>
-        <span style="font-size:16px;font-weight:700;color:#D6E6F4">kids per class, guaranteed. Any more and it stops being coaching.</span>
+        <span style="font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:clamp(2.2rem,6vw,2.75rem);line-height:1;color:#84B4DD">Age 4–5</span>
+        <span style="font-size:16px;font-weight:700;color:#D6E6F4">when most of those kids started with us</span>
       </div>
     </div>
   </div>
@@ -170,14 +226,16 @@
           <span class="sws-bicon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="15" r="5.5"/><path d="M8.5 10 5 2h4l3 6 3-6h4l-3.5 8"/></svg></span>
           <h3>Coaches who've swum it</h3>
           <p>Every coach is a current or former squad swimmer who knows real technique.</p>
+          <a href="/about/" style="font-weight:800;font-size:15px;margin-top:auto">Meet the team <span class="sws-arrow">→</span></a>
         </div>
       </div>
 
       <div class="sws-bento-sm rv" style="--d:.22s">
         <div class="sws-bsm">
           <span class="sws-bicon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 13l7-4 5 3 6-2"/><path d="M2 18c2-1.4 4-1.4 6 0s4 1.4 6 0 4-1.4 6 0"/><circle cx="18.5" cy="7.5" r="1.8"/></svg></span>
-          <h3>No rigid levels</h3>
-          <p>Kids move up when they're ready, based on how they swim. No badge chart to get stuck on.</p>
+          <h3>No level system</h3>
+          <p>Kids stay with one instructor who extends their strengths while fixing weak spots, with no badge chart to get stuck on.</p>
+          <a href="/values/#no-levels" style="font-weight:800;font-size:15px;margin-top:auto">Why we don't do levels <span class="sws-arrow">→</span></a>
         </div>
       </div>
 
@@ -186,6 +244,7 @@
           <span class="sws-bicon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l3 2"/><path d="M10 2h4"/></svg></span>
           <h3>Fun, fast progress</h3>
           <p>Engaged kids learn faster. Have fun, learn fast, swim fast: that's the whole idea.</p>
+          <a href="/values/#process" style="font-weight:800;font-size:15px;margin-top:auto">Process over pressure <span class="sws-arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -197,7 +256,89 @@
   </div>
 </section>
 
-<!-- ===== 6 · SOCIAL PROOF — hidden until real parent reviews are supplied. Unhide by removing this comment wrapper. -->
+<!-- ===== 6 · INSTRUCTOR VIDEO =====
+     Click-to-play (native controls, preload=none) — the file is 7.5MB, so it
+     must never load on page render, especially on mobile. Poster is a frame
+     from the video itself. Source video: client's Wix site, self-hosted here
+     so it survives their Wix cancellation. -->
+<section id="watch" style="background:#142E45;padding:72px 0">
+  <div class="sws-wrap" style="display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:center">
+    <div style="display:flex;flex-direction:column;gap:16px">
+      <span class="sws-eyebrow" style="color:#84B4DD">Our instructors</span>
+      <h2 class="sws-h2 rv" style="color:#fff">Check out our highly skilled staff, and who will be teaching your kids</h2>
+      <p class="rv" style="--d:.1s;margin:0;font-size:18px;line-height:1.6;color:#D6E6F4">All of our instructors are current or former squad swimmers. This is them in the water at a recent staff training session, doing the same technique they'll be teaching your kids.</p>
+      <div class="rv" style="--d:.18s;display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+        <a href="/about/" class="sws-btn sws-btn-ghost">Meet the whole team <span class="sws-arrow">→</span></a>
+      </div>
+    </div>
+    <div class="sws-video rv" style="--d:.12s">
+      <video controls preload="none" poster="/assets/instructors-poster.jpg" playsinline>
+        <source src="/assets/instructors-training-web.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section>
+
+<!-- ===== 6b · FAQ =====
+     Native <details> accordions — no JS needed, keyboard accessible for free.
+     Answers are condensed from the client's own values copy; full versions
+     live on /values/. The FAQPage JSON-LD mirrors the visible Q&As exactly. -->
+<section id="faq" style="background:#fff;padding:64px 0">
+  <div class="sws-wrap" style="display:flex;flex-direction:column;gap:32px">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <span class="sws-eyebrow">Common questions</span>
+      <h2 class="sws-h2 rv">Things parents ask us</h2>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px;max-width:820px">
+      <details class="sws-faq rv" style="--d:0s">
+        <summary>Why don't you have a level system?<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-faq-body">
+          <p>Because strict levels stifle progress. Kids often get stuck in a level over one small skill deficiency, which blocks progress on everything else, and that breeds frustration, boredom and disengagement.</p>
+          <p>Instead, your child stays with one instructor who works with similar-ability kids, extends them on their strengths and helps with what they struggle with. Constant progression, no waiting rooms. <a href="/values/#no-levels">Read the full explanation</a>.</p>
+        </div>
+      </details>
+      <details class="sws-faq rv" style="--d:.06s">
+        <summary>Why only four kids per class?<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-faq-body">
+          <p>A 30-minute class isn't long, so we have to get the most out of it. Four is the most we think one instructor can properly coach. Any more than that is essentially crowd control. And we don't just say we have small classes: we guarantee it.</p>
+        </div>
+      </details>
+      <details class="sws-faq rv" style="--d:.12s">
+        <summary>Will my child be pushed too hard?<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-faq-body">
+          <p>No. We're not looking to train Olympians. Our programs were developed by our Head Coach with a psychologist, and they run on a process of improvement, not shouting, pressure, or a myopic focus on results. In our experience that leads to more enjoyment, less burnout and, ironically, better results. <a href="/values/#process">More on process over pressure</a>.</p>
+        </div>
+      </details>
+      <details class="sws-faq rv" style="--d:.18s">
+        <summary>What age should my child start?<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-faq-body">
+          <p>Most of our swimmers start at age 4 or 5, and most of those are swimming 1–2km with efficient technique by age 8 or 9. Teaching correct technique is much easier when children first start swimming than fixing bad habits later. Older starters are very welcome too.</p>
+        </div>
+      </details>
+      <details class="sws-faq rv" style="--d:.24s">
+        <summary>Which program is right for my child?<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-faq-body">
+          <p>New and developing swimmers start in <a href="/#programs">Learn to Swim</a>; Pre-Squad builds fitness and endurance on top of technique; Squad is for competitive and fitness swimmers. If you're not sure, pick "Not sure yet" when you <a href="/#book" data-book-open>book a free lesson</a> and we'll suggest a class when we call.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {"@type": "Question", "name": "Why don't you have a level system?", "acceptedAnswer": {"@type": "Answer", "text": "Strict levels stifle progress. Kids get stuck in a level over one small skill deficiency, which blocks progress on everything else. Instead, your child stays with one instructor who works with similar-ability kids, extends their strengths and helps with what they struggle with."}},
+      {"@type": "Question", "name": "Why only four kids per class?", "acceptedAnswer": {"@type": "Answer", "text": "A 30-minute class isn't long, so we have to get the most out of it. Four is the most one instructor can properly coach. Any more is essentially crowd control. We don't just say we have small classes: we guarantee it."}},
+      {"@type": "Question", "name": "Will my child be pushed too hard?", "acceptedAnswer": {"@type": "Answer", "text": "No. Our programs were developed by our Head Coach with a psychologist and run on a process of improvement, not shouting or pressure. That leads to more enjoyment, less burnout and better results."}},
+      {"@type": "Question", "name": "What age should my child start?", "acceptedAnswer": {"@type": "Answer", "text": "Most of our swimmers start at age 4 or 5, and most of those are swimming 1–2km with efficient technique by age 8 or 9. Teaching correct technique is much easier when children first start swimming. Older starters are welcome too."}},
+      {"@type": "Question", "name": "Which program is right for my child?", "acceptedAnswer": {"@type": "Answer", "text": "New and developing swimmers start in Learn to Swim; Pre-Squad builds fitness and endurance on top of technique; Squad is for competitive and fitness swimmers. If unsure, pick 'Not sure yet' on the booking form and we'll suggest a class."}}
+    ]
+  }
+  </script>
+</section>
+
+<!-- ===== SOCIAL PROOF — hidden until real parent reviews are supplied. Unhide by removing this comment wrapper. -->
 <!--
 <section style="background:#fff;padding:64px 0">
   <div class="sws-wrap" style="display:flex;flex-direction:column;gap:32px">

@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>About Speed With Style: Our Coaches & Story</title>
-<meta name="description" content="Meet the coaches behind Speed With Style, a technique-first learn-to-swim school in Bateman, Perth.">
+<title>Meet the Team: Speed With Style Coaches & Instructors</title>
+<meta name="description" content="Meet the coaches and instructors at Speed With Style, every one a current or former squad swimmer, from Rottnest solo swimmers to state medallists.">
 <link rel="canonical" href="https://speedwithstyle.com.au/about/">
-<meta name="robots" content="noindex,nofollow">
+
 <meta property="og:type" content="website">
-<meta property="og:title" content="About Speed With Style: Our Coaches & Story">
-<meta property="og:description" content="Meet the coaches behind Speed With Style, a technique-first learn-to-swim school in Bateman, Perth.">
+<meta property="og:title" content="Meet the Team: Speed With Style Coaches & Instructors">
+<meta property="og:description" content="Meet the coaches and instructors at Speed With Style, every one a current or former squad swimmer, from Rottnest solo swimmers to state medallists.">
 <meta property="og:url" content="https://speedwithstyle.com.au/about/">
 <meta property="og:image" content="https://speedwithstyle.com.au/assets/hero.jpg">
 <meta property="og:locale" content="en_AU">
@@ -49,7 +49,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,400&display=swap" rel="stylesheet">
 <style>
   html,body{margin:0;padding:0;overflow-x:clip}
-  section[id],#book{scroll-margin-top:84px}
+  section[id],#book,.sws-vrow[id]{scroll-margin-top:84px}
   body{font-family:'Nunito Sans',sans-serif;color:#0A0A0A;background:#fff}
   *{box-sizing:border-box}
   [hidden]{display:none !important}
@@ -122,23 +122,70 @@
   .sws-todo strong{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:18px;text-transform:uppercase;color:#1B76BC}
   .sws-todo p{margin:0;font-size:15px;line-height:1.6;color:#4A5866}
 
-  /* ===== Flip cards (coach profiles) ===== */
-  .sws-flipgrid{display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
-  .sws-flip{perspective:1200px;background:none;border:0;padding:0;font:inherit;text-align:left;cursor:pointer;width:100%}
+  /* ===== Program flip cards =====
+     Front sells the stage, back gives the quick facts a parent scans for
+     (age, class size, session length) before they commit to reading more.
+     The whole card is a <button> so touch and keyboard both work — :hover
+     alone would strand every phone user on the front face. */
+  .sws-pflip{perspective:1400px;background:none;border:0;padding:0;font:inherit;text-align:left;cursor:pointer;width:100%;display:block}
   /* display:block matters — the inner/faces are spans, and min-height is
      ignored on inline elements, which collapses the whole card to nothing. */
-  .sws-flip-inner{display:block;position:relative;width:100%;min-height:340px;transition:transform .65s cubic-bezier(.2,.7,.3,1);transform-style:preserve-3d}
-  .sws-flip:hover .sws-flip-inner,.sws-flip[aria-pressed="true"] .sws-flip-inner{transform:rotateY(180deg)}
-  .sws-flip:focus-visible{outline:3px solid #142E45;outline-offset:4px;border-radius:18px}
-  .sws-flip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 10px 30px rgba(20,46,69,.14)}
-  .sws-flip-front{background:#EDF4FA}
-  .sws-flip-photo{flex:1;background:#C9DCEC;display:flex;align-items:center;justify-content:center;color:#5E7F9E}
-  .sws-flip-name{padding:16px 18px;background:#fff;display:flex;flex-direction:column;gap:2px}
-  .sws-flip-name strong{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:19px;text-transform:uppercase;color:#0A0A0A}
-  .sws-flip-name span{font-size:14px;font-weight:700;color:#1B76BC}
-  .sws-flip-back{background:#1B76BC;color:#fff;transform:rotateY(180deg);padding:24px;justify-content:center;gap:10px}
-  .sws-flip-back p{margin:0;font-size:16px;line-height:1.6;color:#EAF3FB}
-  .sws-flip-hint{position:absolute;right:12px;bottom:12px;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#1B76BC;background:rgba(255,255,255,.92);padding:5px 9px;border-radius:999px;z-index:2}
+  .sws-pflip-inner{display:block;position:relative;width:100%;min-height:430px;transition:transform .65s cubic-bezier(.2,.7,.3,1);transform-style:preserve-3d}
+  .sws-pflip[aria-pressed="true"] .sws-pflip-inner{transform:rotateY(180deg)}
+  /* Hover-flip only where there's a real pointer. On touch it would fire on
+     scroll; the aria-pressed rule above covers tap and keyboard everywhere. */
+  @media(hover:hover) and (pointer:fine){
+    .sws-pflip:hover .sws-pflip-inner{transform:rotateY(180deg)}
+    .sws-pflip[aria-pressed="true"]:hover .sws-pflip-inner{transform:none}
+  }
+  .sws-pflip:focus-visible{outline:3px solid #142E45;outline-offset:4px;border-radius:16px}
+  .sws-pflip-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 8px 30px rgba(20,46,69,.12)}
+  .sws-pflip-front{background:#fff}
+  .sws-pflip-photo{height:190px;flex-shrink:0;overflow:hidden;background:#EDF4FA}
+  .sws-pflip-photo img{width:100%;height:100%;object-fit:cover;transition:transform .5s cubic-bezier(.2,0,0,1)}
+  @media(hover:hover) and (pointer:fine){.sws-pflip:hover .sws-pflip-photo img{transform:scale(1.05)}}
+  .sws-pflip-copy{padding:22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .sws-pflip-kicker{font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:.14em;color:#1B76BC;text-transform:uppercase}
+  .sws-pflip-copy h3{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:24px;text-transform:uppercase;line-height:1.15;color:#0A0A0A}
+  .sws-pflip-copy p{margin:0;font-size:16px;line-height:1.5;color:#4A5866;flex:1}
+  /* Flip affordance. Parents won't hover a card that looks static. */
+  .sws-pflip-hint{display:inline-flex;align-items:center;gap:8px;font-weight:800;font-size:15px;color:#1B76BC;margin-top:auto}
+  .sws-pflip-hint svg{transition:transform .4s cubic-bezier(.2,0,0,1)}
+  @media(hover:hover) and (pointer:fine){.sws-pflip:hover .sws-pflip-hint svg{transform:rotate(180deg)}}
+  .sws-pflip[aria-pressed="true"] .sws-pflip-hint svg{transform:rotate(180deg)}
+  .sws-pflip-back{background:linear-gradient(150deg,#142E45 0%,#1B76BC 140%);color:#fff;transform:rotateY(180deg);padding:26px 24px;gap:14px;justify-content:center}
+  .sws-pflip-back h4{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:20px;text-transform:uppercase;color:#fff}
+  .sws-pflip-facts{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px}
+  .sws-pflip-facts li{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;line-height:1.45;color:#D6E6F4}
+  .sws-pflip-facts svg{flex-shrink:0;margin-top:3px;color:#84B4DD}
+  .sws-pflip-facts b{color:#fff;font-weight:800}
+  .sws-pflip-more{font-size:14px;font-weight:700;color:#84B4DD;margin-top:2px}
+
+  /* ===== Booking modal =====
+     Native <dialog>: focus trapping, Escape-to-close and inertness come from
+     the platform rather than hand-rolled JS. */
+  .sws-modal{border:0;padding:0;background:transparent;max-width:min(620px,calc(100vw - 32px));width:100%;max-height:calc(100dvh - 32px);overflow:visible}
+  .sws-modal::backdrop{background:rgba(10,20,32,.72);opacity:0;transition:opacity .3s ease}
+  .sws-modal[open]::backdrop{opacity:1}
+  .sws-modal-card{background:#fff;border-radius:18px;box-shadow:0 30px 80px rgba(10,20,32,.45);max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain}
+  .sws-modal[open] .sws-modal-card{animation:sws-modal-in .35s cubic-bezier(.2,0,0,1)}
+  @keyframes sws-modal-in{from{opacity:0;transform:translateY(18px) scale(.97)}to{opacity:1;transform:none}}
+  .sws-modal-head{position:sticky;top:0;z-index:2;background:#142E45;color:#fff;padding:22px 26px;display:flex;align-items:flex-start;gap:16px;border-radius:18px 18px 0 0}
+  .sws-modal-head h2{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:24px;text-transform:uppercase;line-height:1.1;color:#fff}
+  .sws-modal-head p{margin:6px 0 0;font-size:15px;line-height:1.5;color:#D6E6F4}
+  .sws-modal-close{flex-shrink:0;margin-left:auto;width:44px;height:44px;border-radius:50%;border:2px solid rgba(255,255,255,.35);background:rgba(255,255,255,.1);color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s,border-color .2s}
+  .sws-modal-close:hover{background:rgba(255,255,255,.24);border-color:rgba(255,255,255,.7)}
+  .sws-modal-body{padding:26px}
+  .sws-modal-alt{margin:18px 0 0;padding-top:18px;border-top:2px solid #EDF4FA;font-size:15px;line-height:1.6;color:#4A5866}
+  @media(max-width:560px){
+    .sws-modal{max-width:100vw;max-height:100dvh;margin:0;top:auto;bottom:0;transform:none}
+    .sws-modal-card{border-radius:18px 18px 0 0;max-height:92dvh}
+    .sws-modal-head{border-radius:18px 18px 0 0;padding:18px 20px}
+    .sws-modal-head h2{font-size:21px}
+    .sws-modal-body{padding:20px}
+  }
+  /* Page must not scroll behind an open dialog. */
+  body.sws-modal-open{overflow:hidden}
 
   /* ===== Value cards ===== */
   .sws-valgrid{display:grid;gap:20px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
@@ -239,15 +286,119 @@
   .sws-link span{font-size:15px;line-height:1.55;color:#4A5866}
   .sws-link em{font-style:normal;font-weight:800;font-size:15px;color:#1B76BC;display:inline-flex;align-items:center;gap:6px;margin-top:4px}
 
+  /* ===== Trust bar — compact 2-col grid on small phones so the chips don't
+     stack three rows deep and shove the hero content off screen. */
+  @media(max-width:600px){
+    .sws-trustbar{display:grid !important;grid-template-columns:1fr 1fr;gap:8px !important}
+    .sws-trustbar>span{font-size:13px !important;padding:8px 12px !important;gap:8px !important}
+  }
+
+  /* ===== Program pathway =====
+     The three programs are stages, not parallel options. Each card wears a
+     numbered stage badge; on desktop a connecting line runs behind the badges. */
+  .sws-pathgrid{display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));position:relative}
+  .sws-stagecard{position:relative;padding-top:26px}
+  .sws-stagebadge{position:absolute;top:0;left:24px;z-index:2;display:flex;align-items:center;gap:10px}
+  .sws-stagebadge b{width:52px;height:52px;border-radius:50%;background:#1B76BC;border:4px solid #fff;color:#fff;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(20,46,69,.22)}
+  .sws-stagebadge span{font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#1B76BC;background:#fff;padding:4px 10px;border-radius:999px;box-shadow:0 4px 14px rgba(20,46,69,.14)}
+  @media(min-width:900px){
+    .sws-pathgrid::before{content:"";position:absolute;left:10%;right:10%;top:26px;height:3px;background:linear-gradient(90deg,#ADCDE9,#1B76BC,#142E45);border-radius:2px}
+  }
+  /* Corpus strip — audience-specific, deliberately set apart from the pathway. */
+  .sws-corpus{display:grid;gap:28px;grid-template-columns:minmax(200px,300px) 1fr;align-items:center;background:#142E45;border-radius:20px;overflow:hidden;color:#fff}
+  .sws-corpus-img{align-self:stretch;min-height:200px}
+  .sws-corpus-img img{width:100%;height:100%;object-fit:cover;display:block}
+  .sws-corpus-body{padding:28px 32px 28px 4px;display:flex;flex-direction:column;gap:10px}
+  @media(max-width:700px){
+    .sws-corpus{grid-template-columns:1fr}
+    .sws-corpus-img{min-height:180px}
+    .sws-corpus-body{padding:0 24px 28px}
+  }
+
+  /* ===== Technique checklist ===== */
+  .sws-checklist{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
+  .sws-checklist li{display:flex;gap:12px;align-items:center;font-size:17px;font-weight:700;color:#fff}
+  .sws-checklist .sws-tick{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:rgba(132,180,221,.22);border:2px solid #84B4DD;color:#84B4DD;display:flex;align-items:center;justify-content:center}
+
+  /* ===== Values page — full-width rows, one per value ===== */
+  .sws-vrow{display:grid;gap:36px;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start;padding:44px 0;border-top:2px solid #EDF4FA}
+  .sws-vrow:first-of-type{border-top:0;padding-top:0}
+  .sws-vhead{display:flex;flex-direction:column;gap:14px;position:relative}
+  .sws-vnum{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:15px;letter-spacing:.14em;text-transform:uppercase;color:#1B76BC;display:flex;align-items:center;gap:10px}
+  .sws-vnum::before{content:"";width:34px;height:3px;border-radius:2px;background:#1B76BC}
+  .sws-vshort{margin:0;font-size:18px;line-height:1.55;font-weight:800;color:#142E45}
+  .sws-vbody{display:flex;flex-direction:column;gap:18px}
+  .sws-vfact{background:#EDF4FA;border-radius:16px;padding:22px 24px;display:flex;flex-direction:column;gap:4px}
+  .sws-vfact b{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:clamp(1.6rem,4vw,2.1rem);line-height:1.1;color:#1B76BC}
+  .sws-vfact span{font-size:15px;font-weight:700;color:#4A5866}
+  .sws-vquote{margin:0;border-left:4px solid #1B76BC;padding:4px 0 4px 20px;display:flex;flex-direction:column;gap:8px}
+  .sws-vquote p{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:18px;line-height:1.45;color:#142E45}
+  .sws-vquote cite{font-style:normal;font-size:14px;font-weight:700;color:#1B76BC}
+  @media(max-width:820px){.sws-vrow{grid-template-columns:1fr;gap:20px;padding:36px 0}}
+
+  /* ===== Comparison table (levels vs SWS) ===== */
+  .sws-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .sws-compare-col{border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:14px}
+  .sws-compare-col.is-them{background:#F4F6F8;border:2px solid #E3E9EE}
+  .sws-compare-col.is-us{background:#142E45;color:#fff}
+  .sws-compare-col h4{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:17px;text-transform:uppercase;letter-spacing:.02em}
+  .sws-compare-col.is-them h4{color:#4A5866}
+  .sws-compare-col.is-us h4{color:#84B4DD}
+  .sws-compare-col ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+  .sws-compare-col li{display:flex;gap:10px;align-items:flex-start;font-size:15.5px;line-height:1.5}
+  .sws-compare-col.is-them li{color:#4A5866}
+  .sws-compare-col.is-us li{color:#D6E6F4}
+  .sws-compare-col li svg{flex-shrink:0;margin-top:2px}
+  @media(max-width:640px){.sws-compare{grid-template-columns:1fr}}
+
+  /* ===== FAQ accordion ===== */
+  .sws-faq{border:2px solid #EDF4FA;border-radius:16px;background:#fff;transition:border-color .25s}
+  .sws-faq[open]{border-color:#ADCDE9}
+  .sws-faq summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:20px 22px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px;color:#0A0A0A;min-height:44px}
+  .sws-faq summary::-webkit-details-marker{display:none}
+  .sws-faq summary:hover{color:#1B76BC}
+  .sws-faq .sws-faq-icon{flex-shrink:0;width:32px;height:32px;border-radius:50%;background:#EDF4FA;color:#1B76BC;display:flex;align-items:center;justify-content:center;transition:transform .3s cubic-bezier(.2,0,0,1),background .25s,color .25s}
+  .sws-faq[open] .sws-faq-icon{transform:rotate(45deg);background:#1B76BC;color:#fff}
+  .sws-faq-body{padding:0 22px 22px;display:flex;flex-direction:column;gap:12px}
+  .sws-faq-body p{margin:0;font-size:16px;line-height:1.65;color:#4A5866}
+  .sws-faq-body a{font-weight:800}
+
+  /* ===== Video block ===== */
+  .sws-video{border-radius:20px;overflow:hidden;box-shadow:0 14px 44px rgba(20,46,69,.28);background:#0E2438}
+  .sws-video video{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+
+  /* ===== Team page ===== */
+  .sws-lead{display:grid;gap:28px;grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+  .sws-leadcard{background:#fff;border-radius:20px;border:2px solid #EDF4FA;padding:30px 28px;display:flex;flex-direction:column;gap:14px}
+  .sws-leadcard .sws-tava{width:72px;height:72px;font-size:24px}
+  .sws-leadcard h3{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:22px;text-transform:uppercase;color:#0A0A0A}
+  .sws-leadcard .sws-trole{font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#1B76BC}
+  .sws-leadcard p{margin:0;font-size:16px;line-height:1.6;color:#4A5866}
+  .sws-tava{width:52px;height:52px;border-radius:50%;background:linear-gradient(135deg,#1B76BC,#142E45);color:#fff;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:18px;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+  .sws-tava img{width:100%;height:100%;object-fit:cover}
+  .sws-tgrid{display:grid;gap:16px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));align-items:start}
+  .sws-tcard{border:2px solid #EDF4FA;border-radius:16px;background:#fff;transition:border-color .25s,box-shadow .25s}
+  .sws-tcard[open]{border-color:#ADCDE9;box-shadow:0 12px 32px rgba(20,46,69,.12)}
+  .sws-tcard summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:14px;padding:16px 18px;min-height:44px}
+  .sws-tcard summary::-webkit-details-marker{display:none}
+  .sws-tcard .sws-tname{display:flex;flex-direction:column;gap:2px;flex:1;min-width:0}
+  .sws-tcard .sws-tname strong{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:17px;text-transform:uppercase;color:#0A0A0A}
+  .sws-tcard .sws-tname span{font-size:13px;font-weight:700;color:#1B76BC}
+  .sws-tcard .sws-faq-icon{width:28px;height:28px}
+  .sws-tcard[open] .sws-faq-icon{transform:rotate(45deg);background:#1B76BC;color:#fff}
+  .sws-tbio{padding:0 18px 18px;display:flex;flex-direction:column;gap:10px}
+  .sws-tbio p{margin:0;font-size:15px;line-height:1.6;color:#4A5866}
+
   @media(prefers-reduced-motion:reduce){
     #mobile-menu,.mm-item,#menu-icon svg{transition:none}
-    /* No flip: stack both faces so the bio is still reachable without motion. */
-    .sws-flip{cursor:default}
-    .sws-flip-inner{transition:none;transform:none !important;min-height:0;display:flex;flex-direction:column;gap:12px}
-    .sws-flip-face{position:static;backface-visibility:visible;-webkit-backface-visibility:visible}
-    .sws-flip-front{min-height:280px}
-    .sws-flip-back{transform:none}
-    .sws-flip-hint{display:none}
+    /* No flip: stack both faces so the facts are still reachable without motion. */
+    .sws-pflip{cursor:default}
+    .sws-pflip-inner{transition:none;transform:none !important;min-height:0;display:flex;flex-direction:column;gap:14px}
+    .sws-pflip-face{position:static;backface-visibility:visible;-webkit-backface-visibility:visible}
+    .sws-pflip-back{transform:none}
+    .sws-pflip-hint{display:none}
+    .sws-modal[open] .sws-modal-card{animation:none}
+    .sws-modal::backdrop{transition:none}
     .sws-marquee-track{animation:none;width:auto;flex-wrap:wrap}
     .sws-marquee{-webkit-mask-image:none;mask-image:none}
     .sws-val::before{transition:none;transform:scaleX(1)}
@@ -264,6 +415,7 @@
     .sws-kenburns{animation:none}
     .sws-wave svg{animation:none}
     .sws-card,.sws-card img,.sws-arrow{transition:none}
+    .sws-faq,.sws-faq .sws-faq-icon,.sws-tcard{transition:none}
     html{scroll-behavior:auto}
   }
 </style>
@@ -288,7 +440,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
         </button>
         <div id="dd-menu" class="sws-dd-menu" role="menu" aria-labelledby="dd-btn">
-        <a href="/about/" role="menuitem" class="sws-dd-item">About</a>
+        <a href="/about/" role="menuitem" class="sws-dd-item">Meet the team</a>
         <a href="/values/" role="menuitem" class="sws-dd-item">Our values</a>
         <a href="/what-to-expect/" role="menuitem" class="sws-dd-item">What to expect</a>
         <a href="/onboarding/" role="menuitem" class="sws-dd-item">New families</a>
@@ -296,7 +448,7 @@
         </div>
       </div>
       <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="font-size:16px;padding:8px 18px">Call 0409 898 232</a>
-      <a href="/#book" class="sws-btn sws-btn-primary" style="font-size:16px;padding:8px 20px">Book a free lesson</a>
+      <a href="/#book" data-book-open class="sws-btn sws-btn-primary" style="font-size:16px;padding:8px 20px">Book a free lesson</a>
     </nav>
     <button id="menu-btn" class="sws-mobileonly" aria-label="Open menu" aria-expanded="false" style="background:none;border:none;cursor:pointer;color:#142E45;width:44px;height:44px;display:flex;align-items:center;justify-content:center">
       <span id="menu-icon" style="display:flex"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M4 12h16"/><path d="M4 17h16"/></svg></span>
@@ -307,14 +459,14 @@
       <a href="/#programs" class="mm-item" style="--d:.04s">Programs</a>
       <a href="/#why" class="mm-item" style="--d:.09s">Why us</a>
       <a href="/#visit" class="mm-item" style="--d:.14s">Visit</a>
-      <a href="/about/" class="mm-item" style="--d:.19s">About</a>
+      <a href="/about/" class="mm-item" style="--d:.19s">Meet the team</a>
       <a href="/values/" class="mm-item" style="--d:.24s">Our values</a>
       <a href="/what-to-expect/" class="mm-item" style="--d:.29s">What to expect</a>
       <a href="/onboarding/" class="mm-item" style="--d:.34s">New families</a>
       <a href="/refunds/" class="mm-item" style="--d:.39s">Refunds</a>
       <div class="mm-item" style="--d:.19s;display:flex;gap:12px;padding:8px 0 0">
         <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="flex:1">Call us</a>
-        <a href="/#book" class="sws-btn sws-btn-primary" style="flex:1">Book free lesson</a>
+        <a href="/#book" data-book-open class="sws-btn sws-btn-primary" style="flex:1">Book free lesson</a>
       </div>
     </div></div>
   </nav>
@@ -322,9 +474,9 @@
 
 <section class="sws-phero">
   <div class="sws-wrap">
-    <span class="sws-eyebrow hero-in" style="--d:.05s">About us</span>
-    <h1 class="sws-h2 hero-in" style="--d:.15s">Who's on the deck with your kid.</h1>
-    <p class="sws-lede hero-in" style="--d:.25s">Every coach here is a current or former squad swimmer. Here's who they are and how they coach.</p>
+    <span class="sws-eyebrow hero-in" style="--d:.05s">Meet the team</span>
+    <h1 class="sws-h2 hero-in" style="--d:.15s">Check out our highly skilled staff, and who will be teaching your kids.</h1>
+    <p class="sws-lede hero-in" style="--d:.25s">Every instructor here is a current or former squad swimmer. Founders first, then the pool deck leaders, then the whole instructor team.</p>
   </div>
 </section>
 
@@ -332,101 +484,237 @@
   <svg viewBox="0 0 1200 56" preserveAspectRatio="none" fill="#fff"><path d="M0 28c150 24 300 24 450 0s300-24 450 0 300 24 450 0v28H0Z"/></svg>
 </div>
 
+<!-- ===== FOUNDERS & OPERATIONS ===== -->
 <section class="sws-sect">
   <div class="sws-wrap" style="display:flex;flex-direction:column;gap:36px">
-    <div class="sws-prose rv">
-      <div style="display:flex;flex-direction:column;gap:10px">
-        <h2 class="sws-h3">The team</h2>
-        <p class="sws-body">Coach profiles: name, swimming background, what they specialise in, and which programs they take. Tap or hover a card to read the bio.</p>
-      </div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <span class="sws-eyebrow">The founders</span>
+      <h2 class="sws-h3 rv">Who built the program</h2>
     </div>
-
-    <!-- Coach flip cards. Each card is a <button> so it works by keyboard and on
-         touch, where :hover never fires. TODO(copy): swap the placeholder name,
-         role and bio for the client's real details, and drop a headshot into
-         .sws-flip-photo in place of the silhouette. Duplicate a card per coach. -->
-    <div class="sws-flipgrid">
-      <button type="button" class="sws-flip rv-pop" style="--d:.05s" aria-pressed="false">
-        <span class="sws-flip-hint">Tap</span>
-        <span class="sws-flip-inner">
-          <span class="sws-flip-face sws-flip-front">
-            <span class="sws-flip-photo">
-              <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
-            </span>
-            <span class="sws-flip-name">
-              <strong>TODO: Coach name</strong>
-              <span>TODO: role / programs taught</span>
-            </span>
-          </span>
-          <span class="sws-flip-face sws-flip-back">
-            <p>TODO(copy): this coach's swimming background and coaching approach, in the client's own words.</p>
-          </span>
-        </span>
-      </button>
-
-      <button type="button" class="sws-flip rv-pop" style="--d:.12s" aria-pressed="false">
-        <span class="sws-flip-hint">Tap</span>
-        <span class="sws-flip-inner">
-          <span class="sws-flip-face sws-flip-front">
-            <span class="sws-flip-photo">
-              <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
-            </span>
-            <span class="sws-flip-name">
-              <strong>TODO: Coach name</strong>
-              <span>TODO: role / programs taught</span>
-            </span>
-          </span>
-          <span class="sws-flip-face sws-flip-back">
-            <p>TODO(copy): this coach's swimming background and coaching approach, in the client's own words.</p>
-          </span>
-        </span>
-      </button>
-
-      <button type="button" class="sws-flip rv-pop" style="--d:.19s" aria-pressed="false">
-        <span class="sws-flip-hint">Tap</span>
-        <span class="sws-flip-inner">
-          <span class="sws-flip-face sws-flip-front">
-            <span class="sws-flip-photo">
-              <svg width="72" height="72" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg>
-            </span>
-            <span class="sws-flip-name">
-              <strong>TODO: Coach name</strong>
-              <span>TODO: role / programs taught</span>
-            </span>
-          </span>
-          <span class="sws-flip-face sws-flip-back">
-            <p>TODO(copy): this coach's swimming background and coaching approach, in the client's own words.</p>
-          </span>
-        </span>
-      </button>
-    </div>
-
-    <div class="sws-prose rv">
-      <div class="sws-todo">
-        <strong>Content coming</strong>
-        <p>Awaiting client copy: coach bios and headshots for Leesa, Ross, JJ Williams and the wider coaching team. Duplicate a card above for each additional coach — no other change needed.</p>
-      </div>
+    <!-- Photo slots: drop a headshot <img> inside .sws-tava when the client
+         supplies photos, the initials monogram is the built-in fallback. -->
+    <div class="sws-lead">
+      <article class="sws-leadcard rv-pop" style="--d:.05s">
+        <span class="sws-tava">JJ</span>
+        <div>
+          <h3>John (JJ) Williams</h3>
+          <span class="sws-trole">Head Coach &amp; Founder</span>
+        </div>
+        <p>Swimming since age 4, competing in the pool and surf lifesaving since 8. Selected for the Western Suns state surf lifesaving team, numerous state swimming medals, 21st of 301 solo swimmers in the 2022 Rottnest Channel Swim, 11th of over 2,000 at the 2023 Busselton Jetty Swim, plus a state kayak title and top-state junior tennis along the way.</p>
+        <p>But JJ was never taught his strokes correctly. He had to restructure every one of them as an adult, and is now technically faster than when he trained 11 times a week at 18. That experience is the reason SWS exists: teaching correct technique from the start is far easier than fixing it later.</p>
+      </article>
+      <article class="sws-leadcard rv-pop" style="--d:.12s">
+        <span class="sws-tava">NW</span>
+        <div>
+          <h3>Dr. Nigel Williams</h3>
+          <span class="sws-trole">Business Manager &amp; Founder</span>
+        </div>
+        <p>Nigel's background is in psychology, specialising in children with behavioural challenges such as AD/HD, ODD and anxiety, and in helping young athletes execute high-level performances while still having fun. He has worked in private practice and lectured in child and adolescent counselling at Murdoch University.</p>
+        <p>With JJ, Nigel designed the SWS program to build the correct neural pathways for efficient swimming, in a fun, engaging way. He's the reason our coaching runs on process, not pressure.</p>
+      </article>
+      <article class="sws-leadcard rv-pop" style="--d:.19s">
+        <span class="sws-tava">LM</span>
+        <div>
+          <h3>Leesa Munro</h3>
+          <span class="sws-trole">Operations Manager</span>
+        </div>
+        <p>Leesa brings a background in operations, events and venue management, including time as a Surf Life Saving Club Manager. She comes from a swimming family: her husband is a swimming coach and both daughters are dedicated swimmers and water polo players, with her youngest in the SWS program since age five.</p>
+        <p>She's the one who keeps the day-to-day running smoothly, so coaches can focus on coaching, and the first voice you'll likely hear when you call.</p>
+      </article>
     </div>
   </div>
 </section>
 
+<!-- ===== POOL DECK LEADERS ===== -->
+<section class="sws-sect sws-sect-alt">
+  <div class="sws-wrap" style="display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <span class="sws-eyebrow">On pool deck</span>
+      <h2 class="sws-h3 rv">Supervisors &amp; squad coaches</h2>
+    </div>
+    <div class="sws-tgrid">
+      <details class="sws-tcard rv-pop" style="--d:.02s">
+        <summary><span class="sws-tava">J</span><span class="sws-tname"><strong>Jay</strong><span>Squad Coach &amp; Supervisor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio">
+          <p>Swimming his whole life, water polo to national level from 13 to 18, then back to squads at SWS. Completed the Rottnest Channel Swim in a duo, won the Geo Bay Swim in a duo (with JJ), was nominated for the Swimming WA Ben Beale Award, and holds state qualifying times in the 50m through 400m freestyle.</p>
+          <p>"I love understanding how to move through the water efficiently, and the community around swimming: always friendly, supportive and encouraging." Favourite stroke: freestyle.</p>
+        </div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.06s">
+        <summary><span class="sws-tava">R</span><span class="sws-tname"><strong>Ross</strong><span>Pool Deck Manager &amp; Supervisor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio">
+          <p>A winter swimmer with silver and gold national relay medals and current state age records in individual and relay events. Two premiership water polo teams, surf-sports coaching, and paddling support for multiple Rottnest Channel soloists.</p>
+          <p>"I draw on both sides of my journey, athlete and coach, to help others build confidence and capability in the water." Favourite stroke: freestyle.</p>
+        </div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.1s">
+        <summary><span class="sws-tava">V</span><span class="sws-tname"><strong>Val</strong><span>Supervisor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio">
+          <p>Reached state qualifying times at age 12 and still trains with the SWS adult and open squads. Has swum the Busselton Jetty Swim three years running, plus many other open water events, and is training to swim the Rottnest Channel in a team with other SWS instructors.</p>
+          <p>"Fly is my favourite stroke, but these days distance freestyle is the dream, anything over 400m!"</p>
+        </div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.14s">
+        <summary><span class="sws-tava">GL</span><span class="sws-tname"><strong>Grace L</strong><span>Instructor &amp; Squad Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio">
+          <p>Winner of the state and national AUSTSWIM Best New Swim Teacher award for 2022, and a multiple Rottnest Channel Swim finisher who also swims the Busselton Jetty Swim.</p>
+          <p>"I love creating a positive learning environment, building confidence and helping swimmers improve every session while keeping it fun and supportive."</p>
+        </div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.18s">
+        <summary><span class="sws-tava">B</span><span class="sws-tname"><strong>Boston</strong><span>Squad Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio">
+          <p>Competitive since 2020 with multiple state medals in freestyle, butterfly and backstroke, a national-level finalist in freestyle and butterfly, and WA state team representative in 2024 and 2025.</p>
+          <p>"Swimming challenges me to push my limits and improve every time, new personal bests show the hard work and discipline pay off." Favourite stroke: freestyle.</p>
+        </div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== INSTRUCTOR TEAM ===== -->
+<section class="sws-sect">
+  <div class="sws-wrap" style="display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <span class="sws-eyebrow">The instructors</span>
+      <h2 class="sws-h3 rv">The whole team, in the water</h2>
+      <p class="sws-body rv" style="--d:.06s;max-width:720px">Tap any name to read their story. Several of our instructors came all the way through the SWS program themselves, from learn-to-swim to squad to teaching.</p>
+    </div>
+    <div class="sws-tgrid">
+      <details class="sws-tcard rv-pop" style="--d:.02s">
+        <summary><span class="sws-tava">A</span><span class="sws-tname"><strong>Ava</strong><span>Instructor · SWS since day one</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Grew up in the water, surf lifesaving at Coogee Beach, six years of water polo, and an SWS student since day one in 2018. Now swims squads 3–5 times a week and is about to swim to Rottnest in a team with Grace, Val and Annabelle.</p><p>"The biggest reward is that 'lightbulb moment' when a swimmer finally nails a new stroke or technique, it's unbeatable. And I'm still a bit of a child myself, so there's never a dull moment in my classes!"</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.04s">
+        <summary><span class="sws-tava">A</span><span class="sws-tname"><strong>Austin</strong><span>Instructor · came through SWS</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>One of the first kids to join SWS back in 2018, graduated through the program and squads, and is now an instructor.</p><p>"Because we don't have a level system, I teach the same students each week. I get to know their strengths and weaknesses, and the best way to help each one reach their potential." Favourite stroke: freestyle.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.06s">
+        <summary><span class="sws-tava">R</span><span class="sws-tname"><strong>Roman</strong><span>Instructor · came through SWS</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Quit swimming as a kid because he wasn't enjoying it, then joined SWS at 8, and went from barely completing the surf club proficiency swim to being one of the fastest within a year. One of the earliest SWS swimmers, then SWS squads, now an instructor.</p><p>"Swimming challenges the mind and body, but it can also be so social. It's great to have gone from student to instructor." Favourite stroke: freestyle.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.08s">
+        <summary><span class="sws-tava">M</span><span class="sws-tname"><strong>Mitchell</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Started at six, in squads by eight, then competitive swimming. Previously taught in a level-based swim school, and much prefers staying with the same swimmers from beginner all the way to squad, teaching them properly the whole way.</p><p>"I love finding the different ways to engage each swimmer individually to reach their potential." Favourite stroke: freestyle, the one that makes you safe in the water.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.1s">
+        <summary><span class="sws-tava">L</span><span class="sws-tname"><strong>Linda</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Came to swimming later in life with a fear of deep water, and was one of JJ and Nigel's very first students. Now a confident swimmer who has trained with the SWS squad, competed in many open water events, and can dive.</p><p>"I especially love helping anxious kids overcome their fears, I know exactly what they're feeling." Favourite stroke: freestyle.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.12s">
+        <summary><span class="sws-tava">A</span><span class="sws-tname"><strong>Annabelle</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Ten years of swimming, state pool competitions, and now mostly open water. Her biggest achievement: swimming solo to Rottnest after qualifying as a 10km open water swimmer.</p><p>"You can push yourself to your limits in lots of ways, but mainly it's an escape. You feel so calm in the water." Favourite stroke: freestyle.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.14s">
+        <summary><span class="sws-tava">S</span><span class="sws-tname"><strong>Senumi</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Swam consistently for 11 years through school, working up to squads, and still swims for leisure and fitness.</p><p>"I really enjoy seeing the improvements in children's swimming. Freestyle feels the most natural and smooth in the water, I like how fast and efficient it is."</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.16s">
+        <summary><span class="sws-tava">B</span><span class="sws-tname"><strong>Brendan</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>In squads from age 8, then transitioned to triathlon in 2020. As a triathlete and runner, swimming is his cross-training and recovery.</p><p>"Swimming teaches me discipline, perseverance and diligence to keep getting better." Favourite stroke: freestyle, the one he can swim most efficiently.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.18s">
+        <summary><span class="sws-tava">K</span><span class="sws-tname"><strong>Keely</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>From learn-to-swim and pre-squad to competitive swimming in high school, a state finalist who has competed at Australian world championship trials.</p><p>"I love how relaxing it can be when it's just you and your thoughts, and the friendships you make training with friends." Favourite stroke: backstroke.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.2s">
+        <summary><span class="sws-tava">N</span><span class="sws-tname"><strong>Nick</strong><span>Instructor · came through SWS</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Terrified of the water until age 4, and hasn't stopped swimming since. Moved to SWS in 2018 for stroke correction with JJ and has trained with the SWS squad ever since. Top-3 swimmer in his year three years running, and a state surf lifesaving finalist in 2022 and 2023.</p><p>Favourite stroke: butterfly.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.22s">
+        <summary><span class="sws-tava">J</span><span class="sws-tname"><strong>Jaden</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Squad swimmer from Year 4 to Year 10, teaching since the end of Year 10. Still finds swimming both relaxing and a great way to stay fit.</p><p>Favourite stroke: breaststroke, the first stroke he competed in, and the most fun to swim.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.24s">
+        <summary><span class="sws-tava">E</span><span class="sws-tname"><strong>Estele</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Swimming for as long as she can remember: competitive squads when younger, surf lifesaving and ocean swimming since 2020, including the Busselton Jetty Swim a couple of times, with a team Rottnest crossing in her sights.</p><p>"I love the dopamine after a swim, and swimming with mates just makes it that much more fun."</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.02s">
+        <summary><span class="sws-tava">A</span><span class="sws-tname"><strong>Adele</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Learn-to-swim, then eight years of competitive squads and the school swim team from Years 7–12. Has competed at states in short and long course, reaching the top squad at her club.</p><p>"I love the challenge and the team environment, it's fun." Favourite stroke: breaststroke.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.04s">
+        <summary><span class="sws-tava">O</span><span class="sws-tname"><strong>Oisin</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Almost eight years of competitive swimming, four of them with the SWS/Celts squads. Favours sprint and middle-distance events.</p><p>"I like all the strokes, which is probably why I love individual medley races so much."</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.06s">
+        <summary><span class="sws-tava">GA</span><span class="sws-tname"><strong>Grace A</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Swimming in SWS squads since 2021 and racing open water since 2023, proudest of completing the City to Scarborough 5km swim.</p><p>"I love swimming because of the friends I've made." Favourite stroke: freestyle, for long distance, it's the most efficient stroke.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.08s">
+        <summary><span class="sws-tava">A</span><span class="sws-tname"><strong>Ayami</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Competitive from a young age, with experience in squad training and pool racing.</p><p>"I love the discipline and structure swimming provides, it keeps me focused and gives me a mental reset." Favourite stroke: freestyle, natural, smooth and strong.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.1s">
+        <summary><span class="sws-tava">R</span><span class="sws-tname"><strong>Ruby</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Started swimming at 2 and has loved it ever since, 15 years in, a long-time squad swimmer with numerous open water events behind her.</p><p>"Swimming makes a positive impact on my mental and physical wellbeing." Favourite stroke: breaststroke.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.12s">
+        <summary><span class="sws-tava">E</span><span class="sws-tname"><strong>Emily</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>In the pool from the first moment her parents could manage it, squads from age 8–9, then competitive pool and open water racing with a number of successes.</p><p>"Swimming lets you challenge yourself, but it's also alone time where I can switch my brain off." Favourite stroke: breaststroke.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.14s">
+        <summary><span class="sws-tava">E</span><span class="sws-tname"><strong>Elke</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>In a squad since age 7, and still going. Played water polo at national level, and makes the most of WA's beaches.</p><p>"That first dive into the water always snaps me into focus. Once you're in, the hardest part is done." Favourite stroke: freestyle, steady rhythm, quick tumble turns, smooth and strong.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.16s">
+        <summary><span class="sws-tava">S</span><span class="sws-tname"><strong>Sam D</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Lessons since before he can remember, a competitive squad swimmer for many years, and still swimming regularly today.</p><p>"Swimming is relaxing and intense at the same time." Favourite stroke: butterfly, the most powerful and satisfying to swim.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.18s">
+        <summary><span class="sws-tava">C</span><span class="sws-tname"><strong>Callum</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Over eight years in squads, currently swimming for the Celts Swimming Club and chasing his eighth school swimming carnival win.</p><p>"I love the community swimming brings, and that even when you race others, the most important thing is your own swimming." Favourite stroke: all of them. He's never been able to pick.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.2s">
+        <summary><span class="sws-tava">Z</span><span class="sws-tname"><strong>Zara</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Part of swimming clubs most of her life, in the country and in Perth.</p><p>"I love SWS for its positive environment and friendly community, and its commitment to teaching." Favourite stroke: breaststroke, calming, with a nice momentum.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.22s">
+        <summary><span class="sws-tava">E</span><span class="sws-tname"><strong>Ethan</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>A sprinter at heart, always looking to improve, in squad or just general swimming.</p><p>"Freestyle gives me a thrill I don't think any other stroke can match. And everyone at SWS is friendly and helpful to each other."</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.24s">
+        <summary><span class="sws-tava">T</span><span class="sws-tname"><strong>Thomas</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Swimming since he was very young, including squad swimming in South Africa before coming to Australia.</p><p>"My favourite thing is working with kids in small groups and building strong connections, watching them become confident, skilled swimmers is very rewarding." Favourite stroke: breaststroke.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.02s">
+        <summary><span class="sws-tava">E</span><span class="sws-tname"><strong>Eilidh</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Competes at national level and trains with the Celts, coached by SWS. Currently preparing for the Port to Pub endurance race (a swim to Rottnest) as a duo.</p><p>"SWS is such a friendly, supportive environment to keep learning and training in." Favourite stroke: backstroke, because she swims it well.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.04s">
+        <summary><span class="sws-tava">J</span><span class="sws-tname"><strong>James</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Learnt to swim at 4, in squads since 9, now with the Celts under SWS coaches. Aiming for nationals in the 50m and 100m backstroke and butterfly.</p><p>"It's rewarding to teach kids to swim and to enjoy it as much as I do." Favourite stroke: backstroke.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.06s">
+        <summary><span class="sws-tava">L</span><span class="sws-tname"><strong>Liam</strong><span>Instructor &amp; Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>A competitive club swimmer since age 9, currently with the Celts. Races the individual medley, 100m, 200m and 400m, and is planning a half ironman in 2027 plus a team Rottnest crossing.</p><p>"I love the freedom I get as a teacher and coach, experimenting with different solutions to technical problems. And the positive environment, from co-workers to students."</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.08s">
+        <summary><span class="sws-tava">T</span><span class="sws-tname"><strong>Tadhg</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Has competed at national level for Surf Life Saving WA and is a Rottnest Channel Swim soloist.</p><p>"SWS is a very positive environment and all the instructors are awesome." Favourite stroke: fly, he enjoys pushing himself.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:.1s">
+        <summary><span class="sws-tava">N</span><span class="sws-tname"><strong>Natalie</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>A former squad swimmer who finds swimming helps her live in the moment and relax.</p><p>"I love watching children's confidence and skill being built in the water." Favourite stroke: freestyle, the one that moves you fastest.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CREDENTIALS MARQUEE ===== -->
 <section class="sws-sect sws-sect-alt" style="padding:56px 0">
   <div class="sws-wrap" style="display:flex;flex-direction:column;gap:22px">
-    <h2 class="sws-h3 rv" style="text-align:center">What our coaches bring</h2>
-    <!-- Auto-scrolling credential strip. The track holds the list twice so the
-         -50% loop is seamless; the duplicate half is aria-hidden so screen
-         readers don't announce every item twice.
-         TODO(copy): confirm these credentials with the client before publishing. -->
+    <h2 class="sws-h3 rv" style="text-align:center">What this team has done in the water</h2>
+    <!-- Auto-scrolling credential strip. Items are drawn from the staff bios on
+         this page, every claim is attributable to a named team member. -->
     <div class="sws-marquee rv" style="--speed:42s">
       <div class="sws-marquee-track">
-        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>TODO: credential</span>
-        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>TODO: credential</span>
-        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>TODO: credential</span>
-        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>TODO: credential</span>
-        <span class="sws-chip" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>TODO: credential</span>
-        <span class="sws-chip" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>TODO: credential</span>
-        <span class="sws-chip" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>TODO: credential</span>
-        <span class="sws-chip" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>TODO: credential</span>
+        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>Rottnest Channel solo swimmers</span>
+        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>AUSTSWIM National Best New Teacher 2022</span>
+        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>State medallists &amp; national finalists</span>
+        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>WA state team representatives</span>
+        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>National-level water polo players</span>
+        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>Every instructor a squad swimmer</span>
       </div>
     </div>
   </div>
@@ -435,7 +723,7 @@
 <section class="sws-sect">
   <div class="sws-wrap sws-prose rv">
     <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a href="/#book" class="sws-btn sws-btn-primary">Book a free lesson</a>
+      <a href="/#book" data-book-open class="sws-btn sws-btn-primary">Book a free lesson</a>
       <a href="tel:0409898232" class="sws-btn sws-btn-secondary">Call 0409 898 232</a>
     </div>
   </div>
@@ -458,7 +746,7 @@
       </nav>
       <nav style="display:flex;flex-direction:column;gap:8px" aria-label="School">
         <h3 style="margin:0;font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#84B4DD">School</h3>
-        <a href="/about/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">About</a>
+        <a href="/about/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">Meet the team</a>
         <a href="/values/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">Our values</a>
         <a href="/what-to-expect/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">What to expect</a>
         <a href="/onboarding/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">New families</a>
@@ -484,6 +772,82 @@
   </div>
 </footer>
 
+<!-- ===== BOOKING MODAL =====
+     One booking form for the whole site, in a native <dialog>. Any control
+     with data-book-open triggers it (scripts.html wires them up), so interior
+     pages stop bouncing visitors to the homepage. The form posts to the same
+     Formspree endpoint as the inline homepage form; the safety net that fails
+     loudly on a placeholder endpoint is duplicated here on purpose.
+     data-analytics hooks are placeholders for Alex's own tagging later. -->
+<dialog id="booking-modal" class="sws-modal" aria-labelledby="booking-modal-title" data-analytics-section="booking-modal">
+  <div class="sws-modal-card">
+    <div class="sws-modal-head">
+      <div>
+        <h2 id="booking-modal-title">Book a free lesson</h2>
+        <p>Give us your details and we'll call you within one business day to sort a time.</p>
+      </div>
+      <button type="button" class="sws-modal-close" data-book-close aria-label="Close booking form">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="sws-modal-body">
+      <div id="modal-form-success" role="status" hidden style="background:#EDF4FA;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:24px;text-transform:uppercase;color:#1F8A4C">Got it.</span>
+        <p style="margin:0;font-size:16px;color:#0A0A0A">Thanks. We'll call you within one business day to sort a time. If it's urgent, ring Leesa on 0409 898 232.</p>
+      </div>
+      <form id="modal-enquiry-form" novalidate action="https://formspree.io/f/mqerlzqg" method="POST" style="display:flex;flex-direction:column;gap:16px" data-analytics-action="booking-submit">
+        <input type="hidden" name="source" value="booking-modal">
+        <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
+          <label class="sws-label" for="mf-name">Your name *</label>
+          <input id="mf-name" name="name" class="sws-input" autocomplete="name">
+          <span class="sws-err" role="alert">We need a name to say g'day.</span>
+        </div>
+        <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+          <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
+            <label class="sws-label" for="mf-phone">Best number to call you on *</label>
+            <input id="mf-phone" name="phone" type="tel" class="sws-input" placeholder="04xx xxx xxx" autocomplete="tel">
+            <span class="sws-err" role="alert">That number doesn't look right. Check the digits.</span>
+          </div>
+          <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
+            <label class="sws-label" for="mf-email">Email <span style="font-weight:600;color:#4A5866">(optional)</span></label>
+            <input id="mf-email" name="email" type="email" class="sws-input" autocomplete="email">
+            <span class="sws-err" role="alert">That email doesn't look right. Check for typos.</span>
+          </div>
+        </div>
+        <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+          <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
+            <label class="sws-label" for="mf-age">Child's age *</label>
+            <div style="position:relative">
+              <select id="mf-age" name="age" class="sws-input" style="appearance:none;padding-right:44px">
+                <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option>It's for me</option>
+              </select>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#142E45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
+            </div>
+            <span class="sws-err" role="alert">Pick an age range so we can suggest a class.</span>
+          </div>
+          <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
+            <label class="sws-label" for="mf-prog">Program *</label>
+            <div style="position:relative">
+              <select id="mf-prog" name="program" class="sws-input" style="appearance:none;padding-right:44px">
+                <option value="">Choose…</option><option>Learn to Swim</option><option>Pre-Squad</option><option>Squad</option><option>Corpus Christi Program</option><option>Not sure yet</option>
+              </select>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#142E45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
+            </div>
+            <span class="sws-err" role="alert">Pick a program. 'Not sure yet' is fine.</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <label class="sws-label" for="mf-msg">Anything we should know?</label>
+          <textarea id="mf-msg" name="message" class="sws-input" rows="3" style="resize:vertical"></textarea>
+        </div>
+        <button type="submit" class="sws-btn sws-btn-primary sws-btn-lg">Book a free lesson</button>
+        <span id="modal-form-send-error" hidden role="alert" style="font-size:15px;font-weight:700;color:#C2402A">Something went wrong sending that. Try again, or call Leesa on 0409 898 232.</span>
+      </form>
+      <p class="sws-modal-alt">Prefer to talk? Call Leesa on <a href="tel:0409898232" style="font-weight:800">0409 898 232</a> or email <a href="mailto:admin@speedwithstyle.com.au" style="font-weight:800">admin@speedwithstyle.com.au</a>.</p>
+    </div>
+  </div>
+</dialog>
+
 <!-- ===== FLOATING "BOOK A CALL" (Calendly) — bottom right, desktop =====
      TODO(Alex): set CALENDLY_URL in the script below when the client supplies the link.
      Until then this falls back to the on-page enquiry form (#book) so it's never a dead end. -->
@@ -496,7 +860,7 @@
 <!-- ===== STICKY MOBILE CTA ===== -->
 <div class="sws-mobileonly" style="position:fixed;left:0;right:0;bottom:0;z-index:100;display:flex;gap:12px;padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom));background:#fff;box-shadow:0 -8px 30px rgba(20,46,69,.15)">
   <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="flex:1;font-size:16px;padding:10px 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h4l2 5-2.5 1.5a12 12 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2Z"></path></svg>Call</a>
-  <a href="/#book" class="sws-btn sws-btn-primary" style="flex:1.4;font-size:16px;padding:10px 8px">Book a free lesson</a>
+  <a href="/#book" data-book-open class="sws-btn sws-btn-primary" style="flex:1.4;font-size:16px;padding:10px 8px">Book a free lesson</a>
 </div>
 
 <script>
@@ -558,23 +922,25 @@
     callCta.addEventListener('mouseleave', function () { callCta.style.transform = 'none'; });
   }
 
-  // Enquiry form — only present on the homepage, so bail out elsewhere.
-  var form = document.getElementById('enquiry-form');
-  if (form) {
-    var success = document.getElementById('form-success');
+  // Enquiry form wiring, shared by the inline homepage form and the modal form.
+  // Field ids differ per form (f-name vs mf-name), so the validator is keyed by
+  // the input's own id and looked up within each form.
+  function wireEnquiryForm(form, successEl, sendError) {
+    if (!form) return;
     var submitted = false;
-    var fields = {
-      'f-name': function (v) { return v.trim().length > 0; },
-      'f-phone': function (v) { return /^[\d\s+()-]{8,}$/.test(v); },
-      'f-email': function (v) { return v.trim() === '' || /^\S+@\S+\.\S+$/.test(v); },
-      'f-age': function (v) { return v !== ''; },
-      'f-prog': function (v) { return v !== ''; }
+    var checks = {
+      name: function (v) { return v.trim().length > 0; },
+      phone: function (v) { return /^[\d\s+()-]{8,}$/.test(v); },
+      email: function (v) { return v.trim() === '' || /^\S+@\S+\.\S+$/.test(v); },
+      age: function (v) { return v !== ''; },
+      program: function (v) { return v !== ''; }
     };
     function validate() {
       var ok = true;
-      Object.keys(fields).forEach(function (id) {
-        var el = document.getElementById(id);
-        var valid = fields[id](el.value);
+      Object.keys(checks).forEach(function (nm) {
+        var el = form.querySelector('[name="' + nm + '"]');
+        if (!el) return;
+        var valid = checks[nm](el.value);
         el.closest('.sws-field').classList.toggle('has-error', submitted && !valid);
         if (!valid) ok = false;
       });
@@ -582,7 +948,6 @@
     }
     form.addEventListener('input', function () { if (submitted) validate(); });
     form.addEventListener('change', function () { if (submitted) validate(); });
-    var sendError = document.getElementById('form-send-error');
     var submitBtn = form.querySelector('button[type="submit"]');
 
     form.addEventListener('submit', function (e) {
@@ -610,7 +975,7 @@
       }).then(function (res) {
         if (!res.ok) throw new Error('Formspree responded ' + res.status);
         form.hidden = true;
-        success.hidden = false;
+        successEl.hidden = false;
       }).catch(function () {
         sendError.textContent = 'Something went wrong sending that. Try again, or call Leesa on 0409 898 232.';
         sendError.hidden = false;
@@ -619,6 +984,62 @@
       });
     });
   }
+
+  // Homepage inline form (only present on "/").
+  wireEnquiryForm(
+    document.getElementById('enquiry-form'),
+    document.getElementById('form-success'),
+    document.getElementById('form-send-error')
+  );
+
+  // Booking modal — present on every page via the shared partial.
+  var modal = document.getElementById('booking-modal');
+  if (modal && typeof modal.showModal === 'function') {
+    var lastFocus = null;
+    function openModal(trigger) {
+      lastFocus = trigger || document.activeElement;
+      modal.showModal();
+      document.body.classList.add('sws-modal-open');
+      var firstInput = modal.querySelector('#mf-name');
+      if (firstInput) firstInput.focus();
+    }
+    function closeModal() {
+      modal.close();
+    }
+    // Any element with data-book-open opens the modal instead of navigating.
+    document.querySelectorAll('[data-book-open]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(el);
+      });
+    });
+    modal.querySelectorAll('[data-book-close]').forEach(function (el) {
+      el.addEventListener('click', closeModal);
+    });
+    // Click on the backdrop (outside the card) closes it.
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    // Native dialog "close" fires for Escape too; restore scroll and focus here.
+    modal.addEventListener('close', function () {
+      document.body.classList.remove('sws-modal-open');
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    });
+    wireEnquiryForm(
+      document.getElementById('modal-enquiry-form'),
+      document.getElementById('modal-form-success'),
+      document.getElementById('modal-form-send-error')
+    );
+  }
+
+  // Program flip cards — front sells the stage, back gives quick facts. CSS
+  // flips on hover for pointer devices; this adds tap/keyboard for touch.
+  document.querySelectorAll('.sws-pflip').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var open = card.getAttribute('aria-pressed') === 'true';
+      card.setAttribute('aria-pressed', String(!open));
+    });
+  });
 
   // Scroll-reveal
   var revealEls = document.querySelectorAll('.rv, .rv-pop');

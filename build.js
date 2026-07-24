@@ -67,7 +67,7 @@ function parsePage(file) {
 
 /** The page shell every route shares. */
 function layout(body) {
-  return `{{> head }}\n{{> header }}\n${body}\n{{> footer }}\n{{> scripts }}\n`;
+  return `{{> head }}\n{{> header }}\n${body}\n{{> footer }}\n{{> booking-modal }}\n{{> scripts }}\n`;
 }
 
 function outputPathFor(meta, file) {

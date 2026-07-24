@@ -1,0 +1,75 @@
+<!-- ===== BOOKING MODAL =====
+     One booking form for the whole site, in a native <dialog>. Any control
+     with data-book-open triggers it (scripts.html wires them up), so interior
+     pages stop bouncing visitors to the homepage. The form posts to the same
+     Formspree endpoint as the inline homepage form; the safety net that fails
+     loudly on a placeholder endpoint is duplicated here on purpose.
+     data-analytics hooks are placeholders for Alex's own tagging later. -->
+<dialog id="booking-modal" class="sws-modal" aria-labelledby="booking-modal-title" data-analytics-section="booking-modal">
+  <div class="sws-modal-card">
+    <div class="sws-modal-head">
+      <div>
+        <h2 id="booking-modal-title">Book a free lesson</h2>
+        <p>Give us your details and we'll call you within one business day to sort a time.</p>
+      </div>
+      <button type="button" class="sws-modal-close" data-book-close aria-label="Close booking form">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="sws-modal-body">
+      <div id="modal-form-success" role="status" hidden style="background:#EDF4FA;border-radius:12px;padding:24px;display:flex;flex-direction:column;gap:8px">
+        <span style="font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:24px;text-transform:uppercase;color:#1F8A4C">Got it.</span>
+        <p style="margin:0;font-size:16px;color:#0A0A0A">Thanks. We'll call you within one business day to sort a time. If it's urgent, ring Leesa on 0409 898 232.</p>
+      </div>
+      <form id="modal-enquiry-form" novalidate action="https://formspree.io/f/mqerlzqg" method="POST" style="display:flex;flex-direction:column;gap:16px" data-analytics-action="booking-submit">
+        <input type="hidden" name="source" value="booking-modal">
+        <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
+          <label class="sws-label" for="mf-name">Your name *</label>
+          <input id="mf-name" name="name" class="sws-input" autocomplete="name">
+          <span class="sws-err" role="alert">We need a name to say g'day.</span>
+        </div>
+        <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+          <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
+            <label class="sws-label" for="mf-phone">Best number to call you on *</label>
+            <input id="mf-phone" name="phone" type="tel" class="sws-input" placeholder="04xx xxx xxx" autocomplete="tel">
+            <span class="sws-err" role="alert">That number doesn't look right. Check the digits.</span>
+          </div>
+          <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
+            <label class="sws-label" for="mf-email">Email <span style="font-weight:600;color:#4A5866">(optional)</span></label>
+            <input id="mf-email" name="email" type="email" class="sws-input" autocomplete="email">
+            <span class="sws-err" role="alert">That email doesn't look right. Check for typos.</span>
+          </div>
+        </div>
+        <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
+          <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
+            <label class="sws-label" for="mf-age">Child's age *</label>
+            <div style="position:relative">
+              <select id="mf-age" name="age" class="sws-input" style="appearance:none;padding-right:44px">
+                <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option>It's for me</option>
+              </select>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#142E45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
+            </div>
+            <span class="sws-err" role="alert">Pick an age range so we can suggest a class.</span>
+          </div>
+          <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
+            <label class="sws-label" for="mf-prog">Program *</label>
+            <div style="position:relative">
+              <select id="mf-prog" name="program" class="sws-input" style="appearance:none;padding-right:44px">
+                <option value="">Choose…</option><option>Learn to Swim</option><option>Pre-Squad</option><option>Squad</option><option>Corpus Christi Program</option><option>Not sure yet</option>
+              </select>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#142E45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
+            </div>
+            <span class="sws-err" role="alert">Pick a program. 'Not sure yet' is fine.</span>
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <label class="sws-label" for="mf-msg">Anything we should know?</label>
+          <textarea id="mf-msg" name="message" class="sws-input" rows="3" style="resize:vertical"></textarea>
+        </div>
+        <button type="submit" class="sws-btn sws-btn-primary sws-btn-lg">Book a free lesson</button>
+        <span id="modal-form-send-error" hidden role="alert" style="font-size:15px;font-weight:700;color:#C2402A">Something went wrong sending that. Try again, or call Leesa on 0409 898 232.</span>
+      </form>
+      <p class="sws-modal-alt">Prefer to talk? Call Leesa on <a href="tel:0409898232" style="font-weight:800">0409 898 232</a> or email <a href="mailto:admin@speedwithstyle.com.au" style="font-weight:800">admin@speedwithstyle.com.au</a>.</p>
+    </div>
+  </div>
+</dialog>

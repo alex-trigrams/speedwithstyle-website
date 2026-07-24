@@ -10,7 +10,7 @@
 <!-- ===== STICKY MOBILE CTA ===== -->
 <div class="sws-mobileonly" style="position:fixed;left:0;right:0;bottom:0;z-index:100;display:flex;gap:12px;padding:12px 16px;padding-bottom:calc(12px + env(safe-area-inset-bottom));background:#fff;box-shadow:0 -8px 30px rgba(20,46,69,.15)">
   <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="flex:1;font-size:16px;padding:10px 8px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h4l2 5-2.5 1.5a12 12 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2Z"></path></svg>Call</a>
-  <a href="/#book" class="sws-btn sws-btn-primary" style="flex:1.4;font-size:16px;padding:10px 8px">Book a free lesson</a>
+  <a href="/#book" data-book-open class="sws-btn sws-btn-primary" style="flex:1.4;font-size:16px;padding:10px 8px">Book a free lesson</a>
 </div>
 
 <script>
@@ -72,23 +72,25 @@
     callCta.addEventListener('mouseleave', function () { callCta.style.transform = 'none'; });
   }
 
-  // Enquiry form — only present on the homepage, so bail out elsewhere.
-  var form = document.getElementById('enquiry-form');
-  if (form) {
-    var success = document.getElementById('form-success');
+  // Enquiry form wiring, shared by the inline homepage form and the modal form.
+  // Field ids differ per form (f-name vs mf-name), so the validator is keyed by
+  // the input's own id and looked up within each form.
+  function wireEnquiryForm(form, successEl, sendError) {
+    if (!form) return;
     var submitted = false;
-    var fields = {
-      'f-name': function (v) { return v.trim().length > 0; },
-      'f-phone': function (v) { return /^[\d\s+()-]{8,}$/.test(v); },
-      'f-email': function (v) { return v.trim() === '' || /^\S+@\S+\.\S+$/.test(v); },
-      'f-age': function (v) { return v !== ''; },
-      'f-prog': function (v) { return v !== ''; }
+    var checks = {
+      name: function (v) { return v.trim().length > 0; },
+      phone: function (v) { return /^[\d\s+()-]{8,}$/.test(v); },
+      email: function (v) { return v.trim() === '' || /^\S+@\S+\.\S+$/.test(v); },
+      age: function (v) { return v !== ''; },
+      program: function (v) { return v !== ''; }
     };
     function validate() {
       var ok = true;
-      Object.keys(fields).forEach(function (id) {
-        var el = document.getElementById(id);
-        var valid = fields[id](el.value);
+      Object.keys(checks).forEach(function (nm) {
+        var el = form.querySelector('[name="' + nm + '"]');
+        if (!el) return;
+        var valid = checks[nm](el.value);
         el.closest('.sws-field').classList.toggle('has-error', submitted && !valid);
         if (!valid) ok = false;
       });
@@ -96,7 +98,6 @@
     }
     form.addEventListener('input', function () { if (submitted) validate(); });
     form.addEventListener('change', function () { if (submitted) validate(); });
-    var sendError = document.getElementById('form-send-error');
     var submitBtn = form.querySelector('button[type="submit"]');
 
     form.addEventListener('submit', function (e) {
@@ -124,7 +125,7 @@
       }).then(function (res) {
         if (!res.ok) throw new Error('Formspree responded ' + res.status);
         form.hidden = true;
-        success.hidden = false;
+        successEl.hidden = false;
       }).catch(function () {
         sendError.textContent = 'Something went wrong sending that. Try again, or call Leesa on 0409 898 232.';
         sendError.hidden = false;
@@ -133,6 +134,62 @@
       });
     });
   }
+
+  // Homepage inline form (only present on "/").
+  wireEnquiryForm(
+    document.getElementById('enquiry-form'),
+    document.getElementById('form-success'),
+    document.getElementById('form-send-error')
+  );
+
+  // Booking modal — present on every page via the shared partial.
+  var modal = document.getElementById('booking-modal');
+  if (modal && typeof modal.showModal === 'function') {
+    var lastFocus = null;
+    function openModal(trigger) {
+      lastFocus = trigger || document.activeElement;
+      modal.showModal();
+      document.body.classList.add('sws-modal-open');
+      var firstInput = modal.querySelector('#mf-name');
+      if (firstInput) firstInput.focus();
+    }
+    function closeModal() {
+      modal.close();
+    }
+    // Any element with data-book-open opens the modal instead of navigating.
+    document.querySelectorAll('[data-book-open]').forEach(function (el) {
+      el.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal(el);
+      });
+    });
+    modal.querySelectorAll('[data-book-close]').forEach(function (el) {
+      el.addEventListener('click', closeModal);
+    });
+    // Click on the backdrop (outside the card) closes it.
+    modal.addEventListener('click', function (e) {
+      if (e.target === modal) closeModal();
+    });
+    // Native dialog "close" fires for Escape too; restore scroll and focus here.
+    modal.addEventListener('close', function () {
+      document.body.classList.remove('sws-modal-open');
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    });
+    wireEnquiryForm(
+      document.getElementById('modal-enquiry-form'),
+      document.getElementById('modal-form-success'),
+      document.getElementById('modal-form-send-error')
+    );
+  }
+
+  // Program flip cards — front sells the stage, back gives quick facts. CSS
+  // flips on hover for pointer devices; this adds tap/keyboard for touch.
+  document.querySelectorAll('.sws-pflip').forEach(function (card) {
+    card.addEventListener('click', function () {
+      var open = card.getAttribute('aria-pressed') === 'true';
+      card.setAttribute('aria-pressed', String(!open));
+    });
+  });
 
   // Scroll-reveal
   var revealEls = document.querySelectorAll('.rv, .rv-pop');
