@@ -19,6 +19,11 @@
   <svg viewBox="0 0 1200 56" preserveAspectRatio="none" fill="#fff"><path d="M0 28c150 24 300 24 450 0s300-24 450 0 300 24 450 0v28H0Z"/></svg>
 </div>
 
+<!-- HIDDEN(client): the whole welcome-video section is commented out until the
+     client supplies the video. Nothing unfinished should be visible to parents.
+     To restore: delete this comment opener and the closer below, then swap the
+     placeholder tile for the real embed (keep the 16:9 wrapper, add
+     loading="lazy" to the iframe).
 <section class="sws-sect">
   <div class="sws-wrap sws-prose">
     <div class="rv" style="display:flex;flex-direction:column;gap:10px">
@@ -26,8 +31,6 @@
       <p class="sws-body">A two-minute introduction from the coaching team.</p>
     </div>
 
-    <!-- TODO(Alex): replace this placeholder with the client's unlisted video
-         embed. Keep the 16:9 wrapper and add loading="lazy" to the iframe. -->
     <div class="rv-pop" style="position:relative;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:linear-gradient(135deg,#142E45,#1B76BC);display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;color:#fff;text-align:center;padding:24px">
       <span style="width:74px;height:74px;border-radius:50%;background:rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,.5)">
         <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" style="margin-left:4px"><path d="M8 5v14l11-7z"/></svg>
@@ -37,12 +40,13 @@
     </div>
   </div>
 </section>
+-->
 
 <section class="sws-sect sws-sect-alt">
   <div class="sws-wrap" style="display:flex;flex-direction:column;gap:24px">
     <div class="rv" style="display:flex;flex-direction:column;gap:10px;max-width:760px">
       <h2 class="sws-h3">Read before your first session</h2>
-      <p class="sws-body">The four pages worth 10 minutes of your time.</p>
+      <p class="sws-body">The three pages worth 10 minutes of your time.</p>
     </div>
 
     <div class="sws-linkgrid">
@@ -61,11 +65,8 @@
         <span>Who's on deck, and what each of them specialises in.</span>
         <em>Meet the team <span class="sws-arrow">&rarr;</span></em>
       </a>
-      <a href="/refunds/" class="sws-link rv-pop" style="--d:.26s">
-        <strong>Refunds &amp; cancellations</strong>
-        <span>How to cancel or reschedule a lesson, and what happens to fees.</span>
-        <em>View the policy <span class="sws-arrow">&rarr;</span></em>
-      </a>
+<!-- The refunds/cancellations page was removed at the client's request: those
+     terms are sent as a one-off to clients once they sign on, not published. -->
     </div>
   </div>
 </section>

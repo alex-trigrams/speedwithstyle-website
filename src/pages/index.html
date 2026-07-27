@@ -51,6 +51,10 @@
       <h2 class="sws-h2 rv">One pathway, three stages</h2>
       <p class="rv" style="--d:.08s;margin:0;font-size:18px;line-height:1.6;color:#4A5866;max-width:640px">Kids start in Learn to Swim and progress at their own pace: same school, same approach, all the way to squad. (A squad is a coached training group that swims sessions together.)</p>
     </div>
+    <!-- TODO(client video): once the "what a first lesson looks like" video is
+         produced, it slots in against these three flip cards (Learn to Swim
+         first, since that is where new parents land). Until then the cards
+         carry no video placeholder, by client instruction. -->
     <div class="sws-pathgrid">
       <article class="sws-stagecard rv" style="--d:0.0s">
         <div class="sws-stagebadge"><b>1</b><span>Start here</span></div>
@@ -99,11 +103,13 @@
               <h4>Pre-Squad</h4>
               <ul class="sws-pflip-facts">
                 <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Who it's for:</b> swimmers with solid technique who are ready to build distance</span></li>
-                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Typical session:</b> 600m to 1km<!-- TODO(confirm): carried over from the earlier build. Check with client before launch. --></span></li>
+<!-- TODO(client): restore the "Typical session" distance here once the client
+     confirms the real figure. The previous "600m to 1km" was carried over
+     unverified from an earlier build, so it is hidden rather than shown. -->
                 <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>The focus:</b> fitness and endurance, with technique held to the same standard</span></li>
                 <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Where it leads:</b> squad, when your child is ready for it</span></li>
               </ul>
-              <span class="sws-pflip-more">Not sure if your child is ready? We'll tell you after a free session.</span>
+              <span class="sws-pflip-more">Not sure if your child is ready? We will discuss it with you after a free session.</span>
             </span>
           </span>
         </button>
@@ -129,7 +135,7 @@
                 <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Who it's for:</b> swimmers training for competition, or for fitness</span></li>
                 <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Coached by:</b> JJ Williams and the SWS coaching team</span></li>
                 <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>The approach:</b> process over pressure, so kids improve without burning out</span></li>
-                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>Also runs:</b> the Celts club squads, coached by SWS</span></li>
+                <li><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 13 4 4L19 7"/></svg><span><b>The competitive pathway:</b> if your child is drawn to the competitive side of swimming, there's an official pathway through Celts, the Swimming WA sanctioned club we coach, right through to racing at state level</span></li>
               </ul>
               <span class="sws-pflip-more">Squad swimmers are welcome to trial a session first.</span>
             </span>
@@ -138,6 +144,10 @@
       </article>
     </div>
     <p class="rv" style="margin:0;font-size:16px;color:#4A5866">Not sure where your child fits? Pick <strong>"Not sure yet"</strong> when you <a href="/#book" data-book-open style="font-weight:800">book a free lesson</a> and we'll suggest a class when we call. You can also read <a href="/what-to-expect/" style="font-weight:800">what happens in a first lesson</a> or <a href="/values/" style="font-weight:800">how we coach</a>.</p>
+    <!-- TODO(Alex): repoint this at the Celts site once it ships; until then it
+         drops to the competitive FAQ. The link lives out here rather than on the
+         Squad card because that card is a <button> and cannot contain a link. -->
+    <p class="rv" style="margin:0;font-size:16px;color:#4A5866">Into the more competitive side of swimming? There's an official pathway through Celts, all the way to racing at state level. <a href="/#faq" style="font-weight:800">Find out more</a>.</p>
 
     <div class="sws-corpus rv" style="--d:.1s">
       <div class="sws-corpus-img"><img src="/assets/corpus.webp" alt="Corpus Christi students in a squad session" loading="lazy"></div>
@@ -224,7 +234,7 @@
       <div class="sws-bento-sm rv" style="--d:.16s">
         <div class="sws-bsm">
           <span class="sws-bicon"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="15" r="5.5"/><path d="M8.5 10 5 2h4l3 6 3-6h4l-3.5 8"/></svg></span>
-          <h3>Coaches who've swum it</h3>
+          <h3>Expert Swim Coaches</h3>
           <p>Every coach is a current or former squad swimmer who knows real technique.</p>
           <a href="/about/" style="font-weight:800;font-size:15px;margin-top:auto">Meet the team <span class="sws-arrow">→</span></a>
         </div>
@@ -306,19 +316,29 @@
       <details class="sws-faq rv" style="--d:.12s">
         <summary>Will my child be pushed too hard?<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-faq-body">
-          <p>No. We're not looking to train Olympians. Our programs were developed by our Head Coach with a psychologist, and they run on a process of improvement, not shouting, pressure, or a myopic focus on results. In our experience that leads to more enjoyment, less burnout and, ironically, better results. <a href="/values/#process">More on process over pressure</a>.</p>
+          <p>Our classes are challenging but not overwhelming. We're not looking to train Olympians. Our programs were developed by our Head Coach with a child and adolescent behaviour specialist, and they run on a process of improvement, not shouting, pressure, or a myopic focus on results. In our experience that leads to more enjoyment, less burnout and, ironically, better results. <a href="/values/#process">More on process over pressure</a>.</p>
         </div>
       </details>
       <details class="sws-faq rv" style="--d:.18s">
         <summary>What age should my child start?<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-faq-body">
-          <p>Most of our swimmers start at age 4 or 5, and most of those are swimming 1–2km with efficient technique by age 8 or 9. Teaching correct technique is much easier when children first start swimming than fixing bad habits later. Older starters are very welcome too.</p>
+          <p>Most of our swimmers start at age 4 or 5, and most of those are swimming 1–2km with efficient technique by age 8 or 9. Teaching correct technique is much easier when children first start swimming than fixing bad habits later, so starting younger helps. Starting older is also completely fine: kids have great neuroplasticity, and we pick technique up quickly with them whatever age they walk in at.</p>
         </div>
       </details>
       <details class="sws-faq rv" style="--d:.24s">
         <summary>Which program is right for my child?<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-faq-body">
-          <p>New and developing swimmers start in <a href="/#programs">Learn to Swim</a>; Pre-Squad builds fitness and endurance on top of technique; Squad is for competitive and fitness swimmers. If you're not sure, pick "Not sure yet" when you <a href="/#book" data-book-open>book a free lesson</a> and we'll suggest a class when we call.</p>
+          <p>New and developing swimmers start in <a href="/#programs">Learn to Swim</a>; Pre-Squad builds fitness and endurance on top of technique; Squad is for swimmers training for fitness and for those who want to race. If you're not sure, pick "Not sure yet" when you <a href="/#book" data-book-open>book a free lesson</a> and we'll suggest a class when we call.</p>
+        </div>
+      </details>
+      <details class="sws-faq rv" style="--d:.3s">
+        <summary>What does "competitive" actually mean?<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-faq-body">
+          <p>Plenty of squad swimmers never race, and that's a perfectly good reason to be there. For the kids who do want more, competitive means timed events: club nights, school carnivals, state fixtures, and further down the track open water swims like the Rottnest Channel. We build the squad around that side of it, then flex it for the swimmers who want the training and the fitness without the racing.</p>
+          <p>For those who want to race, we coach the squads at Celts Swimming Club, a club sanctioned by Swimming WA. That gives kids a club to race under at state level, with strength and conditioning, sit-down performance check-ins, and written notes after every meet behind it.</p>
+          <!-- TODO(Alex): the Celts site is a separate build on its own domain.
+               When it ships, point the link below at it and drop the "coming soon". -->
+          <p>A dedicated Celts page is on the way. In the meantime, if your child is curious about racing, <a href="/#book" data-book-open>have a chat with us</a> and we'll talk you through it.</p>
         </div>
       </details>
     </div>
@@ -330,9 +350,10 @@
     "mainEntity": [
       {"@type": "Question", "name": "Why don't you have a level system?", "acceptedAnswer": {"@type": "Answer", "text": "Strict levels stifle progress. Kids get stuck in a level over one small skill deficiency, which blocks progress on everything else. Instead, your child stays with one instructor who works with similar-ability kids, extends their strengths and helps with what they struggle with."}},
       {"@type": "Question", "name": "Why only four kids per class?", "acceptedAnswer": {"@type": "Answer", "text": "A 30-minute class isn't long, so we have to get the most out of it. Four is the most one instructor can properly coach. Any more is essentially crowd control. We don't just say we have small classes: we guarantee it."}},
-      {"@type": "Question", "name": "Will my child be pushed too hard?", "acceptedAnswer": {"@type": "Answer", "text": "No. Our programs were developed by our Head Coach with a psychologist and run on a process of improvement, not shouting or pressure. That leads to more enjoyment, less burnout and better results."}},
-      {"@type": "Question", "name": "What age should my child start?", "acceptedAnswer": {"@type": "Answer", "text": "Most of our swimmers start at age 4 or 5, and most of those are swimming 1–2km with efficient technique by age 8 or 9. Teaching correct technique is much easier when children first start swimming. Older starters are welcome too."}},
-      {"@type": "Question", "name": "Which program is right for my child?", "acceptedAnswer": {"@type": "Answer", "text": "New and developing swimmers start in Learn to Swim; Pre-Squad builds fitness and endurance on top of technique; Squad is for competitive and fitness swimmers. If unsure, pick 'Not sure yet' on the booking form and we'll suggest a class."}}
+      {"@type": "Question", "name": "Will my child be pushed too hard?", "acceptedAnswer": {"@type": "Answer", "text": "Our classes are challenging but not overwhelming. Our programs were developed by our Head Coach with a child and adolescent behaviour specialist and run on a process of improvement, not shouting or pressure. That leads to more enjoyment, less burnout and better results."}},
+      {"@type": "Question", "name": "What age should my child start?", "acceptedAnswer": {"@type": "Answer", "text": "Most of our swimmers start at age 4 or 5, and most of those are swimming 1–2km with efficient technique by age 8 or 9. Teaching correct technique is much easier when children first start swimming, so starting younger helps. Starting older is also completely fine: kids have great neuroplasticity and pick technique up quickly."}},
+      {"@type": "Question", "name": "Which program is right for my child?", "acceptedAnswer": {"@type": "Answer", "text": "New and developing swimmers start in Learn to Swim; Pre-Squad builds fitness and endurance on top of technique; Squad is for swimmers training for fitness and for those who want to race. If unsure, pick 'Not sure yet' on the booking form and we'll suggest a class."}},
+      {"@type": "Question", "name": "What does \"competitive\" actually mean?", "acceptedAnswer": {"@type": "Answer", "text": "Plenty of squad swimmers never race. For those who want more, competitive means timed events: club nights, school carnivals, state fixtures, and open water swims. We coach the squads at Celts Swimming Club, sanctioned by Swimming WA, so kids have a club to race under at state level, with strength and conditioning, performance check-ins and written notes after every meet."}}
     ]
   }
   </script>
@@ -490,10 +511,6 @@
         <a href="tel:0409898232" style="display:flex;gap:16px;align-items:flex-start;padding:16px;border-radius:12px;background:#1E4568;text-decoration:none;min-height:44px">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#84B4DD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M6 3h4l2 5-2.5 1.5a12 12 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2Z"></path></svg>
           <span style="display:flex;flex-direction:column;gap:2px"><strong style="font-size:16px;color:#fff">Lessons · Leesa</strong><span style="font-size:16px;color:#D6E6F4">0409 898 232</span></span>
-        </a>
-        <a href="tel:0422734629" style="display:flex;gap:16px;align-items:flex-start;padding:16px;border-radius:12px;background:#1E4568;text-decoration:none;min-height:44px">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#84B4DD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><path d="M6 3h4l2 5-2.5 1.5a12 12 0 0 0 5 5L16 12l5 2v4a2 2 0 0 1-2 2A17 17 0 0 1 4 5a2 2 0 0 1 2-2Z"></path></svg>
-          <span style="display:flex;flex-direction:column;gap:2px"><strong style="font-size:16px;color:#fff">Squad · Ross</strong><span style="font-size:16px;color:#D6E6F4">0422 734 629</span></span>
         </a>
         <a href="mailto:admin@speedwithstyle.com.au" style="display:flex;gap:16px;align-items:flex-start;padding:16px;border-radius:12px;background:#1E4568;text-decoration:none;min-height:44px">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#84B4DD" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:2px"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m3 7 9 6 9-6"></path></svg>

@@ -118,6 +118,10 @@
   .sws-prose{max-width:760px;display:flex;flex-direction:column;gap:28px}
   .sws-h3{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:26px;text-transform:uppercase;line-height:1.15;color:#0A0A0A}
   .sws-body{margin:0;font-size:17px;line-height:1.65;color:#4A5866}
+  /* "Coming soon" tag: stands in for copy the client hasn't supplied yet.
+     Deliberately quiet, so an unfinished step reads as pending, not broken. */
+  .sws-soon{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:999px;background:#EDF4FA;border:1px solid #C9DCEC;font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#1B76BC}
+  .sws-soon::before{content:"";width:7px;height:7px;border-radius:50%;background:#84B4DD}
   .sws-todo{border:2px dashed #C9DCEC;border-radius:16px;padding:24px;background:#F7FBFD;display:flex;flex-direction:column;gap:8px}
   .sws-todo strong{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:18px;text-transform:uppercase;color:#1B76BC}
   .sws-todo p{margin:0;font-size:15px;line-height:1.6;color:#4A5866}

@@ -118,6 +118,10 @@
   .sws-prose{max-width:760px;display:flex;flex-direction:column;gap:28px}
   .sws-h3{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:26px;text-transform:uppercase;line-height:1.15;color:#0A0A0A}
   .sws-body{margin:0;font-size:17px;line-height:1.65;color:#4A5866}
+  /* "Coming soon" tag: stands in for copy the client hasn't supplied yet.
+     Deliberately quiet, so an unfinished step reads as pending, not broken. */
+  .sws-soon{display:inline-flex;align-items:center;gap:7px;padding:5px 12px;border-radius:999px;background:#EDF4FA;border:1px solid #C9DCEC;font-family:'Montserrat',sans-serif;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#1B76BC}
+  .sws-soon::before{content:"";width:7px;height:7px;border-radius:50%;background:#84B4DD}
   .sws-todo{border:2px dashed #C9DCEC;border-radius:16px;padding:24px;background:#F7FBFD;display:flex;flex-direction:column;gap:8px}
   .sws-todo strong{font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:18px;text-transform:uppercase;color:#1B76BC}
   .sws-todo p{margin:0;font-size:15px;line-height:1.6;color:#4A5866}
@@ -444,7 +448,6 @@
         <a href="/values/" role="menuitem" class="sws-dd-item">Our values</a>
         <a href="/what-to-expect/" role="menuitem" class="sws-dd-item">What to expect</a>
         <a href="/onboarding/" role="menuitem" class="sws-dd-item">New families</a>
-        <a href="/refunds/" role="menuitem" class="sws-dd-item">Refunds</a>
         </div>
       </div>
       <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="font-size:16px;padding:8px 18px">Call 0409 898 232</a>
@@ -463,7 +466,6 @@
       <a href="/values/" class="mm-item" style="--d:.24s">Our values</a>
       <a href="/what-to-expect/" class="mm-item" style="--d:.29s">What to expect</a>
       <a href="/onboarding/" class="mm-item" style="--d:.34s">New families</a>
-      <a href="/refunds/" class="mm-item" style="--d:.39s">Refunds</a>
       <div class="mm-item" style="--d:.19s;display:flex;gap:12px;padding:8px 0 0">
         <a href="tel:0409898232" class="sws-btn sws-btn-secondary" style="flex:1">Call us</a>
         <a href="/#book" data-book-open class="sws-btn sws-btn-primary" style="flex:1">Book free lesson</a>
@@ -495,19 +497,23 @@
       <li class="sws-step rv" style="--d:.05s">
         <h3 class="sws-h3" style="font-size:21px">Getting to the pool</h3>
         <p class="sws-body">Corpus Christi College Aquatic Centre, 50 Murdoch Dr, Bateman WA 6150.<br>
-          <em style="font-style:normal;color:#1B76BC;font-weight:700">TODO(copy): parking location, which gate to use, and how to find reception.</em></p>
+          <!-- ASK CLIENT: parking location, which gate to use, how to find reception. -->
+          <span class="sws-soon">Coming soon</span></p>
       </li>
       <li class="sws-step rv" style="--d:.1s">
         <h3 class="sws-h3" style="font-size:21px">Arriving &amp; checking in</h3>
-        <p class="sws-body">TODO(copy): how early to arrive, where to wait, and who to speak to on arrival.</p>
+        <!-- ASK CLIENT: how early to arrive, where to wait, who to speak to on arrival. -->
+        <p class="sws-body"><span class="sws-soon">Coming soon</span></p>
       </li>
       <li class="sws-step rv" style="--d:.15s">
         <h3 class="sws-h3" style="font-size:21px">The assessment</h3>
-        <p class="sws-body">TODO(copy): what the coach does in the first lesson and how kids are assessed.</p>
+        <!-- ASK CLIENT: what the coach does in the first lesson and how kids are assessed. -->
+        <p class="sws-body"><span class="sws-soon">Coming soon</span></p>
       </li>
       <li class="sws-step rv" style="--d:.2s">
         <h3 class="sws-h3" style="font-size:21px">Choosing a class</h3>
-        <p class="sws-body">TODO(copy): how a class and level are chosen afterwards, and what happens next.</p>
+        <!-- ASK CLIENT: how a class and level are chosen afterwards, and what happens next. -->
+        <p class="sws-body"><span class="sws-soon">Coming soon</span></p>
       </li>
     </ol>
   </div>
@@ -519,7 +525,7 @@
       <h2 class="sws-h3">What to bring</h2>
       <p class="sws-body">The basics for every lesson.</p>
     </div>
-    <!-- TODO(copy): confirm this list with the client — add anything else they
+    <!-- ASK CLIENT: confirm this list — add anything else they
          want parents to bring, and remove anything the centre provides. -->
     <div class="sws-marquee rv" style="--speed:34s">
       <div class="sws-marquee-track">
@@ -559,8 +565,8 @@
 <section class="sws-sect sws-sect-alt">
   <div class="sws-wrap sws-prose rv">
     <div class="sws-todo">
-      <strong>Content coming</strong>
-      <p>Awaiting client copy: exact parking and entry instructions, arrival timing, and the assessment walkthrough. The venue address is confirmed and already live above.</p>
+      <strong>More detail coming soon</strong>
+      <p>We're finalising the step-by-step detail on parking, arrival and how the first session runs. In the meantime, give us a call and we'll happily walk you through any of it.</p>
     </div>
 
     <div style="display:flex;gap:12px;flex-wrap:wrap">
@@ -591,13 +597,11 @@
         <a href="/values/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">Our values</a>
         <a href="/what-to-expect/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">What to expect</a>
         <a href="/onboarding/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">New families</a>
-        <a href="/refunds/" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">Refunds</a>
         <a href="/#book" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">Contact</a>
       </nav>
       <div style="display:flex;flex-direction:column;gap:8px">
         <h3 style="margin:0;font-family:'Montserrat',sans-serif;font-weight:800;font-size:13px;letter-spacing:0.14em;text-transform:uppercase;color:#84B4DD">Contact</h3>
         <a href="tel:0409898232" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">Lessons · 0409 898 232</a>
-        <a href="tel:0422734629" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">Squad · 0422 734 629</a>
         <a href="mailto:admin@speedwithstyle.com.au" style="color:#D6E6F4;text-decoration:none;font-size:16px;min-height:44px;display:inline-flex;align-items:center">admin@speedwithstyle.com.au</a>
         <span style="color:#D6E6F4;font-size:16px;padding-top:4px">50 Murdoch Dr, Bateman WA 6150</span>
         <div style="display:flex;gap:12px;padding-top:8px">
