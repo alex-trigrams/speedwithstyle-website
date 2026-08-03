@@ -15,6 +15,18 @@
   <a href="/#book" data-book-open class="sws-btn sws-btn-primary" style="flex:1.4;font-size:16px;padding:10px 8px">Book a free lesson</a>
 </div>
 
+<!-- ===== PHOTO LIGHTBOX =====
+     One <dialog> shared by any [data-gallery] on the page. Inert until a
+     thumbnail is clicked, and it renders nothing when JS is off — the gallery
+     thumbnails are still perfectly readable on their own in that case. -->
+<dialog class="sws-lb" id="sws-lightbox" aria-label="Photo viewer">
+  <div class="sws-lb-stage"><img alt=""></div>
+  <p class="sws-lb-cap"><b></b><span></span></p>
+  <button type="button" class="sws-lb-prev" aria-label="Previous photo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 5-7 7 7 7"/></svg></button>
+  <button type="button" class="sws-lb-next" aria-label="Next photo"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 5 7 7-7 7"/></svg></button>
+  <button type="button" class="sws-lb-close" aria-label="Close"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+</dialog>
+
 <script>
 (function () {
   // Mobile menu
@@ -287,6 +299,68 @@
     }, { threshold: 0.5 });
     cio.observe(el);
   });
+
+  // Photo lightbox
+  (function () {
+    var dlg = document.getElementById('sws-lightbox');
+    var grids = document.querySelectorAll('[data-gallery]');
+    // <dialog> support is the floor here; without it the thumbnails simply stay
+    // static images, which is a perfectly good fallback.
+    if (!dlg || !grids.length || typeof dlg.showModal !== 'function') return;
+
+    var items = [];
+    grids.forEach(function (grid) {
+      Array.prototype.forEach.call(grid.querySelectorAll('button[data-full]'), function (btn) {
+        var i = items.length;
+        items.push({
+          full: btn.getAttribute('data-full'),
+          cap: btn.getAttribute('data-cap') || '',
+          alt: (btn.querySelector('img') || {}).alt || '',
+          btn: btn,
+        });
+        btn.addEventListener('click', function () { open(i); });
+      });
+    });
+
+    var stage = dlg.querySelector('.sws-lb-stage img');
+    var capNum = dlg.querySelector('.sws-lb-cap b');
+    var capTxt = dlg.querySelector('.sws-lb-cap span');
+    var current = 0;
+
+    function show(i) {
+      // Wrap around, so the arrows never dead-end.
+      current = (i + items.length) % items.length;
+      var it = items[current];
+      stage.src = it.full;
+      stage.alt = it.alt;
+      capNum.textContent = current + 1 + ' of ' + items.length;
+      capTxt.textContent = it.cap;
+    }
+
+    function open(i) {
+      show(i);
+      dlg.showModal();
+    }
+
+    dlg.querySelector('.sws-lb-next').addEventListener('click', function () { show(current + 1); });
+    dlg.querySelector('.sws-lb-prev').addEventListener('click', function () { show(current - 1); });
+    dlg.querySelector('.sws-lb-close').addEventListener('click', function () { dlg.close(); });
+
+    // Click the backdrop (i.e. anywhere that isn't the photo or a control).
+    dlg.addEventListener('click', function (e) {
+      if (e.target === dlg || e.target.classList.contains('sws-lb-stage')) dlg.close();
+    });
+
+    dlg.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+      // Escape is handled by <dialog> itself.
+    });
+
+    // Return focus to the thumbnail that was opened, so keyboard users don't
+    // get dropped back at the top of the document.
+    dlg.addEventListener('close', function () { items[current].btn.focus(); });
+  })();
 })();
 </script>
 </body>
