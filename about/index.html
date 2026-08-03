@@ -73,6 +73,9 @@
   .sws-label{font-weight:800;font-size:16px;color:#0A0A0A}
   .sws-err{font-size:14px;font-weight:700;color:#C2402A;display:none}
   .sws-field.has-error .sws-err{display:block}
+  /* Prompt shown under the age select when "Multiple children" is picked. */
+  .sws-hint{font-size:14px;font-weight:700;color:#1B76BC}
+  .sws-hint[hidden]{display:none}
   @media(max-width:820px){.sws-desktop{display:none !important}}
   @media(min-width:821px){.sws-mobileonly{display:none !important}}
   body{padding-bottom:0}
@@ -481,7 +484,7 @@
   <div class="sws-wrap">
     <span class="sws-eyebrow hero-in" style="--d:.05s">Meet the team</span>
     <h1 class="sws-h2 hero-in" style="--d:.15s">Check out our highly skilled staff, and who will be teaching your kids.</h1>
-    <p class="sws-lede hero-in" style="--d:.25s">Every instructor here is a current or former squad swimmer. Founders first, then the pool deck leaders, then the whole instructor team.</p>
+    <p class="sws-lede hero-in" style="--d:.25s">Every instructor here is a current or former squad swimmer. The founders first, then our supervisors and squad coaches, then the instructors.</p>
   </div>
 </section>
 
@@ -529,6 +532,24 @@
         <p>Leesa brings a background in operations, events and venue management, including time as a Surf Life Saving Club Manager. She comes from a swimming family: her husband is a swimming coach and both daughters are dedicated swimmers and water polo players, with her youngest in the SWS program since age five.</p>
         <p>She's the one who keeps the day-to-day running smoothly, so coaches can focus on coaching, and the first voice you'll likely hear when you call.</p>
       </article>
+      <article class="sws-leadcard rv-pop" style="--d:.26s">
+        <span class="sws-tava"><img src="/assets/team/ross.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span>
+        <div>
+          <h3>Ross</h3>
+          <span class="sws-trole">Pool Deck Manager &amp; Supervisor</span>
+        </div>
+        <p>A winter swimmer with silver and gold national relay medals and current state age records in individual and relay events. Two premiership water polo teams, surf-sports coaching, and paddling support for multiple Rottnest Channel soloists.</p>
+        <p>"I draw on both sides of my journey, athlete and coach, to help others build confidence and capability in the water." Favourite stroke: freestyle.</p>
+      </article>
+      <article class="sws-leadcard rv-pop" style="--d:.33s">
+        <span class="sws-tava"><img src="/assets/team/val.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span>
+        <div>
+          <h3>Val</h3>
+          <span class="sws-trole">Supervisor</span>
+        </div>
+        <p>Reached state qualifying times at age 12 and still trains with the SWS adult and open squads. Has swum the Busselton Jetty Swim three years running, plus many other open water events, and is training to swim the Rottnest Channel in a team with other SWS instructors.</p>
+        <p>"Fly is my favourite stroke, but these days distance freestyle is the dream, anything over 400m!"</p>
+      </article>
     </div>
   </div>
 </section>
@@ -541,40 +562,62 @@
       <h2 class="sws-h3 rv">Supervisors &amp; squad coaches</h2>
     </div>
     <div class="sws-tgrid">
-      <details class="sws-tcard rv-pop" style="--d:.02s">
+      <details class="sws-tcard rv-pop" style="--d:0.04s">
         <summary><span class="sws-tava"><img src="/assets/team/jay.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Jay</strong><span>Squad Coach &amp; Supervisor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio">
           <p>Swimming his whole life, water polo to national level from 13 to 18, then back to squads at SWS. Completed the Rottnest Channel Swim in a duo, won the Geo Bay Swim in a duo (with JJ), was nominated for the Swimming WA Ben Beale Award, and holds state qualifying times in the 50m through 400m freestyle.</p>
           <p>"I love understanding how to move through the water efficiently, and the community around swimming: always friendly, supportive and encouraging." Favourite stroke: freestyle.</p>
         </div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.06s">
-        <summary><span class="sws-tava"><img src="/assets/team/ross.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Ross</strong><span>Pool Deck Manager &amp; Supervisor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="sws-tbio">
-          <p>A winter swimmer with silver and gold national relay medals and current state age records in individual and relay events. Two premiership water polo teams, surf-sports coaching, and paddling support for multiple Rottnest Channel soloists.</p>
-          <p>"I draw on both sides of my journey, athlete and coach, to help others build confidence and capability in the water." Favourite stroke: freestyle.</p>
-        </div>
-      </details>
-      <details class="sws-tcard rv-pop" style="--d:.1s">
-        <summary><span class="sws-tava"><img src="/assets/team/val.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Val</strong><span>Supervisor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="sws-tbio">
-          <p>Reached state qualifying times at age 12 and still trains with the SWS adult and open squads. Has swum the Busselton Jetty Swim three years running, plus many other open water events, and is training to swim the Rottnest Channel in a team with other SWS instructors.</p>
-          <p>"Fly is my favourite stroke, but these days distance freestyle is the dream, anything over 400m!"</p>
-        </div>
-      </details>
-      <details class="sws-tcard rv-pop" style="--d:.14s">
+      <details class="sws-tcard rv-pop" style="--d:0.08s">
         <summary><span class="sws-tava"><img src="/assets/team/grace.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Grace L</strong><span>Instructor &amp; Squad Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio">
           <p>Winner of the state and national AUSTSWIM Best New Swim Teacher award for 2022, and a multiple Rottnest Channel Swim finisher who also swims the Busselton Jetty Swim.</p>
           <p>"I love creating a positive learning environment, building confidence and helping swimmers improve every session while keeping it fun and supportive."</p>
         </div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.18s">
+      <details class="sws-tcard rv-pop" style="--d:0.12s">
         <summary><span class="sws-tava"><img src="/assets/team/boston.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Boston</strong><span>Squad Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio">
           <p>Competitive since 2020 with multiple state medals in freestyle, butterfly and backstroke, a national-level finalist in freestyle and butterfly, and WA state team representative in 2024 and 2025.</p>
           <p>"Swimming challenges me to push my limits and improve every time, new personal bests show the hard work and discipline pay off." Favourite stroke: freestyle.</p>
         </div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:0.16s">
+        <summary><span class="sws-tava"><img src="/assets/team/ava.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Ava</strong><span>Supervisor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Grew up in the water, surf lifesaving at Coogee Beach, six years of water polo, and an SWS student since day one in 2018. Now swims squads 3–5 times a week and is about to swim to Rottnest in a team with Grace, Val and Annabelle.</p><p>"The biggest reward is that 'lightbulb moment' when a swimmer finally nails a new stroke or technique, it's unbeatable. And I'm still a bit of a child myself, so there's never a dull moment in my classes!"</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:0.2s">
+        <summary><span class="sws-tava"><img src="/assets/team/mitchel.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Mitchell</strong><span>Supervisor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Started at six, in squads by eight, then competitive swimming. Previously taught in a level-based swim school, and much prefers staying with the same swimmers from beginner all the way to squad, teaching them properly the whole way.</p><p>"I love finding the different ways to engage each swimmer individually to reach their potential." Favourite stroke: freestyle, the one that makes you safe in the water.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:0.24s">
+        <summary><span class="sws-tava"><img src="/assets/team/brendan.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Brendan</strong><span>Supervisor &amp; Squad Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>In squads from age 8, then transitioned to triathlon in 2020. As a triathlete and runner, swimming is his cross-training and recovery.</p><p>"Swimming teaches me discipline, perseverance and diligence to keep getting better." Favourite stroke: freestyle, the one he can swim most efficiently.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:0.28s">
+        <summary><span class="sws-tava"><img src="/assets/team/annabelle.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Annabelle</strong><span>Squad Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Ten years of swimming, state pool competitions, and now mostly open water. Her biggest achievement: swimming solo to Rottnest after qualifying as a 10km open water swimmer.</p><p>"You can push yourself to your limits in lots of ways, but mainly it's an escape. You feel so calm in the water." Favourite stroke: freestyle.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:0.04s">
+        <summary><span class="sws-tava"><img src="/assets/team/oisin.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Oisin</strong><span>Squad Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Almost eight years of competitive swimming, four of them with the SWS/Celts squads. Favours sprint and middle-distance events.</p><p>"I like all the strokes, which is probably why I love individual medley races so much."</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:0.08s">
+        <summary><span class="sws-tava"><img src="/assets/team/elke.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Elke</strong><span>Squad Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>In a squad since age 7, and still going. Played water polo at national level, and makes the most of WA's beaches.</p><p>"That first dive into the water always snaps me into focus. Once you're in, the hardest part is done." Favourite stroke: freestyle, steady rhythm, quick tumble turns, smooth and strong.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:0.12s">
+        <summary><span class="sws-tava"><img src="/assets/team/eilidh.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Eilidh</strong><span>Squad Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Competes at national level and trains with the Celts, coached by SWS. Currently preparing for the Port to Pub endurance race (a swim to Rottnest) as a duo.</p><p>"SWS is such a friendly, supportive environment to keep learning and training in." Favourite stroke: backstroke, because she swims it well.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:0.16s">
+        <summary><span class="sws-tava"><img src="/assets/team/james.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>James</strong><span>Squad Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>Learnt to swim at 4, in squads since 9, now with the Celts under SWS coaches. Aiming for nationals in the 50m and 100m backstroke and butterfly.</p><p>"It's rewarding to teach kids to swim and to enjoy it as much as I do." Favourite stroke: backstroke.</p></div>
+      </details>
+      <details class="sws-tcard rv-pop" style="--d:0.2s">
+        <summary><span class="sws-tava"><img src="/assets/team/liam.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Liam</strong><span>Squad Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="sws-tbio"><p>A competitive club swimmer since age 9, currently with the Celts. Races the individual medley, 100m, 200m and 400m, and is planning a half ironman in 2027 plus a team Rottnest crossing.</p><p>"I love the freedom I get as a teacher and coach, experimenting with different solutions to technical problems. And the positive environment, from co-workers to students."</p></div>
       </details>
     </div>
   </div>
@@ -589,119 +632,83 @@
       <p class="sws-body rv" style="--d:.06s;max-width:720px">Tap any name to read their story. Several of our instructors came all the way through the SWS program themselves, from learn-to-swim to squad to teaching.</p>
     </div>
     <div class="sws-tgrid">
-      <details class="sws-tcard rv-pop" style="--d:.02s">
-        <summary><span class="sws-tava"><img src="/assets/team/ava.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Ava</strong><span>Instructor · SWS since day one</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="sws-tbio"><p>Grew up in the water, surf lifesaving at Coogee Beach, six years of water polo, and an SWS student since day one in 2018. Now swims squads 3–5 times a week and is about to swim to Rottnest in a team with Grace, Val and Annabelle.</p><p>"The biggest reward is that 'lightbulb moment' when a swimmer finally nails a new stroke or technique, it's unbeatable. And I'm still a bit of a child myself, so there's never a dull moment in my classes!"</p></div>
-      </details>
-      <details class="sws-tcard rv-pop" style="--d:.04s">
-        <summary><span class="sws-tava"><img src="/assets/team/austin.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Austin</strong><span>Instructor · came through SWS</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+      <details class="sws-tcard rv-pop" style="--d:0.02s">
+        <summary><span class="sws-tava"><img src="/assets/team/austin.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Austin</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>One of the first kids to join SWS back in 2018, graduated through the program and squads, and is now an instructor.</p><p>"Because we don't have a level system, I teach the same students each week. I get to know their strengths and weaknesses, and the best way to help each one reach their potential." Favourite stroke: freestyle.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.06s">
-        <summary><span class="sws-tava"><img src="/assets/team/roman.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Roman</strong><span>Instructor · came through SWS</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+      <details class="sws-tcard rv-pop" style="--d:0.04s">
+        <summary><span class="sws-tava"><img src="/assets/team/roman.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Roman</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Quit swimming as a kid because he wasn't enjoying it, then joined SWS at 8, and went from barely completing the surf club proficiency swim to being one of the fastest within a year. One of the earliest SWS swimmers, then SWS squads, now an instructor.</p><p>"Swimming challenges the mind and body, but it can also be so social. It's great to have gone from student to instructor." Favourite stroke: freestyle.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.08s">
-        <summary><span class="sws-tava"><img src="/assets/team/mitchel.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Mitchell</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="sws-tbio"><p>Started at six, in squads by eight, then competitive swimming. Previously taught in a level-based swim school, and much prefers staying with the same swimmers from beginner all the way to squad, teaching them properly the whole way.</p><p>"I love finding the different ways to engage each swimmer individually to reach their potential." Favourite stroke: freestyle, the one that makes you safe in the water.</p></div>
-      </details>
-      <details class="sws-tcard rv-pop" style="--d:.1s">
+      <details class="sws-tcard rv-pop" style="--d:0.06s">
         <summary><span class="sws-tava"><img src="/assets/team/linda.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Linda</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Came to swimming later in life with a fear of deep water, and was one of JJ and Nigel's very first students. Now a confident swimmer who has trained with the SWS squad, competed in many open water events, and can dive.</p><p>"I especially love helping anxious kids overcome their fears, I know exactly what they're feeling." Favourite stroke: freestyle.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.12s">
-        <summary><span class="sws-tava"><img src="/assets/team/annabelle.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Annabelle</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="sws-tbio"><p>Ten years of swimming, state pool competitions, and now mostly open water. Her biggest achievement: swimming solo to Rottnest after qualifying as a 10km open water swimmer.</p><p>"You can push yourself to your limits in lots of ways, but mainly it's an escape. You feel so calm in the water." Favourite stroke: freestyle.</p></div>
-      </details>
-      <details class="sws-tcard rv-pop" style="--d:.14s">
+      <details class="sws-tcard rv-pop" style="--d:0.08s">
         <summary><span class="sws-tava"><img src="/assets/team/senumi.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Senumi</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Swam consistently for 11 years through school, working up to squads, and still swims for leisure and fitness.</p><p>"I really enjoy seeing the improvements in children's swimming. Freestyle feels the most natural and smooth in the water, I like how fast and efficient it is."</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.16s">
-        <summary><span class="sws-tava"><img src="/assets/team/brendan.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Brendan</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="sws-tbio"><p>In squads from age 8, then transitioned to triathlon in 2020. As a triathlete and runner, swimming is his cross-training and recovery.</p><p>"Swimming teaches me discipline, perseverance and diligence to keep getting better." Favourite stroke: freestyle, the one he can swim most efficiently.</p></div>
-      </details>
-      <details class="sws-tcard rv-pop" style="--d:.18s">
+      <details class="sws-tcard rv-pop" style="--d:0.1s">
         <summary><span class="sws-tava"><img src="/assets/team/keely.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Keely</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>From learn-to-swim and pre-squad to competitive swimming in high school, a state finalist who has competed at Australian world championship trials.</p><p>"I love how relaxing it can be when it's just you and your thoughts, and the friendships you make training with friends." Favourite stroke: backstroke.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.2s">
-        <summary><span class="sws-tava"><img src="/assets/team/nick.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Nick</strong><span>Instructor · came through SWS</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+      <details class="sws-tcard rv-pop" style="--d:0.12s">
+        <summary><span class="sws-tava"><img src="/assets/team/nick.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Nick</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Terrified of the water until age 4, and hasn't stopped swimming since. Moved to SWS in 2018 for stroke correction with JJ and has trained with the SWS squad ever since. Top-3 swimmer in his year three years running, and a state surf lifesaving finalist in 2022 and 2023.</p><p>Favourite stroke: butterfly.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.22s">
+      <details class="sws-tcard rv-pop" style="--d:0.14s">
         <summary><span class="sws-tava"><img src="/assets/team/jaden.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Jaden</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Squad swimmer from Year 4 to Year 10, teaching since the end of Year 10. Still finds swimming both relaxing and a great way to stay fit.</p><p>Favourite stroke: breaststroke, the first stroke he competed in, and the most fun to swim.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.24s">
+      <details class="sws-tcard rv-pop" style="--d:0.16s">
         <summary><span class="sws-tava"><img src="/assets/team/estela.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Estele</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Swimming for as long as she can remember: competitive squads when younger, surf lifesaving and ocean swimming since 2020, including the Busselton Jetty Swim a couple of times, with a team Rottnest crossing in her sights.</p><p>"I love the dopamine after a swim, and swimming with mates just makes it that much more fun."</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.02s">
+      <details class="sws-tcard rv-pop" style="--d:0.18s">
         <summary><span class="sws-tava"><img src="/assets/team/adele.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Adele</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Learn-to-swim, then eight years of competitive squads and the school swim team from Years 7–12. Has competed at states in short and long course, reaching the top squad at her club.</p><p>"I love the challenge and the team environment, it's fun." Favourite stroke: breaststroke.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.04s">
-        <summary><span class="sws-tava"><img src="/assets/team/oisin.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Oisin</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="sws-tbio"><p>Almost eight years of competitive swimming, four of them with the SWS/Celts squads. Favours sprint and middle-distance events.</p><p>"I like all the strokes, which is probably why I love individual medley races so much."</p></div>
-      </details>
-      <details class="sws-tcard rv-pop" style="--d:.06s">
+      <details class="sws-tcard rv-pop" style="--d:0.2s">
         <summary><span class="sws-tava"><img src="/assets/team/grace-a.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Grace A</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Swimming in SWS squads since 2021 and racing open water since 2023, proudest of completing the City to Scarborough 5km swim.</p><p>"I love swimming because of the friends I've made." Favourite stroke: freestyle, for long distance, it's the most efficient stroke.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.08s">
+      <details class="sws-tcard rv-pop" style="--d:0.22s">
         <summary><span class="sws-tava"><img src="/assets/team/ayami.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Ayami</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Competitive from a young age, with experience in squad training and pool racing.</p><p>"I love the discipline and structure swimming provides, it keeps me focused and gives me a mental reset." Favourite stroke: freestyle, natural, smooth and strong.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.1s">
+      <details class="sws-tcard rv-pop" style="--d:0.24s">
         <summary><span class="sws-tava"><img src="/assets/team/ruby.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Ruby</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Started swimming at 2 and has loved it ever since, 15 years in, a long-time squad swimmer with numerous open water events behind her.</p><p>"Swimming makes a positive impact on my mental and physical wellbeing." Favourite stroke: breaststroke.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.12s">
+      <details class="sws-tcard rv-pop" style="--d:0.02s">
         <summary><span class="sws-tava"><img src="/assets/team/emily.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Emily</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>In the pool from the first moment her parents could manage it, squads from age 8–9, then competitive pool and open water racing with a number of successes.</p><p>"Swimming lets you challenge yourself, but it's also alone time where I can switch my brain off." Favourite stroke: breaststroke.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.14s">
-        <summary><span class="sws-tava"><img src="/assets/team/elke.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Elke</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="sws-tbio"><p>In a squad since age 7, and still going. Played water polo at national level, and makes the most of WA's beaches.</p><p>"That first dive into the water always snaps me into focus. Once you're in, the hardest part is done." Favourite stroke: freestyle, steady rhythm, quick tumble turns, smooth and strong.</p></div>
-      </details>
-      <details class="sws-tcard rv-pop" style="--d:.16s">
+      <details class="sws-tcard rv-pop" style="--d:0.04s">
         <summary><span class="sws-tava"><img src="/assets/team/sam.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Sam D</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Lessons since before he can remember, a competitive squad swimmer for many years, and still swimming regularly today.</p><p>"Swimming is relaxing and intense at the same time." Favourite stroke: butterfly, the most powerful and satisfying to swim.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.18s">
+      <details class="sws-tcard rv-pop" style="--d:0.06s">
         <summary><span class="sws-tava"><img src="/assets/team/callum.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Callum</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Over eight years in squads, currently swimming for the Celts Swimming Club and chasing his eighth school swimming carnival win.</p><p>"I love the community swimming brings, and that even when you race others, the most important thing is your own swimming." Favourite stroke: all of them. He's never been able to pick.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.2s">
+      <details class="sws-tcard rv-pop" style="--d:0.08s">
         <summary><span class="sws-tava"><img src="/assets/team/zara.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Zara</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Part of swimming clubs most of her life, in the country and in Perth.</p><p>"I love SWS for its positive environment and friendly community, and its commitment to teaching." Favourite stroke: breaststroke, calming, with a nice momentum.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.22s">
+      <details class="sws-tcard rv-pop" style="--d:0.1s">
         <summary><span class="sws-tava"><img src="/assets/team/ethan.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Ethan</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>A sprinter at heart, always looking to improve, in squad or just general swimming.</p><p>"Freestyle gives me a thrill I don't think any other stroke can match. And everyone at SWS is friendly and helpful to each other."</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.24s">
+      <details class="sws-tcard rv-pop" style="--d:0.12s">
         <summary><span class="sws-tava"><img src="/assets/team/tom.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Thomas</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Swimming since he was very young, including squad swimming in South Africa before coming to Australia.</p><p>"My favourite thing is working with kids in small groups and building strong connections, watching them become confident, skilled swimmers is very rewarding." Favourite stroke: breaststroke.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.02s">
-        <summary><span class="sws-tava"><img src="/assets/team/eilidh.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Eilidh</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="sws-tbio"><p>Competes at national level and trains with the Celts, coached by SWS. Currently preparing for the Port to Pub endurance race (a swim to Rottnest) as a duo.</p><p>"SWS is such a friendly, supportive environment to keep learning and training in." Favourite stroke: backstroke, because she swims it well.</p></div>
-      </details>
-      <details class="sws-tcard rv-pop" style="--d:.04s">
-        <summary><span class="sws-tava"><img src="/assets/team/james.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>James</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="sws-tbio"><p>Learnt to swim at 4, in squads since 9, now with the Celts under SWS coaches. Aiming for nationals in the 50m and 100m backstroke and butterfly.</p><p>"It's rewarding to teach kids to swim and to enjoy it as much as I do." Favourite stroke: backstroke.</p></div>
-      </details>
-      <details class="sws-tcard rv-pop" style="--d:.06s">
-        <summary><span class="sws-tava"><img src="/assets/team/liam.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Liam</strong><span>Instructor &amp; Coach</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
-        <div class="sws-tbio"><p>A competitive club swimmer since age 9, currently with the Celts. Races the individual medley, 100m, 200m and 400m, and is planning a half ironman in 2027 plus a team Rottnest crossing.</p><p>"I love the freedom I get as a teacher and coach, experimenting with different solutions to technical problems. And the positive environment, from co-workers to students."</p></div>
-      </details>
-      <details class="sws-tcard rv-pop" style="--d:.08s">
+      <details class="sws-tcard rv-pop" style="--d:0.14s">
         <summary><span class="sws-tava"><img src="/assets/team/tadhg.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Tadhg</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>Has competed at national level for Surf Life Saving WA and is a Rottnest Channel Swim soloist.</p><p>"SWS is a very positive environment and all the instructors are awesome." Favourite stroke: fly, he enjoys pushing himself.</p></div>
       </details>
-      <details class="sws-tcard rv-pop" style="--d:.1s">
+      <details class="sws-tcard rv-pop" style="--d:0.16s">
         <summary><span class="sws-tava"><img src="/assets/team/natalie.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="sws-tname"><strong>Natalie</strong><span>Instructor</span></span><span class="sws-faq-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
         <div class="sws-tbio"><p>A former squad swimmer who finds swimming helps her live in the moment and relax.</p><p>"I love watching children's confidence and skill being built in the water." Favourite stroke: freestyle, the one that moves you fastest.</p></div>
       </details>
@@ -735,14 +742,9 @@
   </div>
 </section>
 
-<section class="sws-sect">
-  <div class="sws-wrap sws-prose rv">
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a href="/#book" data-book-open class="sws-btn sws-btn-primary">Book a free lesson</a>
-      <a href="tel:0409898232" class="sws-btn sws-btn-secondary">Call 0409 898 232</a>
-    </div>
-  </div>
-</section>
+<!-- REMOVED(Alex): the page-bottom "Book a free lesson / Call" button pair.
+     Booking lives in the sticky header, the floating desktop CTA and the
+     mobile bar, so interior pages don't repeat it above the footer. -->
 
 <!-- ===== FOOTER ===== -->
 <footer style="background:#0A0A0A;color:#fff;padding:64px 0 32px">
@@ -829,14 +831,14 @@
         </div>
         <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
           <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
-            <label class="sws-label" for="mf-age">Child's age *</label>
+            <label class="sws-label" for="mf-age">Child's age <span style="font-weight:600;color:#4A5866">(optional)</span></label>
             <div style="position:relative">
               <select id="mf-age" name="age" class="sws-input" style="appearance:none;padding-right:44px">
-                <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option>It's for me</option>
+                <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option data-multi>Multiple children</option>
               </select>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#142E45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
             </div>
-            <span class="sws-err" role="alert">Pick an age range so we can suggest a class.</span>
+            <span class="sws-hint" id="mf-age-multi" hidden>Please list your children's ages in the box below.</span>
           </div>
           <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
             <label class="sws-label" for="mf-prog">Program *</label>
@@ -861,9 +863,11 @@
   </div>
 </dialog>
 
-<!-- ===== FLOATING "BOOK A CALL" (Calendly) — bottom right, desktop =====
-     TODO(Alex): set CALENDLY_URL in the script below when the client supplies the link.
-     Until then this falls back to the on-page enquiry form (#book) so it's never a dead end. -->
+<!-- ===== FLOATING "BOOK A CALL" — bottom right, desktop =====
+     TODO(Alex): set BOOKING_URL in the script below to the client's Google
+     Appointment Schedule link once they've finished setting it up. Until then
+     this falls back to the on-page enquiry form (#book) so it's never a dead
+     end. -->
 <a id="call-cta" href="/#book" class="sws-desktop"
    style="position:fixed;right:24px;bottom:24px;z-index:99;display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:#1B76BC;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;box-shadow:0 10px 34px rgba(20,46,69,.32);transition:transform .25s cubic-bezier(.2,0,0,1),box-shadow .25s ease">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg>
@@ -921,12 +925,13 @@
   onScroll();
 
   // Floating "Book a call" CTA.
-  // TODO(Alex): paste the client's Calendly link here. While it's null the button
-  // scrolls to the on-page enquiry form instead, so the CTA is never a dead end.
-  var CALENDLY_URL = null;
+  // TODO(Alex): paste the client's Google Appointment Schedule link here (the
+  // client is still setting it up). While it's null the button scrolls to the
+  // on-page enquiry form instead, so the CTA is never a dead end.
+  var BOOKING_URL = null;
   var callCta = document.getElementById('call-cta');
-  if (callCta && CALENDLY_URL) {
-    callCta.href = CALENDLY_URL;
+  if (callCta && BOOKING_URL) {
+    callCta.href = BOOKING_URL;
     callCta.target = '_blank';
     callCta.rel = 'noopener';
   }
@@ -945,9 +950,19 @@
       name: function (v) { return v.trim().length > 0; },
       phone: function (v) { return /^[\d\s+()-]{8,}$/.test(v); },
       email: function (v) { return v.trim() === '' || /^\S+@\S+\.\S+$/.test(v); },
-      age: function (v) { return v !== ''; },
+      // Age is optional — we can sort the right class on the call.
       program: function (v) { return v !== ''; }
     };
+
+    // "Multiple children" has no single age, so prompt for the ages in the
+    // message box instead of adding a second age field.
+    var ageSel = form.querySelector('[name="age"]');
+    var multiHint = ageSel && form.querySelector('.sws-hint');
+    if (ageSel && multiHint) {
+      ageSel.addEventListener('change', function () {
+        multiHint.hidden = ageSel.value !== 'Multiple children';
+      });
+    }
     function validate() {
       var ok = true;
       Object.keys(checks).forEach(function (nm) {

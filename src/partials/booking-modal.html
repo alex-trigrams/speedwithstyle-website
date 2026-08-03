@@ -42,14 +42,14 @@
         </div>
         <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
           <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
-            <label class="sws-label" for="mf-age">Child's age *</label>
+            <label class="sws-label" for="mf-age">Child's age <span style="font-weight:600;color:#4A5866">(optional)</span></label>
             <div style="position:relative">
               <select id="mf-age" name="age" class="sws-input" style="appearance:none;padding-right:44px">
-                <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option>It's for me</option>
+                <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option data-multi>Multiple children</option>
               </select>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#142E45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
             </div>
-            <span class="sws-err" role="alert">Pick an age range so we can suggest a class.</span>
+            <span class="sws-hint" id="mf-age-multi" hidden>Please list your children's ages in the box below.</span>
           </div>
           <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
             <label class="sws-label" for="mf-prog">Program *</label>

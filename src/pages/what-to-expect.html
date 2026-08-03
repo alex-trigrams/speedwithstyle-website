@@ -19,7 +19,36 @@
   <svg viewBox="0 0 1200 56" preserveAspectRatio="none" fill="#fff"><path d="M0 28c150 24 300 24 450 0s300-24 450 0 300 24 450 0v28H0Z"/></svg>
 </div>
 
+<!-- ===== GETTING TO THE POOL =====
+     The map is the client's own Corpus Christi campus map with their markup:
+     the circled after-hours car park off Hawke Pass, and the arrow showing the
+     walk across to the Jennifer Reilly Aquatic Centre. Source PNG was 840KB,
+     re-encoded to WebP (136KB) for the web. If the client re-marks the map,
+     replace /assets/carpark-map.webp and keep the same dimensions. -->
 <section class="sws-sect">
+  <div class="sws-wrap" style="display:flex;flex-direction:column;gap:24px">
+    <div class="rv" style="display:flex;flex-direction:column;gap:10px;max-width:760px">
+      <h2 class="sws-h3">Getting to the pool</h2>
+      <p class="sws-body">Corpus Christi College Aquatic Centre, 50 Murdoch Dr, Bateman WA 6150. Park in the Year 12 / Aquatic &amp; Gym after-hours car park off Hawke Pass (circled below), then follow the arrow across to the Jennifer Reilly Aquatic Centre.</p>
+    </div>
+
+    <figure class="sws-map rv" style="--d:.08s;margin:0;display:flex;flex-direction:column;gap:12px">
+      <a href="/assets/carpark-map.webp" target="_blank" rel="noopener" style="display:block;border-radius:16px;overflow:hidden;border:2px solid #D6E6F4">
+        <img src="/assets/carpark-map.webp" alt="Map of the Corpus Christi College campus. The after-hours car park for the aquatic centre and gym is circled on the western edge, off Hawke Pass, with an arrow pointing north-east to the Jennifer Reilly Aquatic Centre." width="1500" height="806" loading="lazy" decoding="async" style="display:block;width:100%;height:auto">
+      </a>
+      <figcaption style="font-size:15px;color:#4A5866">Tap the map to open it full size. <a href="https://maps.google.com/?q=Corpus+Christi+College+Aquatic+Centre,+50+Murdoch+Dr,+Bateman+WA+6150" target="_blank" rel="noopener" style="font-weight:800">Open in Google Maps <span class="sws-arrow">→</span></a></figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- HIDDEN(client): the four-step "How the first session runs" walkthrough is
+     commented out until the client supplies the copy — parents shouldn't see a
+     column of "Coming soon" tags. This feature is still wanted: restore it by
+     deleting this comment opener and the closer below, then replace each
+     <span class="sws-soon"> with the real text. The "Getting to the pool" step
+     is already answered by the map section above, so drop that first <li> when
+     restoring, or fold the arrival detail into it.
+<section class="sws-sect sws-sect-alt">
   <div class="sws-wrap sws-prose">
     <div class="rv" style="display:flex;flex-direction:column;gap:10px">
       <h2 class="sws-h3">How the first session runs</h2>
@@ -30,27 +59,29 @@
       <li class="sws-step rv" style="--d:.05s">
         <h3 class="sws-h3" style="font-size:21px">Getting to the pool</h3>
         <p class="sws-body">Corpus Christi College Aquatic Centre, 50 Murdoch Dr, Bateman WA 6150.<br>
-          <!-- ASK CLIENT: parking location, which gate to use, how to find reception. -->
+          ASK CLIENT: which gate to use, how to find reception.
           <span class="sws-soon">Coming soon</span></p>
       </li>
       <li class="sws-step rv" style="--d:.1s">
         <h3 class="sws-h3" style="font-size:21px">Arriving &amp; checking in</h3>
-        <!-- ASK CLIENT: how early to arrive, where to wait, who to speak to on arrival. -->
+        ASK CLIENT: how early to arrive, where to wait, who to speak to on arrival.
         <p class="sws-body"><span class="sws-soon">Coming soon</span></p>
       </li>
       <li class="sws-step rv" style="--d:.15s">
         <h3 class="sws-h3" style="font-size:21px">The assessment</h3>
-        <!-- ASK CLIENT: what the coach does in the first lesson and how kids are assessed. -->
+        ASK CLIENT: what the coach does in the first lesson and how kids are assessed.
         <p class="sws-body"><span class="sws-soon">Coming soon</span></p>
       </li>
       <li class="sws-step rv" style="--d:.2s">
         <h3 class="sws-h3" style="font-size:21px">Choosing a class</h3>
-        <!-- ASK CLIENT: how a class and level are chosen afterwards, and what happens next. -->
+        ASK CLIENT: how a class and level are chosen afterwards, and what happens next.
         <p class="sws-body"><span class="sws-soon">Coming soon</span></p>
       </li>
     </ol>
   </div>
 </section>
+-->
+
 
 <section class="sws-sect sws-sect-alt">
   <div class="sws-wrap" style="display:flex;flex-direction:column;gap:22px">
@@ -84,7 +115,11 @@
     <div style="display:flex;flex-direction:column;gap:16px">
       <h2 class="sws-h3 rv">Get a feel for it before you come</h2>
       <p class="sws-body rv" style="--d:.08s">The best way to see how we teach is to come and watch a class in person. In the meantime, here are our instructors in the water at a recent staff training session. Every one of them is a current or former squad swimmer.</p>
-      <p class="sws-body rv" style="--d:.14s;font-size:15px;color:#4A5866"><em>A short edited video of a real lesson is coming, and this spot is reserved for it.</em></p>
+      <!-- HIDDEN(client): the "a real lesson video is coming" line is commented
+           out so nothing on the page reads as unfinished. Still on the pipeline:
+           when the edited lesson video lands, restore this line (or drop it and
+           just swap the <video> source below for the new file). -->
+      <!-- <p class="sws-body rv" style="--d:.14s;font-size:15px;color:#4A5866"><em>A short edited video of a real lesson is coming, and this spot is reserved for it.</em></p> -->
       <div class="rv" style="--d:.2s"><a href="/about/" class="sws-btn sws-btn-secondary">Meet the instructors <span class="sws-arrow">→</span></a></div>
     </div>
     <div class="sws-video rv" style="--d:.12s">
@@ -95,16 +130,18 @@
   </div>
 </section>
 
-<section class="sws-sect sws-sect-alt">
-  <div class="sws-wrap sws-prose rv">
+<!-- REMOVED(Alex): the page-bottom "Book a free lesson / Call" button pair.
+     Booking lives in the sticky header, the floating desktop CTA and the mobile
+     bar, so interior pages don't repeat it above the footer. The whole section
+     went with it, since the buttons were all that was left visible in it.
+
+     HIDDEN(client): the "More detail coming soon" notice below is still on the
+     pipeline. Bring it back (inside a new <section class="sws-sect sws-sect-alt">
+     with a .sws-wrap.sws-prose.rv wrapper) when the first-session copy lands and
+     the walkthrough section above is restored — or just delete it.
     <div class="sws-todo">
       <strong>More detail coming soon</strong>
       <p>We're finalising the step-by-step detail on parking, arrival and how the first session runs. In the meantime, give us a call and we'll happily walk you through any of it.</p>
     </div>
+-->
 
-    <div style="display:flex;gap:12px;flex-wrap:wrap">
-      <a href="/#book" data-book-open class="sws-btn sws-btn-primary">Book a free lesson</a>
-      <a href="tel:0409898232" class="sws-btn sws-btn-secondary">Call 0409 898 232</a>
-    </div>
-  </div>
-</section>

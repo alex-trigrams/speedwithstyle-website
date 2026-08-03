@@ -1,6 +1,8 @@
-<!-- ===== FLOATING "BOOK A CALL" (Calendly) — bottom right, desktop =====
-     TODO(Alex): set CALENDLY_URL in the script below when the client supplies the link.
-     Until then this falls back to the on-page enquiry form (#book) so it's never a dead end. -->
+<!-- ===== FLOATING "BOOK A CALL" — bottom right, desktop =====
+     TODO(Alex): set BOOKING_URL in the script below to the client's Google
+     Appointment Schedule link once they've finished setting it up. Until then
+     this falls back to the on-page enquiry form (#book) so it's never a dead
+     end. -->
 <a id="call-cta" href="/#book" class="sws-desktop"
    style="position:fixed;right:24px;bottom:24px;z-index:99;display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:#1B76BC;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;box-shadow:0 10px 34px rgba(20,46,69,.32);transition:transform .25s cubic-bezier(.2,0,0,1),box-shadow .25s ease">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg>
@@ -58,12 +60,13 @@
   onScroll();
 
   // Floating "Book a call" CTA.
-  // TODO(Alex): paste the client's Calendly link here. While it's null the button
-  // scrolls to the on-page enquiry form instead, so the CTA is never a dead end.
-  var CALENDLY_URL = null;
+  // TODO(Alex): paste the client's Google Appointment Schedule link here (the
+  // client is still setting it up). While it's null the button scrolls to the
+  // on-page enquiry form instead, so the CTA is never a dead end.
+  var BOOKING_URL = null;
   var callCta = document.getElementById('call-cta');
-  if (callCta && CALENDLY_URL) {
-    callCta.href = CALENDLY_URL;
+  if (callCta && BOOKING_URL) {
+    callCta.href = BOOKING_URL;
     callCta.target = '_blank';
     callCta.rel = 'noopener';
   }
@@ -82,9 +85,19 @@
       name: function (v) { return v.trim().length > 0; },
       phone: function (v) { return /^[\d\s+()-]{8,}$/.test(v); },
       email: function (v) { return v.trim() === '' || /^\S+@\S+\.\S+$/.test(v); },
-      age: function (v) { return v !== ''; },
+      // Age is optional — we can sort the right class on the call.
       program: function (v) { return v !== ''; }
     };
+
+    // "Multiple children" has no single age, so prompt for the ages in the
+    // message box instead of adding a second age field.
+    var ageSel = form.querySelector('[name="age"]');
+    var multiHint = ageSel && form.querySelector('.sws-hint');
+    if (ageSel && multiHint) {
+      ageSel.addEventListener('change', function () {
+        multiHint.hidden = ageSel.value !== 'Multiple children';
+      });
+    }
     function validate() {
       var ok = true;
       Object.keys(checks).forEach(function (nm) {

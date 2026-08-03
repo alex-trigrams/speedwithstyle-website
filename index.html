@@ -73,6 +73,9 @@
   .sws-label{font-weight:800;font-size:16px;color:#0A0A0A}
   .sws-err{font-size:14px;font-weight:700;color:#C2402A;display:none}
   .sws-field.has-error .sws-err{display:block}
+  /* Prompt shown under the age select when "Multiple children" is picked. */
+  .sws-hint{font-size:14px;font-weight:700;color:#1B76BC}
+  .sws-hint[hidden]{display:none}
   @media(max-width:820px){.sws-desktop{display:none !important}}
   @media(min-width:821px){.sws-mobileonly{display:none !important}}
   body{padding-bottom:0}
@@ -669,7 +672,9 @@
   <div class="sws-wrap" style="display:flex;flex-direction:column;gap:32px">
     <div style="display:flex;flex-direction:column;gap:12px">
       <span class="sws-eyebrow">Why choose us</span>
-      <h2 class="sws-h2 rv">Five reasons parents pick SWS</h2>
+      <!-- "SWS" picks up the blue from the logo's slash, so the brand mark reads
+           the same way in the heading as it does in the header. -->
+      <h2 class="sws-h2 rv">Five reasons parents pick <span style="color:#1B76BC">SWS</span></h2>
     </div>
     <!-- Bento grid: the two claims backed by hard numbers (class size, water
          temperature) get the large tiles; the three softer claims support them.
@@ -948,14 +953,14 @@
           </div>
           <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
             <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
-              <label class="sws-label" for="f-age">Child's age *</label>
+              <label class="sws-label" for="f-age">Child's age <span style="font-weight:600;color:#4A5866">(optional)</span></label>
               <div style="position:relative">
                 <select id="f-age" name="age" class="sws-input" style="appearance:none;padding-right:44px">
-                  <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option>It's for me</option>
+                  <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option data-multi>Multiple children</option>
                 </select>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#142E45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
               </div>
-              <span class="sws-err" role="alert">Pick an age range so we can suggest a class.</span>
+              <span class="sws-hint" id="f-age-multi" hidden>Please list your children's ages in the box below.</span>
             </div>
             <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
               <label class="sws-label" for="f-prog">Program *</label>
@@ -1082,14 +1087,14 @@
         </div>
         <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
           <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
-            <label class="sws-label" for="mf-age">Child's age *</label>
+            <label class="sws-label" for="mf-age">Child's age <span style="font-weight:600;color:#4A5866">(optional)</span></label>
             <div style="position:relative">
               <select id="mf-age" name="age" class="sws-input" style="appearance:none;padding-right:44px">
-                <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option>It's for me</option>
+                <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option data-multi>Multiple children</option>
               </select>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#142E45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
             </div>
-            <span class="sws-err" role="alert">Pick an age range so we can suggest a class.</span>
+            <span class="sws-hint" id="mf-age-multi" hidden>Please list your children's ages in the box below.</span>
           </div>
           <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
             <label class="sws-label" for="mf-prog">Program *</label>
@@ -1114,9 +1119,11 @@
   </div>
 </dialog>
 
-<!-- ===== FLOATING "BOOK A CALL" (Calendly) — bottom right, desktop =====
-     TODO(Alex): set CALENDLY_URL in the script below when the client supplies the link.
-     Until then this falls back to the on-page enquiry form (#book) so it's never a dead end. -->
+<!-- ===== FLOATING "BOOK A CALL" — bottom right, desktop =====
+     TODO(Alex): set BOOKING_URL in the script below to the client's Google
+     Appointment Schedule link once they've finished setting it up. Until then
+     this falls back to the on-page enquiry form (#book) so it's never a dead
+     end. -->
 <a id="call-cta" href="/#book" class="sws-desktop"
    style="position:fixed;right:24px;bottom:24px;z-index:99;display:flex;align-items:center;gap:10px;padding:14px 22px;border-radius:999px;background:#1B76BC;color:#fff;text-decoration:none;font-family:'Montserrat',sans-serif;font-weight:800;font-size:16px;box-shadow:0 10px 34px rgba(20,46,69,.32);transition:transform .25s cubic-bezier(.2,0,0,1),box-shadow .25s ease">
   <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M16 3v4M8 3v4M3 11h18"></path></svg>
@@ -1174,12 +1181,13 @@
   onScroll();
 
   // Floating "Book a call" CTA.
-  // TODO(Alex): paste the client's Calendly link here. While it's null the button
-  // scrolls to the on-page enquiry form instead, so the CTA is never a dead end.
-  var CALENDLY_URL = null;
+  // TODO(Alex): paste the client's Google Appointment Schedule link here (the
+  // client is still setting it up). While it's null the button scrolls to the
+  // on-page enquiry form instead, so the CTA is never a dead end.
+  var BOOKING_URL = null;
   var callCta = document.getElementById('call-cta');
-  if (callCta && CALENDLY_URL) {
-    callCta.href = CALENDLY_URL;
+  if (callCta && BOOKING_URL) {
+    callCta.href = BOOKING_URL;
     callCta.target = '_blank';
     callCta.rel = 'noopener';
   }
@@ -1198,9 +1206,19 @@
       name: function (v) { return v.trim().length > 0; },
       phone: function (v) { return /^[\d\s+()-]{8,}$/.test(v); },
       email: function (v) { return v.trim() === '' || /^\S+@\S+\.\S+$/.test(v); },
-      age: function (v) { return v !== ''; },
+      // Age is optional — we can sort the right class on the call.
       program: function (v) { return v !== ''; }
     };
+
+    // "Multiple children" has no single age, so prompt for the ages in the
+    // message box instead of adding a second age field.
+    var ageSel = form.querySelector('[name="age"]');
+    var multiHint = ageSel && form.querySelector('.sws-hint');
+    if (ageSel && multiHint) {
+      ageSel.addEventListener('change', function () {
+        multiHint.hidden = ageSel.value !== 'Multiple children';
+      });
+    }
     function validate() {
       var ok = true;
       Object.keys(checks).forEach(function (nm) {

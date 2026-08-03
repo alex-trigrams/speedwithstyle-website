@@ -197,7 +197,9 @@
   <div class="sws-wrap" style="display:flex;flex-direction:column;gap:32px">
     <div style="display:flex;flex-direction:column;gap:12px">
       <span class="sws-eyebrow">Why choose us</span>
-      <h2 class="sws-h2 rv">Five reasons parents pick SWS</h2>
+      <!-- "SWS" picks up the blue from the logo's slash, so the brand mark reads
+           the same way in the heading as it does in the header. -->
+      <h2 class="sws-h2 rv">Five reasons parents pick <span style="color:#1B76BC">SWS</span></h2>
     </div>
     <!-- Bento grid: the two claims backed by hard numbers (class size, water
          temperature) get the large tiles; the three softer claims support them.
@@ -476,14 +478,14 @@
           </div>
           <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
             <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
-              <label class="sws-label" for="f-age">Child's age *</label>
+              <label class="sws-label" for="f-age">Child's age <span style="font-weight:600;color:#4A5866">(optional)</span></label>
               <div style="position:relative">
                 <select id="f-age" name="age" class="sws-input" style="appearance:none;padding-right:44px">
-                  <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option>It's for me</option>
+                  <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option data-multi>Multiple children</option>
                 </select>
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#142E45" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);pointer-events:none"><path d="m6 9 6 6 6-6"></path></svg>
               </div>
-              <span class="sws-err" role="alert">Pick an age range so we can suggest a class.</span>
+              <span class="sws-hint" id="f-age-multi" hidden>Please list your children's ages in the box below.</span>
             </div>
             <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
               <label class="sws-label" for="f-prog">Program *</label>
