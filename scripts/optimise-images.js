@@ -113,7 +113,7 @@ const IMAGES = [
   // Corpus needs to recognise the building before they recognise the water.
   {
     src: 'FACILITY/OUTSIDE.JPG',
-    out: 'facility-outside.webp',
+    out: 'facility-side-entrance.webp',
     full: 1600,
     width: 800,
     height: 600,
