@@ -251,6 +251,19 @@
   .sws-step::after{content:"";position:absolute;left:20px;top:46px;bottom:2px;width:2px;background:linear-gradient(#C9DCEC,#EDF4FA)}
   .sws-step:last-child{padding-bottom:0}
   .sws-step:last-child::after{display:none}
+  /* The first sentence of each step, promoted so a skimmer gets the gist of the
+     whole walkthrough from three lines. */
+  .sws-step > h3{margin:0 0 12px}
+  .sws-step-lead{margin:0;font-size:18px;line-height:1.55;font-weight:800;color:#142E45}
+  /* Steps 1 and 2 pin a photo of the room they describe alongside the copy. The
+     photo drops below the text on narrow screens (see the 860px block). */
+  .sws-step-media{display:grid;gap:22px;grid-template-columns:minmax(0,1fr) minmax(0,240px);align-items:start}
+  .sws-step-media figure{margin:0;display:flex;flex-direction:column;gap:8px}
+  .sws-step-media img{display:block;width:100%;height:auto;border-radius:14px;border:2px solid #D6E6F4}
+  .sws-step-media figcaption{font-size:14px;line-height:1.5;color:#4A5866}
+  /* Nested inside step 3, the accordions carry the long tail of the client's
+     copy without turning the step into a wall of text. */
+  .sws-step .sws-faq{background:#F7FBFE}
 
   /* ===== Auto-scrolling marquee ===== */
   .sws-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
@@ -393,6 +406,34 @@
   .sws-checklist{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
   .sws-checklist li{display:flex;gap:12px;align-items:center;font-size:17px;font-weight:700;color:#fff}
   .sws-checklist .sws-tick{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:rgba(132,180,221,.22);border:2px solid #84B4DD;color:#84B4DD;display:flex;align-items:center;justify-content:center}
+  /* Light variant, for the checklist on a white section rather than navy. */
+  .sws-checklist-light li{color:#142E45;align-items:flex-start;line-height:1.5}
+  .sws-checklist-light .sws-tick{background:#EDF4FA;border-color:#1B76BC;color:#1B76BC}
+  /* Optional items keep the same tick shape but hollow it out, so "(optional)"
+     is legible at a glance without changing the client's wording. */
+  .sws-checklist-light li[data-optional]{color:#4A5866;font-weight:700}
+  .sws-checklist-light li[data-optional] .sws-tick{background:transparent;border-color:#C9DCEC;color:#84B4DD}
+
+  /* ===== What to bring — level switcher =====
+     The three kit lists are ~80% identical, so showing them side by side reads
+     as repetition. One list at a time, chosen by the pills, keeps each parent
+     on their own child's kit. All three lists are in the HTML and the JS adds
+     [hidden]: with JS off they render stacked under their own headings. */
+  .sws-kit{display:flex;flex-direction:column;gap:24px}
+  .sws-kit-tabs{display:flex;flex-wrap:wrap;gap:12px;margin:0;padding:0;list-style:none}
+  .sws-kit-tab{cursor:pointer;font-family:'Nunito Sans',sans-serif;transition:background .25s,border-color .25s,color .25s,transform .25s cubic-bezier(.2,0,0,1)}
+  .sws-kit-tab:hover{border-color:#ADCDE9;transform:translateY(-2px)}
+  .sws-kit-tab[aria-selected="true"]{background:#1B76BC;border-color:#1B76BC;color:#fff}
+  .sws-kit-tab[aria-selected="true"] svg{color:#fff}
+  .sws-kit-panel{display:flex;flex-direction:column;gap:16px}
+  .sws-kit-panel > h3{margin:0}
+  /* With the switcher live the panel heading just repeats the selected pill, so
+     it is hidden. It stays in the markup as the heading for the no-JS fallback,
+     and the panel is still named via aria-labelledby on the tab. */
+  .sws-kit-live .sws-kit-panel > h3{display:none}
+  /* Hidden while the switcher is active; the JS unsets it for the live panel. */
+  .sws-kit-panel[hidden]{display:none}
+  .sws-kit-note{margin:0;font-size:15px;line-height:1.6;color:#4A5866;padding-left:42px}
 
   /* ===== Values page — full-width rows, one per value ===== */
   .sws-vrow{display:grid;gap:36px;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start;padding:44px 0;border-top:2px solid #EDF4FA}
@@ -409,6 +450,10 @@
   .sws-vquote p{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:18px;line-height:1.45;color:#142E45}
   .sws-vquote cite{font-style:normal;font-size:14px;font-weight:700;color:#1B76BC}
   @media(max-width:820px){.sws-vrow{grid-template-columns:1fr;gap:20px;padding:36px 0}}
+  /* Below this the step photo would be squeezed to a thumbnail, so it goes
+     full width under the copy instead. */
+  @media(max-width:700px){.sws-step-media{grid-template-columns:1fr}.sws-step-media figure{max-width:420px}}
+  @media(max-width:560px){.sws-step{padding-left:52px}.sws-kit-note{padding-left:0}}
 
   /* ===== Comparison table (levels vs SWS) ===== */
   .sws-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -479,6 +524,8 @@
     .sws-marquee-track{animation:none;width:auto;flex-wrap:wrap}
     .sws-marquee{-webkit-mask-image:none;mask-image:none}
     .sws-val::before{transition:none;transform:scaleX(1)}
+    .sws-kit-tab{transition:none}
+    .sws-kit-tab:hover{transform:none}
     .sws-pips span{transition:none;opacity:1;transform:none;background:rgba(255,255,255,.28)}
     .sws-bhero::after,.sws-bsm,.sws-bicon{transition:none}
     .sws-bsm:hover{transform:none}
@@ -619,9 +666,9 @@
         <img src="/assets/facility-heated-pool.webp" alt="The heated indoor pool lit from above, with pennants strung across the lanes" width="800" height="600" loading="lazy" decoding="async">
         <span>Heated year round</span>
       </button>
-      <button type="button" data-full="/assets/facility-secondary-pool-full.webp" data-cap="The second pool">
-        <img src="/assets/facility-secondary-pool.webp" alt="The second pool beside a full-height window wall, with diving boards along the far side" width="800" height="600" loading="lazy" decoding="async">
-        <span>The second pool</span>
+      <button type="button" data-full="/assets/facility-lts-pool-full.webp" data-cap="The Learn to Swim pool, mid-lesson">
+        <img src="/assets/facility-lts-pool.webp" alt="The outdoor Learn to Swim pool during a lesson, with children in the shallow water using kick-boards and pool noodles while two instructors watch from the deck" width="800" height="600" loading="lazy" decoding="async">
+        <span>Learn to swim pool (LTS)</span>
       </button>
       <button type="button" data-full="/assets/facility-blocks-full.webp" data-cap="Blocks at the end of the main pool">
         <img src="/assets/facility-blocks.webp" alt="The starting blocks numbered five and six at the end of the main pool" width="800" height="600" loading="lazy" decoding="async">
@@ -639,66 +686,162 @@
   </div>
 </section>
 
-<!-- HIDDEN(client): the four-step "How the first session runs" walkthrough is
-     commented out until the client supplies the copy — parents shouldn't see a
-     column of "Coming soon" tags. This feature is still wanted: restore it by
-     deleting this comment opener and the closer below, then replace each
-     <span class="sws-soon"> with the real text. The "Getting to the pool" step
-     is already answered by the map section above, so drop that first <li> when
-     restoring, or fold the arrival detail into it.
+<!-- ===== HOW THE FIRST SESSION RUNS =====
+     The client's first-session copy landed 2026-08-04 and is reproduced
+     verbatim, with two exceptions: "a on-deck supervisor" -> "an", and the
+     full stop dropped from the third heading. Do not paraphrase this without
+     running it past them.
+
+     Structure notes for whoever edits next:
+     - The original "Getting to the pool" step is deliberately gone. The map
+       section above already answers it and repeating it pushed the real
+       content down the page.
+     - Each step opens with a .sws-step-lead line lifted from the client's own
+       first sentence, so the walkthrough is skimmable in three lines.
+     - Step 3's copy runs to seven paragraphs. The essential two stay in the
+       step; the rest sit in <details> accordions (same pure-CSS pattern as the
+       homepage FAQ, no JS) so the step doesn't become a wall of text. Every
+       word is still on the page. -->
 <section class="sws-sect sws-sect-alt">
-  <div class="sws-wrap sws-prose">
+  <!-- Slightly wider than the standard 760px prose column: the 62px step
+       indent plus the pinned photo would otherwise squeeze steps 1-2 to a
+       ~360px measure while step 3 ran the full width. -->
+  <div class="sws-wrap sws-prose" style="max-width:880px">
     <div class="rv" style="display:flex;flex-direction:column;gap:10px">
       <h2 class="sws-h3">How the first session runs</h2>
-      <p class="sws-body">Four steps, from the car park to picking a class.</p>
+      <p class="sws-body">Three steps, from walking in to knowing your child is in the right class.</p>
     </div>
 
-    <ol class="sws-steps">
+    <ol class="sws-steps" style="margin-top:8px">
       <li class="sws-step rv" style="--d:.05s">
-        <h3 class="sws-h3" style="font-size:21px">Getting to the pool</h3>
-        <p class="sws-body">Corpus Christi College Aquatic Centre, 50 Murdoch Dr, Bateman WA 6150.<br>
-          ASK CLIENT: which gate to use, how to find reception.
-          <span class="sws-soon">Coming soon</span></p>
+        <h3 class="sws-h3" style="font-size:21px">First contact</h3>
+        <div class="sws-step-media">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <p class="sws-step-lead">When you arrive look for an on-deck supervisor (in blue/white SWS polo shirts), there are normally 2-3 on pool deck.</p>
+            <p class="sws-body">We will be expecting you, and will take you over to where your children will be having their first free lesson.</p>
+          </div>
+          <figure>
+            <img src="/assets/facility-entrance.webp" alt="The view inside the entrance, looking across the main pool towards the far wall" width="800" height="600" loading="lazy" decoding="async">
+            <figcaption>Through the doors, looking across the main pool.</figcaption>
+          </figure>
+        </div>
       </li>
+
       <li class="sws-step rv" style="--d:.1s">
-        <h3 class="sws-h3" style="font-size:21px">Arriving &amp; checking in</h3>
-        ASK CLIENT: how early to arrive, where to wait, who to speak to on arrival.
-        <p class="sws-body"><span class="sws-soon">Coming soon</span></p>
+        <h3 class="sws-h3" style="font-size:21px">Assessment</h3>
+        <div class="sws-step-media">
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <p class="sws-step-lead">During the lesson one of our expert supervisors will come and observe the children, to see how they are going and what their current level of swimming is.</p>
+            <p class="sws-body">We will have a chat with you about our observations and what our recommendations are.</p>
+            <p class="sws-body">Please ask any questions you may have, we are always happy to help.</p>
+          </div>
+          <figure>
+            <img src="/assets/parent-seating.webp" alt="Tiered seating alongside the pool where parents watch lessons" width="1000" height="667" loading="lazy" decoding="async">
+            <figcaption>You can watch the whole lesson from the seating alongside the pool.</figcaption>
+          </figure>
+        </div>
       </li>
+
       <li class="sws-step rv" style="--d:.15s">
-        <h3 class="sws-h3" style="font-size:21px">The assessment</h3>
-        ASK CLIENT: what the coach does in the first lesson and how kids are assessed.
-        <p class="sws-body"><span class="sws-soon">Coming soon</span></p>
-      </li>
-      <li class="sws-step rv" style="--d:.2s">
-        <h3 class="sws-h3" style="font-size:21px">Choosing a class</h3>
-        ASK CLIENT: how a class and level are chosen afterwards, and what happens next.
-        <p class="sws-body"><span class="sws-soon">Coming soon</span></p>
+        <h3 class="sws-h3" style="font-size:21px">Confirming the correct class</h3>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <p class="sws-step-lead">During your initial enquiry to SWS we would have asked you about your children's ability, and we have placed them in a trial class that we think is likely to be at the correct level.</p>
+          <p class="sws-body">However, this is just a starting point and we will check our observations of the children, and their lesson, to ensure that our recommendation on the class is correct.</p>
+          <p class="sws-body">If the class is correct then we will offer you that class if it is suitable for you. If the day/time does not work for you, we will find a suitable class at a suitable level at a day/time that works for you (subject to availability).</p>
+
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+            <details class="sws-faq">
+              <summary>Why being in the right class matters<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+              <div class="sws-faq-body">
+                <p>Our classes are taught by expert swimmers (all of whom have a squad background) who will only teach correct technique.</p>
+                <p>Being in the correct class is really important, if it is too hard then this compromises their skill acquisition as they focus on keeping up, as opposed to focusing on technique. If it is too easy then they will get bored and disengaged. Thus, the lessons are designed to be challenging but not overwhelming.</p>
+              </div>
+            </details>
+            <details class="sws-faq">
+              <summary>What if the level isn't quite right?<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+              <div class="sws-faq-body">
+                <p>However, children's ability does improve all the time, or perhaps they didn't demonstrate their true ability during their trial lesson. This is OK!</p>
+                <p>We have a constant assessment approach, and our instructors are trained to communicate with the supervisors if they think a child will benefit from a more challenging class. In addition, if you think we have missed something please talk to a supervisor, while your child is in the class, and we will have another look. We will then either explain why the class is the most suitable OR change the class.</p>
+                <p>We have no interest in keeping children in a class that is not at the correct level, we want the children to progress as quickly as possible, this helps them maintain engagement, enjoy their lessons and become as safe as possible as quickly as possible.</p>
+              </div>
+            </details>
+            <details class="sws-faq">
+              <summary>Who do I talk to?<span class="sws-faq-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+              <div class="sws-faq-body">
+                <p>Any questions, at any time at the pool, please talk to a supervisor, we are here to help.</p>
+              </div>
+            </details>
+          </div>
+        </div>
       </li>
     </ol>
   </div>
 </section>
--->
 
 
 <section class="sws-sect">
   <div class="sws-wrap" style="display:flex;flex-direction:column;gap:22px">
     <div class="rv" style="display:flex;flex-direction:column;gap:10px;max-width:760px">
       <h2 class="sws-h3">What to bring</h2>
-      <p class="sws-body">The basics for every lesson.</p>
+      <p class="sws-body">Kit lists come from the client (2026-08-04) and differ by program. Pick your child's level.</p>
     </div>
-    <!-- ASK CLIENT: confirm this list — add anything else they
-         want parents to bring, and remove anything the centre provides. -->
-    <div class="sws-marquee rv" style="--speed:34s">
-      <div class="sws-marquee-track">
-        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>Bathers</span>
-        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>Towel</span>
-        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>Goggles</span>
-        <span class="sws-chip"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>Swim cap</span>
-        <span class="sws-chip" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>Bathers</span>
-        <span class="sws-chip" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>Towel</span>
-        <span class="sws-chip" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>Goggles</span>
-        <span class="sws-chip" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m5 13 4 4L19 7"/></svg>Swim cap</span>
+
+    <!-- ===== KIT SWITCHER =====
+         Replaced the scrolling ticker at the client's request. The three lists
+         overlap heavily (goggles, towel/deck coat, water bottle appear in all
+         three), so showing them side by side read as repetition — the switcher
+         puts one complete list on screen at a time.
+
+         Progressive enhancement: no [hidden] in the source, so with JS off all
+         three panels render stacked under their own <h3>s and nothing is lost.
+         [data-kit] is what the JS in scripts.html binds to. -->
+    <div class="sws-kit rv" style="--d:.05s" data-kit>
+      <ul class="sws-kit-tabs" role="tablist" aria-label="Choose a program level">
+        <li role="presentation">
+          <button type="button" class="sws-chip sws-kit-tab" role="tab" id="kit-tab-lts" aria-controls="kit-panel-lts" aria-selected="true">Learn to Swim
+          </button>
+        </li>
+        <li role="presentation">
+          <button type="button" class="sws-chip sws-kit-tab" role="tab" id="kit-tab-pre" aria-controls="kit-panel-pre" aria-selected="false">Pre-squad
+          </button>
+        </li>
+        <li role="presentation">
+          <button type="button" class="sws-chip sws-kit-tab" role="tab" id="kit-tab-squad" aria-controls="kit-panel-squad" aria-selected="false">Squad
+          </button>
+        </li>
+      </ul>
+
+      <div class="sws-kit-panel" id="kit-panel-lts" role="tabpanel" aria-labelledby="kit-tab-lts" tabindex="0">
+        <h3 class="sws-h3" style="font-size:19px">Learn to Swim</h3>
+        <ul class="sws-checklist sws-checklist-light">
+          <li><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Bathers</li>
+          <li><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Goggles</li>
+          <li><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Towel and/or Swim/deck coat</li>
+        </ul>
+      </div>
+
+      <div class="sws-kit-panel" id="kit-panel-pre" role="tabpanel" aria-labelledby="kit-tab-pre" tabindex="0">
+        <h3 class="sws-h3" style="font-size:19px">Pre-squad</h3>
+        <ul class="sws-checklist sws-checklist-light">
+          <li><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Water bottle</li>
+          <li><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Goggles</li>
+          <li data-optional><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Swim Cap (optional)</li>
+          <li data-optional><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Swim equipment (optional) e.g., fins, pull buoy, kick-board</li>
+          <li><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Towel and/or Swim/deck coat</li>
+        </ul>
+        <p class="sws-kit-note">We do have spare equipment to borrow.</p>
+      </div>
+
+      <div class="sws-kit-panel" id="kit-panel-squad" role="tabpanel" aria-labelledby="kit-tab-squad" tabindex="0">
+        <h3 class="sws-h3" style="font-size:19px">Squad</h3>
+        <ul class="sws-checklist sws-checklist-light">
+          <li><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Water bottle</li>
+          <li><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Goggles</li>
+          <li data-optional><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Swim Cap (optional)</li>
+          <li data-optional><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Swim equipment (optional) e.g., fins, pull buoy, kick-board</li>
+          <li><span class="sws-tick"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="m5 13 4 4L19 7"/></svg></span>Towel and/or Swim/deck coat</li>
+        </ul>
+        <p class="sws-kit-note">At this level swimmers may prefer their own stuff.</p>
       </div>
     </div>
   </div>
@@ -1139,6 +1282,46 @@
       clone.setAttribute('aria-hidden', 'true');
       track.appendChild(clone);
     });
+  });
+
+  // What-to-bring kit switcher. The three kit lists are all in the markup and
+  // visible by default, so with JS off the page degrades to three stacked
+  // lists under their own headings. Here we hide all but the selected one and
+  // wire the pills up as a tablist (arrow keys included, per the ARIA pattern).
+  document.querySelectorAll('[data-kit]').forEach(function (kit) {
+    var tabs = Array.prototype.slice.call(kit.querySelectorAll('.sws-kit-tab'));
+    var panels = tabs.map(function (tab) {
+      return kit.querySelector('#' + tab.getAttribute('aria-controls'));
+    });
+    if (!tabs.length || panels.indexOf(null) !== -1) return;
+    // Signals to the CSS that the per-panel headings are now redundant.
+    kit.classList.add('sws-kit-live');
+
+    function select(i, focus) {
+      tabs.forEach(function (tab, n) {
+        tab.setAttribute('aria-selected', String(n === i));
+        // Only the active tab stays in the tab order; arrow keys move between them.
+        tab.tabIndex = n === i ? 0 : -1;
+        panels[n].hidden = n !== i;
+      });
+      if (focus) tabs[i].focus();
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { select(i); });
+      tab.addEventListener('keydown', function (e) {
+        var to = e.key === 'ArrowRight' ? i + 1
+          : e.key === 'ArrowLeft' ? i - 1
+          : e.key === 'Home' ? 0
+          : e.key === 'End' ? tabs.length - 1
+          : -1;
+        if (to === -1) return;
+        e.preventDefault();
+        select((to + tabs.length) % tabs.length, true);
+      });
+    });
+
+    select(0);
   });
 
   // Count-up stats

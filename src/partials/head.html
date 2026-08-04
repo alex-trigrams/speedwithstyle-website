@@ -251,6 +251,19 @@
   .sws-step::after{content:"";position:absolute;left:20px;top:46px;bottom:2px;width:2px;background:linear-gradient(#C9DCEC,#EDF4FA)}
   .sws-step:last-child{padding-bottom:0}
   .sws-step:last-child::after{display:none}
+  /* The first sentence of each step, promoted so a skimmer gets the gist of the
+     whole walkthrough from three lines. */
+  .sws-step > h3{margin:0 0 12px}
+  .sws-step-lead{margin:0;font-size:18px;line-height:1.55;font-weight:800;color:#142E45}
+  /* Steps 1 and 2 pin a photo of the room they describe alongside the copy. The
+     photo drops below the text on narrow screens (see the 860px block). */
+  .sws-step-media{display:grid;gap:22px;grid-template-columns:minmax(0,1fr) minmax(0,240px);align-items:start}
+  .sws-step-media figure{margin:0;display:flex;flex-direction:column;gap:8px}
+  .sws-step-media img{display:block;width:100%;height:auto;border-radius:14px;border:2px solid #D6E6F4}
+  .sws-step-media figcaption{font-size:14px;line-height:1.5;color:#4A5866}
+  /* Nested inside step 3, the accordions carry the long tail of the client's
+     copy without turning the step into a wall of text. */
+  .sws-step .sws-faq{background:#F7FBFE}
 
   /* ===== Auto-scrolling marquee ===== */
   .sws-marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
@@ -393,6 +406,34 @@
   .sws-checklist{display:flex;flex-direction:column;gap:12px;margin:0;padding:0;list-style:none}
   .sws-checklist li{display:flex;gap:12px;align-items:center;font-size:17px;font-weight:700;color:#fff}
   .sws-checklist .sws-tick{flex-shrink:0;width:30px;height:30px;border-radius:50%;background:rgba(132,180,221,.22);border:2px solid #84B4DD;color:#84B4DD;display:flex;align-items:center;justify-content:center}
+  /* Light variant, for the checklist on a white section rather than navy. */
+  .sws-checklist-light li{color:#142E45;align-items:flex-start;line-height:1.5}
+  .sws-checklist-light .sws-tick{background:#EDF4FA;border-color:#1B76BC;color:#1B76BC}
+  /* Optional items keep the same tick shape but hollow it out, so "(optional)"
+     is legible at a glance without changing the client's wording. */
+  .sws-checklist-light li[data-optional]{color:#4A5866;font-weight:700}
+  .sws-checklist-light li[data-optional] .sws-tick{background:transparent;border-color:#C9DCEC;color:#84B4DD}
+
+  /* ===== What to bring — level switcher =====
+     The three kit lists are ~80% identical, so showing them side by side reads
+     as repetition. One list at a time, chosen by the pills, keeps each parent
+     on their own child's kit. All three lists are in the HTML and the JS adds
+     [hidden]: with JS off they render stacked under their own headings. */
+  .sws-kit{display:flex;flex-direction:column;gap:24px}
+  .sws-kit-tabs{display:flex;flex-wrap:wrap;gap:12px;margin:0;padding:0;list-style:none}
+  .sws-kit-tab{cursor:pointer;font-family:'Nunito Sans',sans-serif;transition:background .25s,border-color .25s,color .25s,transform .25s cubic-bezier(.2,0,0,1)}
+  .sws-kit-tab:hover{border-color:#ADCDE9;transform:translateY(-2px)}
+  .sws-kit-tab[aria-selected="true"]{background:#1B76BC;border-color:#1B76BC;color:#fff}
+  .sws-kit-tab[aria-selected="true"] svg{color:#fff}
+  .sws-kit-panel{display:flex;flex-direction:column;gap:16px}
+  .sws-kit-panel > h3{margin:0}
+  /* With the switcher live the panel heading just repeats the selected pill, so
+     it is hidden. It stays in the markup as the heading for the no-JS fallback,
+     and the panel is still named via aria-labelledby on the tab. */
+  .sws-kit-live .sws-kit-panel > h3{display:none}
+  /* Hidden while the switcher is active; the JS unsets it for the live panel. */
+  .sws-kit-panel[hidden]{display:none}
+  .sws-kit-note{margin:0;font-size:15px;line-height:1.6;color:#4A5866;padding-left:42px}
 
   /* ===== Values page — full-width rows, one per value ===== */
   .sws-vrow{display:grid;gap:36px;grid-template-columns:minmax(0,5fr) minmax(0,7fr);align-items:start;padding:44px 0;border-top:2px solid #EDF4FA}
@@ -409,6 +450,10 @@
   .sws-vquote p{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:18px;line-height:1.45;color:#142E45}
   .sws-vquote cite{font-style:normal;font-size:14px;font-weight:700;color:#1B76BC}
   @media(max-width:820px){.sws-vrow{grid-template-columns:1fr;gap:20px;padding:36px 0}}
+  /* Below this the step photo would be squeezed to a thumbnail, so it goes
+     full width under the copy instead. */
+  @media(max-width:700px){.sws-step-media{grid-template-columns:1fr}.sws-step-media figure{max-width:420px}}
+  @media(max-width:560px){.sws-step{padding-left:52px}.sws-kit-note{padding-left:0}}
 
   /* ===== Comparison table (levels vs SWS) ===== */
   .sws-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -479,6 +524,8 @@
     .sws-marquee-track{animation:none;width:auto;flex-wrap:wrap}
     .sws-marquee{-webkit-mask-image:none;mask-image:none}
     .sws-val::before{transition:none;transform:scaleX(1)}
+    .sws-kit-tab{transition:none}
+    .sws-kit-tab:hover{transform:none}
     .sws-pips span{transition:none;opacity:1;transform:none;background:rgba(255,255,255,.28)}
     .sws-bhero::after,.sws-bsm,.sws-bicon{transition:none}
     .sws-bsm:hover{transform:none}

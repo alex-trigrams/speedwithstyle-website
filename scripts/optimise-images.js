@@ -7,7 +7,11 @@
  * source photos change; it is idempotent and always writes from the original,
  * never from a previous output.
  *
- * Usage:  node scripts/optimise-images.js [--src <folder>]
+ * Usage:  node scripts/optimise-images.js [--src <folder>] [--only <substr>]
+ *
+ * --only rebuilds just the outputs whose name contains <substr>, which is what
+ * you want when the client swaps a single photo and you don't want to burn a
+ * couple of minutes re-encoding the other twenty.
  *
  * Crops are declared per image rather than left to sharp's attention-cropping,
  * which consistently picks the wrong part of a pool photo (it chases the high
@@ -26,6 +30,9 @@ const DEFAULT_SRC =
 
 const srcFlag = process.argv.indexOf('--src');
 const SRC = srcFlag !== -1 ? process.argv[srcFlag + 1] : DEFAULT_SRC;
+
+const onlyFlag = process.argv.indexOf('--only');
+const ONLY = onlyFlag !== -1 ? process.argv[onlyFlag + 1] : null;
 
 const QUALITY = 78;
 
@@ -56,8 +63,17 @@ const IMAGES = [
   },
   { src: 'MORNING_CLASS_2.JPG', out: 'pre-squad.webp', width: 1000,
     height: 667 },
-  { src: 'MORNING_CLASS.JPG', out: 'squad.webp', width: 1000,
-    height: 667 },
+  // The only portrait frame in the set (2673x4010). Cover-cropping it to 3:2
+  // from the centre would keep the ceiling and the out-of-focus foreground and
+  // cut the swimmer in half, so the crop window is declared: it sits on the
+  // swimmer and the steam coming off the water.
+  {
+    src: 'SQUAD_SWIMMING.JPG',
+    out: 'squad.webp',
+    extract: { left: 0, top: 1034, width: 2673, height: 1782 },
+    width: 1000,
+    height: 667,
+  },
   {
     src: 'CORPUS_BANNER.JPG',
     out: 'corpus.webp',
@@ -139,9 +155,12 @@ const IMAGES = [
     width: 800,
     height: 600,
   },
+  // Was FACILITY/SECONDARY_POOL.JPG, an empty shot of the same water. The
+  // client swapped it for the Learn to Swim pool in use, and the tile is now
+  // labelled as the LTS pool rather than "the second pool".
   {
-    src: 'FACILITY/SECONDARY_POOL.JPG',
-    out: 'facility-secondary-pool.webp',
+    src: 'LTS_IMAGE_2.JPG',
+    out: 'facility-lts-pool.webp',
     full: 1600,
     width: 800,
     height: 600,
@@ -232,6 +251,8 @@ async function uncropped(spec, width, outName) {
 
 const kb = (b) => `${(b / 1024).toFixed(0)}KB`;
 
+const TODO = ONLY ? IMAGES.filter((s) => s.out.includes(ONLY)) : IMAGES;
+
 async function main() {
   if (!fs.existsSync(SRC)) {
     throw new Error(`source folder not found:\n  ${SRC}`);
@@ -239,7 +260,7 @@ async function main() {
   fs.mkdirSync(OUT, { recursive: true });
 
   let total = 0;
-  for (const spec of IMAGES) {
+  for (const spec of TODO) {
     const main = await one(spec, spec.width, spec.out);
     total += main.bytes;
     console.log(
@@ -267,7 +288,7 @@ async function main() {
       );
     }
   }
-  console.log(`\n${IMAGES.length} sources -> ${kb(total)} total.`);
+  console.log(`\n${TODO.length} sources -> ${kb(total)} total.`);
 }
 
 main().catch((err) => {

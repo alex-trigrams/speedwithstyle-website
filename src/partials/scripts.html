@@ -278,6 +278,46 @@
     });
   });
 
+  // What-to-bring kit switcher. The three kit lists are all in the markup and
+  // visible by default, so with JS off the page degrades to three stacked
+  // lists under their own headings. Here we hide all but the selected one and
+  // wire the pills up as a tablist (arrow keys included, per the ARIA pattern).
+  document.querySelectorAll('[data-kit]').forEach(function (kit) {
+    var tabs = Array.prototype.slice.call(kit.querySelectorAll('.sws-kit-tab'));
+    var panels = tabs.map(function (tab) {
+      return kit.querySelector('#' + tab.getAttribute('aria-controls'));
+    });
+    if (!tabs.length || panels.indexOf(null) !== -1) return;
+    // Signals to the CSS that the per-panel headings are now redundant.
+    kit.classList.add('sws-kit-live');
+
+    function select(i, focus) {
+      tabs.forEach(function (tab, n) {
+        tab.setAttribute('aria-selected', String(n === i));
+        // Only the active tab stays in the tab order; arrow keys move between them.
+        tab.tabIndex = n === i ? 0 : -1;
+        panels[n].hidden = n !== i;
+      });
+      if (focus) tabs[i].focus();
+    }
+
+    tabs.forEach(function (tab, i) {
+      tab.addEventListener('click', function () { select(i); });
+      tab.addEventListener('keydown', function (e) {
+        var to = e.key === 'ArrowRight' ? i + 1
+          : e.key === 'ArrowLeft' ? i - 1
+          : e.key === 'Home' ? 0
+          : e.key === 'End' ? tabs.length - 1
+          : -1;
+        if (to === -1) return;
+        e.preventDefault();
+        select((to + tabs.length) % tabs.length, true);
+      });
+    });
+
+    select(0);
+  });
+
   // Count-up stats
   document.querySelectorAll('[data-countup]').forEach(function (el) {
     var target = parseInt(el.getAttribute('data-countup'), 10);
