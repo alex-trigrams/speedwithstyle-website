@@ -125,8 +125,27 @@
      lightbox, which shows the photographer's whole uncropped frame. */
   /* Fixed column counts, not auto-fit: there are six photos, and auto-fit lands
      on four across at desktop width, which leaves two orphans on the second row. */
-  .sws-gallery{display:grid;gap:14px;grid-template-columns:repeat(2,1fr);margin:0}
-  @media(min-width:860px){.sws-gallery{grid-template-columns:repeat(3,1fr)}}
+  /* The grid is really 2 and 3 columns, but it is declared at 4 and 6 with each
+     tile spanning 2. That halving is what lets an odd tile left over on the
+     last row stretch to fill the gap instead of sitting there as an orphan —
+     span 6 when it is alone, span 3 each when two are left over. It corrects
+     itself as photos are added or removed, so nobody has to remember to
+     rebalance the markup after a client swap. The stretched tiles get their own
+     aspect ratios, otherwise a full-width tile at 4:3 would be enormous. */
+  .sws-gallery{display:grid;gap:14px;margin:0}
+  .sws-gallery > *{grid-column:span 2}
+  @media(max-width:859px){
+    .sws-gallery{grid-template-columns:repeat(4,1fr)}
+    .sws-gallery > :last-child:nth-child(odd){grid-column:span 4}
+    .sws-gallery > :last-child:nth-child(odd) img{aspect-ratio:2/1}
+  }
+  @media(min-width:860px){
+    .sws-gallery{grid-template-columns:repeat(6,1fr)}
+    .sws-gallery > :last-child:nth-child(3n+1){grid-column:span 6}
+    .sws-gallery > :last-child:nth-child(3n+1) img{aspect-ratio:3/1}
+    .sws-gallery > :last-child:nth-child(3n+2){grid-column:span 3}
+    .sws-gallery > :last-child:nth-child(3n+2) img{aspect-ratio:2/1}
+  }
   .sws-gallery button{padding:0;border:0;background:none;font:inherit;color:inherit;cursor:pointer;display:block;position:relative;border-radius:16px;overflow:hidden;transition:transform .3s cubic-bezier(.2,0,0,1),box-shadow .3s}
   .sws-gallery button:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(20,46,69,.22)}
   .sws-gallery button:focus-visible{outline:3px solid #1B76BC;outline-offset:3px}
@@ -255,13 +274,6 @@
      whole walkthrough from three lines. */
   .sws-step > h3{margin:0 0 12px}
   .sws-step-lead{margin:0;font-size:18px;line-height:1.55;font-weight:800;color:#142E45}
-  /* A step can pin a photo of the room it describes alongside the copy (step 1
-     does). The photo drops below the text on narrow screens (see the 700px
-     block). */
-  .sws-step-media{display:grid;gap:22px;grid-template-columns:minmax(0,1fr) minmax(0,240px);align-items:start}
-  .sws-step-media figure{margin:0;display:flex;flex-direction:column;gap:8px}
-  .sws-step-media img{display:block;width:100%;height:auto;border-radius:14px;border:2px solid #D6E6F4}
-  .sws-step-media figcaption{font-size:14px;line-height:1.5;color:#4A5866}
   /* Nested inside step 3, the accordions carry the long tail of the client's
      copy without turning the step into a wall of text. */
   .sws-step .sws-faq{background:#F7FBFE}
@@ -451,9 +463,6 @@
   .sws-vquote p{margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:800;font-size:18px;line-height:1.45;color:#142E45}
   .sws-vquote cite{font-style:normal;font-size:14px;font-weight:700;color:#1B76BC}
   @media(max-width:820px){.sws-vrow{grid-template-columns:1fr;gap:20px;padding:36px 0}}
-  /* Below this the step photo would be squeezed to a thumbnail, so it goes
-     full width under the copy instead. */
-  @media(max-width:700px){.sws-step-media{grid-template-columns:1fr}.sws-step-media figure{max-width:420px}}
   @media(max-width:560px){.sws-step{padding-left:52px}.sws-kit-note{padding-left:0}}
 
   /* ===== Comparison table (levels vs SWS) ===== */
