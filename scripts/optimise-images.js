@@ -48,9 +48,16 @@ const QUALITY = 78;
  */
 const IMAGES = [
   // ---- Home ----
+  // Swapped from INSTRUCTORS_IN_WATER.JPG 2026-08-04 — the client wanted to try
+  // a session shot instead. The hero is 2.14:1 off a 3:2 source, so a band gets
+  // taken out of the middle; anchored at y=640 rather than centred because that
+  // keeps the coach on deck and both numbered blocks in the lit upper half,
+  // while the foreground water it drops is where the headline gradient sits
+  // anyway. MORNING_CLASS was free once the squad card moved to SQUAD_SWIMMING.
   {
-    src: 'INSTRUCTORS_IN_WATER.JPG',
+    src: 'MORNING_CLASS.JPG',
     out: 'hero.webp',
+    extract: { left: 0, top: 640, width: 6375, height: 2974 },
     width: 2000,
     height: 933,
     widths: [1200, 800],
