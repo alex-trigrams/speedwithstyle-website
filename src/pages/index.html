@@ -49,7 +49,83 @@
       <span style="display:flex;color:#84B4DD"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h9a5 5 0 0 1 0 10h-2a5 5 0 0 1-5-5V8Z"/><path d="M4 8V6"/><circle cx="10.5" cy="13" r="1.4" fill="currentColor" stroke="none"/></svg></span>Coached by current &amp; former squad swimmers
     </span>
   </div>
-  <div class="sws-wave" aria-hidden="true"><svg viewBox="0 0 2880 56" preserveAspectRatio="none"><path fill="#fff" d="M0 32c120 14 240 22 360 22s240-8 360-22 240-22 360-22 240 8 360 22 240 22 360 22 240-8 360-22 240-22 360-22 240 8 360 22v24H0Z"/></svg></div>
+  <!-- Wave fill matches whatever section follows — currently the pale-blue reviews block. -->
+  <div class="sws-wave" aria-hidden="true"><svg viewBox="0 0 2880 56" preserveAspectRatio="none"><path fill="#EDF4FA" d="M0 32c120 14 240 22 360 22s240-8 360-22 240-22 360-22 240 8 360 22 240 22 360 22 240-8 360-22 240-22 360-22 240 8 360 22v24H0Z"/></svg></div>
+</section>
+
+<!-- ===== SOCIAL PROOF — real Google reviews. Pulled from the Google Business
+       Profile (5.0 from 10 reviews, checked 3 Aug 2026). Eight of the ten are
+       shown; Sheridan Lunn's and Debbi Garreffa's are truncated behind "More"
+       on Google, so they are left out rather than quoted half-finished.
+       Refresh from
+       https://www.google.com/maps/place/Speed+with+Style when the count grows,
+       and swap the aggregate rating in the ratingValue/reviewCount below. -->
+<section id="reviews" style="background:#EDF4FA;padding:64px 0">
+  <div class="sws-wrap" style="display:flex;flex-direction:column;gap:36px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px">
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <span class="sws-eyebrow">From our families</span>
+        <h2 class="sws-h2 rv">What parents say</h2>
+      </div>
+      <!-- Google rating badge -->
+      <a href="https://www.google.com/maps/place/Speed+with+Style/@-32.055806,115.8439295,17z/data=!4m8!3m7!1s0x2a32a282cbcf1e09:0x838adb53e9c8574!9m1!1b1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:14px;background:#fff;border:2px solid #D6E6F4;border-radius:14px;padding:14px 20px;text-decoration:none;color:inherit">
+        <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84C6.71 7.3 9.14 5.38 12 5.38z"/></svg>
+        <span style="display:flex;flex-direction:column;line-height:1.2">
+          <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#0A0A0A">5.0 on Google</span>
+          <span style="font-size:13px;color:#4A5866;display:inline-flex;align-items:center;gap:6px">
+            <span style="color:#F5A623;letter-spacing:1px" aria-hidden="true">★★★★★</span> from 10 reviews
+          </span>
+        </span>
+      </a>
+    </div>
+    <!-- One-row auto-scrolling carousel. The track is duplicated in scripts.js
+         for a seamless loop; pauses on hover/focus and falls back to a static
+         wrapped row under prefers-reduced-motion. -->
+    <div class="sws-marquee rv" style="--speed:48s">
+      <div class="sws-marquee-track" style="gap:24px;align-items:stretch">
+      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“The best swimming club we have ever attended based on experience from multiple continents. Great attentive coaches with supportive attitude gives children really good motivation to go to practices and technique teaching is on next level.”</blockquote>
+        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Viljami Vahtera</strong> · Google review</figcaption>
+      </figure>
+      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“We’re thrilled with the Speed with Style program and outstanding coaching. There is a focus on strong technique, speed, and confidence, while creating a fun, positive and motivating environment. Ross is absolutely fantastic!”</blockquote>
+        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Lauren McWilliam</strong> · Google review</figcaption>
+      </figure>
+      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“We’ve been with SWS for a few years now. The teachers are dedicated and committed to bringing out the best in the kids. We are very happy with the swim school.”</blockquote>
+        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Valerie Lane-Glover</strong> · Google review</figcaption>
+      </figure>
+      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“Since putting my 3 daughters in to swim with SWS their swimming has improved dramatically. The instructors are fantastic with the kids and build great trust and rapport.”</blockquote>
+        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Kacey Hoysted</strong> · Google review</figcaption>
+      </figure>
+      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“Good friendly staff, great educators and never afraid to go above and beyond to help your child swimming.”</blockquote>
+        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Sebastian Ng</strong> · Google review</figcaption>
+      </figure>
+      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“Amazing. Always so helpful and friendly. Jay is always so friendly.”</blockquote>
+        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Sean Rogers</strong> · Google review</figcaption>
+      </figure>
+      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“We are so grateful to all the crew at Speed with Style. They go above and beyond for us as a family and our kids love attending their classes and squads. Highly recommend to anyone looking for a swim school that genuinely cares about your kids.”</blockquote>
+        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Debbie Keene</strong> · Google review</figcaption>
+      </figure>
+      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
+        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
+        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“Great instructors, communication with admin is of ease. Very happy.”</blockquote>
+        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Yvette Wigger</strong> · Google review</figcaption>
+      </figure>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- ===== 3 · PROGRAMS PATHWAY =====
@@ -381,81 +457,6 @@
   </script>
 </section>
 
-<!-- ===== SOCIAL PROOF — real Google reviews. Pulled from the Google Business
-       Profile (5.0 from 10 reviews, checked 3 Aug 2026). Eight of the ten are
-       shown; Sheridan Lunn's and Debbi Garreffa's are truncated behind "More"
-       on Google, so they are left out rather than quoted half-finished.
-       Refresh from
-       https://www.google.com/maps/place/Speed+with+Style when the count grows,
-       and swap the aggregate rating in the ratingValue/reviewCount below. -->
-<section id="reviews" style="background:#fff;padding:64px 0">
-  <div class="sws-wrap" style="display:flex;flex-direction:column;gap:36px">
-    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px">
-      <div style="display:flex;flex-direction:column;gap:12px">
-        <span class="sws-eyebrow">From our families</span>
-        <h2 class="sws-h2 rv">What parents say</h2>
-      </div>
-      <!-- Google rating badge -->
-      <a href="https://www.google.com/maps/place/Speed+with+Style/@-32.055806,115.8439295,17z/data=!4m8!3m7!1s0x2a32a282cbcf1e09:0x838adb53e9c8574!9m1!1b1" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:14px;background:#EDF4FA;border:2px solid #D6E6F4;border-radius:14px;padding:14px 20px;text-decoration:none;color:inherit">
-        <svg width="26" height="26" viewBox="0 0 24 24" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88l3.66-2.84z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84C6.71 7.3 9.14 5.38 12 5.38z"/></svg>
-        <span style="display:flex;flex-direction:column;line-height:1.2">
-          <span style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:15px;color:#0A0A0A">5.0 on Google</span>
-          <span style="font-size:13px;color:#4A5866;display:inline-flex;align-items:center;gap:6px">
-            <span style="color:#F5A623;letter-spacing:1px" aria-hidden="true">★★★★★</span> from 10 reviews
-          </span>
-        </span>
-      </a>
-    </div>
-    <!-- One-row auto-scrolling carousel. The track is duplicated in scripts.js
-         for a seamless loop; pauses on hover/focus and falls back to a static
-         wrapped row under prefers-reduced-motion. -->
-    <div class="sws-marquee rv" style="--speed:48s">
-      <div class="sws-marquee-track" style="gap:24px;align-items:stretch">
-      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
-        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
-        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“The best swimming club we have ever attended based on experience from multiple continents. Great attentive coaches with supportive attitude gives children really good motivation to go to practices and technique teaching is on next level.”</blockquote>
-        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Viljami Vahtera</strong> · Google review</figcaption>
-      </figure>
-      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
-        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
-        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“We’re thrilled with the Speed with Style program and outstanding coaching. There is a focus on strong technique, speed, and confidence, while creating a fun, positive and motivating environment. Ross is absolutely fantastic!”</blockquote>
-        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Lauren McWilliam</strong> · Google review</figcaption>
-      </figure>
-      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
-        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
-        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“We’ve been with SWS for a few years now. The teachers are dedicated and committed to bringing out the best in the kids. We are very happy with the swim school.”</blockquote>
-        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Valerie Lane-Glover</strong> · Google review</figcaption>
-      </figure>
-      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
-        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
-        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“Since putting my 3 daughters in to swim with SWS their swimming has improved dramatically. The instructors are fantastic with the kids and build great trust and rapport.”</blockquote>
-        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Kacey Hoysted</strong> · Google review</figcaption>
-      </figure>
-      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
-        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
-        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“Good friendly staff, great educators and never afraid to go above and beyond to help your child swimming.”</blockquote>
-        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Sebastian Ng</strong> · Google review</figcaption>
-      </figure>
-      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
-        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
-        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“Amazing. Always so helpful and friendly. Jay is always so friendly.”</blockquote>
-        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Sean Rogers</strong> · Google review</figcaption>
-      </figure>
-      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
-        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
-        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“We are so grateful to all the crew at Speed with Style. They go above and beyond for us as a family and our kids love attending their classes and squads. Highly recommend to anyone looking for a swim school that genuinely cares about your kids.”</blockquote>
-        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Debbie Keene</strong> · Google review</figcaption>
-      </figure>
-      <figure style="flex:0 0 clamp(280px,80vw,340px);margin:0;background:#fff;border:2px solid #D6E6F4;border-radius:16px;padding:32px;display:flex;flex-direction:column;gap:16px">
-        <span style="color:#F5A623;font-size:18px;letter-spacing:2px" aria-label="5 out of 5 stars">★★★★★</span>
-        <blockquote style="margin:0;font-family:'Montserrat',sans-serif;font-style:italic;font-weight:700;font-size:19px;line-height:1.4;color:#142E45;flex:1">“Great instructors, communication with admin is of ease. Very happy.”</blockquote>
-        <figcaption style="font-size:15px;color:#4A5866"><strong style="color:#0A0A0A">Yvette Wigger</strong> · Google review</figcaption>
-      </figure>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ===== 7 · LOCATION + VISIT ===== -->
 <section id="visit" style="background:#EDF4FA;padding:64px 0 0">
   <div class="sws-wrap" style="display:grid;gap:32px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:center;padding-bottom:64px">
@@ -493,25 +494,25 @@
         </div>
         <form id="enquiry-form" novalidate action="https://formspree.io/f/mqerlzqg" method="POST" style="display:flex;flex-direction:column;gap:16px">
           <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
-            <label class="sws-label" for="f-name">Your name *</label>
+            <label class="sws-label" for="f-name">Your name</label>
             <input id="f-name" name="name" class="sws-input" autocomplete="name">
             <span class="sws-err" role="alert">We need a name to say g'day.</span>
           </div>
           <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
             <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
-              <label class="sws-label" for="f-phone">Best number to call you on *</label>
+              <label class="sws-label" for="f-phone">Best number to call you on</label>
               <input id="f-phone" name="phone" type="tel" class="sws-input" placeholder="04xx xxx xxx" autocomplete="tel">
               <span class="sws-err" role="alert">That number doesn't look right. Check the digits.</span>
             </div>
             <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
-              <label class="sws-label" for="f-email">Email <span style="font-weight:600;color:#4A5866">(optional)</span></label>
+              <label class="sws-label" for="f-email">Email</label>
               <input id="f-email" name="email" type="email" class="sws-input" autocomplete="email">
               <span class="sws-err" role="alert">That email doesn't look right. Check for typos.</span>
             </div>
           </div>
           <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr))">
             <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
-              <label class="sws-label" for="f-age">Child's age <span style="font-weight:600;color:#4A5866">(optional)</span></label>
+              <label class="sws-label" for="f-age">Child's age</label>
               <div style="position:relative">
                 <select id="f-age" name="age" class="sws-input" style="appearance:none;padding-right:44px">
                   <option value="">Choose…</option><option>Under 4</option><option>4–5</option><option>6–8</option><option>9–12</option><option>13+</option><option data-multi>Multiple children</option>
@@ -521,7 +522,7 @@
               <span class="sws-hint" id="f-age-multi" hidden>Please list your children's ages in the box below.</span>
             </div>
             <div class="sws-field" style="display:flex;flex-direction:column;gap:4px">
-              <label class="sws-label" for="f-prog">Program *</label>
+              <label class="sws-label" for="f-prog">Program</label>
               <div style="position:relative">
                 <select id="f-prog" name="program" class="sws-input" style="appearance:none;padding-right:44px">
                   <option value="">Choose…</option><option>Learn to Swim</option><option>Pre-Squad</option><option>Squad</option><option>Corpus Christi Program</option><option>Not sure yet</option>
