@@ -801,7 +801,7 @@
         </button>
       </article>
       <article class="sws-stagecard rv" style="--d:0.2s">
-        <div class="sws-stagebadge"><b>3</b><span>The destination</span></div>
+        <div class="sws-stagebadge"><b>3</b><span>Advanced swimmer</span></div>
         <button type="button" class="sws-pflip" aria-pressed="false" data-analytics-action="flip-squad">
           <span class="sws-pflip-inner">
             <span class="sws-pflip-face sws-pflip-front">
@@ -963,9 +963,10 @@
 
 <!-- ===== 6 · INSTRUCTOR VIDEO =====
      Click-to-play (native controls, preload=none) — the file is 7.5MB, so it
-     must never load on page render, especially on mobile. Poster is a frame
-     from the video itself. Source video: client's Wix site, self-hosted here
-     so it survives their Wix cancellation. -->
+     must never load on page render, especially on mobile. No poster by
+     request, so the player renders as an empty frame until played. Source
+     video: client's Wix site, self-hosted here so it survives their Wix
+     cancellation. -->
 <section id="watch" style="background:#142E45;padding:72px 0">
   <div class="sws-wrap" style="display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:center">
     <div style="display:flex;flex-direction:column;gap:16px">
@@ -977,7 +978,7 @@
       </div>
     </div>
     <div class="sws-video rv" style="--d:.12s">
-      <video controls preload="none" poster="/assets/instructors-poster.webp" playsinline>
+      <video controls preload="none" playsinline>
         <source src="/assets/instructors-training-web.mp4" type="video/mp4">
       </video>
     </div>
