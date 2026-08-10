@@ -872,12 +872,12 @@
 
     <div style="display:flex;flex-direction:column;gap:16px">
       <div class="rv-pop" style="background:#1E4568;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:6px">
-        <span style="font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:clamp(2.2rem,6vw,2.75rem);line-height:1;color:#84B4DD">1–2km</span>
-        <span style="font-size:16px;font-weight:700;color:#D6E6F4">the distance most of our kids can swim by age 8–9, with beautiful, efficient technique (no flapping around)</span>
+        <span style="font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:clamp(2.2rem,6vw,2.75rem);line-height:1;color:#84B4DD">Age 4–5</span>
+        <span style="font-size:16px;font-weight:700;color:#D6E6F4">when most of our swimmers start with us</span>
       </div>
       <div class="rv-pop" style="--d:.12s;background:#1E4568;border-radius:16px;padding:28px;display:flex;flex-direction:column;gap:6px">
-        <span style="font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:clamp(2.2rem,6vw,2.75rem);line-height:1;color:#84B4DD">Age 4–5</span>
-        <span style="font-size:16px;font-weight:700;color:#D6E6F4">when most of those kids started with us</span>
+        <span style="font-family:'Montserrat',sans-serif;font-style:italic;font-weight:900;font-size:clamp(2.2rem,6vw,2.75rem);line-height:1;color:#84B4DD">1–2km</span>
+        <span style="font-size:16px;font-weight:700;color:#D6E6F4">the distance most of them can swim by age 8–9, with beautiful, efficient technique (no flapping around)</span>
       </div>
     </div>
   </div>
@@ -963,10 +963,11 @@
 
 <!-- ===== 6 · INSTRUCTOR VIDEO =====
      Click-to-play (native controls, preload=none) — the file is 7.5MB, so it
-     must never load on page render, especially on mobile. No poster by
-     request, so the player renders as an empty frame until played. Source
-     video: client's Wix site, self-hosted here so it survives their Wix
-     cancellation. -->
+     must never load on page render, especially on mobile. The poster is the
+     video's own first frame — its "Speed with Style / Instructors" title card
+     — extracted with ffmpeg, so the still matches what plays rather than
+     being a separate photo. Source video: client's Wix site, self-hosted here
+     so it survives their Wix cancellation. -->
 <section id="watch" style="background:#142E45;padding:72px 0">
   <div class="sws-wrap" style="display:grid;gap:40px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));align-items:center">
     <div style="display:flex;flex-direction:column;gap:16px">
@@ -978,7 +979,7 @@
       </div>
     </div>
     <div class="sws-video rv" style="--d:.12s">
-      <video controls preload="none" playsinline>
+      <video controls preload="none" poster="/assets/instructors-first-frame.webp" playsinline>
         <source src="/assets/instructors-training-web.mp4" type="video/mp4">
       </video>
     </div>
