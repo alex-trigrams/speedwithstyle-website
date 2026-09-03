@@ -2,5 +2,9 @@
   "buildCommand": "node build.js",
   "outputDirectory": ".",
   "cleanUrls": true,
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/corpuschristicollege", "destination": "/", "permanent": true },
+    { "source": "/corpuschristicollege/", "destination": "/", "permanent": true }
+  ]
 }
