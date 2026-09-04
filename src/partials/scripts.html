@@ -15,6 +15,20 @@
   <a href="/#book" data-book-open class="sws-btn sws-btn-primary" style="flex:1.4;font-size:16px;padding:10px 8px">Book a free lesson</a>
 </div>
 
+<!-- ===== COOKIE CONSENT =====
+     Hidden by default and only revealed by JS when a choice hasn't been made
+     and a pixel ID is actually configured, so it never nags without cause.
+     Sits above the mobile CTA bar. -->
+<div id="sws-consent" hidden role="dialog" aria-labelledby="sws-consent-title" aria-describedby="sws-consent-text"
+     style="position:fixed;left:16px;right:16px;bottom:16px;z-index:120;max-width:560px;margin:0 auto;padding:20px 22px;border-radius:14px;background:#142E45;color:#fff;box-shadow:0 14px 44px rgba(20,46,69,.4)">
+  <p id="sws-consent-title" style="margin:0 0 6px;font-family:'Montserrat',sans-serif;font-weight:800;font-size:17px">Cookies</p>
+  <p id="sws-consent-text" style="margin:0 0 16px;font-size:15px;line-height:1.5;color:#D6E6F4">We'd like to use Meta (Facebook) cookies to measure how well our ads work. Nothing is loaded unless you say yes, and the site works exactly the same either way.</p>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <button type="button" id="sws-consent-accept" class="sws-btn sws-btn-primary" style="flex:1;min-width:130px;font-size:16px;padding:10px 18px">Accept</button>
+    <button type="button" id="sws-consent-decline" class="sws-btn sws-btn-ghost" style="flex:1;min-width:130px;font-size:16px;padding:10px 18px">Decline</button>
+  </div>
+</div>
+
 <!-- ===== PHOTO LIGHTBOX =====
      One <dialog> shared by any [data-gallery] on the page. Inert until a
      thumbnail is clicked, and it renders nothing when JS is off — the gallery
@@ -90,6 +104,73 @@
   // Enquiry form wiring, shared by the inline homepage form and the modal form.
   // Field ids differ per form (f-name vs mf-name), so the validator is keyed by
   // the input's own id and looked up within each form.
+  // Cookie consent banner. SWS_CONSENT (head.html) owns the stored choice and
+  // the actual loading of the pixel; this is only the UI for it.
+  var consentBar = document.getElementById('sws-consent');
+  if (consentBar && window.SWS_CONSENT) {
+    if (window.SWS_CONSENT.needsPrompt) consentBar.hidden = false;
+    function choose(choice) {
+      window.SWS_CONSENT.set(choice);
+      consentBar.hidden = true;
+    }
+    document.getElementById('sws-consent-accept').addEventListener('click', function () { choose('granted'); });
+    document.getElementById('sws-consent-decline').addEventListener('click', function () { choose('declined'); });
+  }
+
+  // ---- Advanced matching ----------------------------------------------
+  // Meta matches an enquiry to a Facebook/Instagram account far more reliably
+  // when the contact details come with it, but they must be SHA-256 hashed in
+  // the browser — raw details never leave the page. Normalisation (lowercase,
+  // trimmed, phone in E.164 without the +) is Meta's spec; get it wrong and
+  // the hash simply never matches anything.
+  function sha256(value) {
+    if (!window.crypto || !crypto.subtle) return Promise.resolve(null);
+    return crypto.subtle
+      .digest('SHA-256', new TextEncoder().encode(value))
+      .then(function (buf) {
+        return Array.prototype.map
+          .call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); })
+          .join('');
+      })
+      .catch(function () { return null; });
+  }
+
+  function auPhone(raw) {
+    var d = String(raw).replace(/[^0-9]/g, '');
+    if (d.indexOf('0') === 0) d = '61' + d.slice(1);       // 04xx -> 614xx
+    else if (d.indexOf('61') !== 0) d = '61' + d;
+    return d;
+  }
+
+  /** Resolves to Meta's advanced-matching object, or {} if nothing usable. */
+  function matchData(form) {
+    var val = function (n) {
+      var el = form.querySelector('[name="' + n + '"]');
+      return el && el.value ? el.value.trim() : '';
+    };
+    var email = val('email').toLowerCase();
+    var phone = val('phone');
+    var parts = val('name').toLowerCase().split(/\s+/).filter(Boolean);
+    var jobs = [
+      email ? sha256(email).then(function (h) { return ['em', h]; }) : null,
+      phone ? sha256(auPhone(phone)).then(function (h) { return ['ph', h]; }) : null,
+      parts.length ? sha256(parts[0]).then(function (h) { return ['fn', h]; }) : null,
+      parts.length > 1 ? sha256(parts[parts.length - 1]).then(function (h) { return ['ln', h]; }) : null
+    ].filter(Boolean);
+
+    return Promise.all(jobs).then(function (pairs) {
+      var out = {};
+      pairs.forEach(function (p) { if (p[1]) out[p[0]] = p[1]; });
+      return out;
+    });
+  }
+
+  // Meta Pixel conversions. Fires only if the pixel actually loaded (see the
+  // base code in head.html) so the site works unchanged with tracking off.
+  function track(event, params) {
+    if (typeof window.fbq === 'function') window.fbq('track', event, params || {});
+  }
+
   function wireEnquiryForm(form, successEl, sendError) {
     if (!form) return;
     var submitted = false;
@@ -151,6 +232,17 @@
         if (!res.ok) throw new Error('Formspree responded ' + res.status);
         form.hidden = true;
         successEl.hidden = false;
+        // The real conversion: the enquiry reached Formspree. Posted over
+        // fetch with no page change, so Meta can only learn about it here.
+        // Re-initialising with the hashed details attaches them to this Lead
+        // (and only fires once the hashing has actually resolved).
+        var source = form.id === 'modal-enquiry-form' ? 'Booking modal' : 'Homepage form';
+        if (typeof window.fbq === 'function') {
+          matchData(form).then(function (am) {
+            fbq('init', window.SWS_META_PIXEL_ID, am);
+            track('Lead', { content_name: source });
+          });
+        }
       }).catch(function () {
         sendError.textContent = 'Something went wrong sending that. Try again, or call Leesa on 0409 898 232.';
         sendError.hidden = false;
@@ -175,6 +267,9 @@
       lastFocus = trigger || document.activeElement;
       modal.showModal();
       document.body.classList.add('sws-modal-open');
+      // Mid-funnel signal: opened the booking form but hasn't sent it yet.
+      // Useful as a retargeting audience, not as the conversion goal.
+      track('InitiateCheckout', { content_name: 'Booking modal opened' });
       var firstInput = modal.querySelector('#mf-name');
       if (firstInput) firstInput.focus();
     }
@@ -206,6 +301,14 @@
       document.getElementById('modal-form-send-error')
     );
   }
+
+  // Phone and email clicks count as conversions too — plenty of parents ring
+  // rather than fill the form in, and Meta can't see those otherwise.
+  document.querySelectorAll('a[href^="tel:"], a[href^="mailto:"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      track('Contact', { content_name: a.getAttribute('href').indexOf('tel:') === 0 ? 'Phone' : 'Email' });
+    });
+  });
 
   // Program flip cards — front sells the stage, back gives quick facts. CSS
   // flips on hover for pointer devices; this adds tap/keyboard for touch.

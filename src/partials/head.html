@@ -44,6 +44,51 @@
 }
 </script>
 <script defer src="/_vercel/insights/script.js"></script>
+
+<!-- ===== META PIXEL =====
+     Pixel "Speed With Style - Website", created 2026-09-04. The ID is not a
+     secret (it ships in the page either way), but the pixel only loads after
+     the visitor accepts the cookie banner. Meta's <noscript> tracking pixel
+     is deliberately omitted: it fires on load with no way to honour consent.
+     Conversions are fired manually from scripts.html — the
+     enquiry forms submit over fetch and never change URL, so a
+     "thank-you page" URL rule in Ads Manager would never fire. -->
+<script>
+  window.SWS_META_PIXEL_ID = '1390357273243386';
+
+  // The pixel is not loaded until the visitor accepts, and the choice is
+  // remembered in localStorage. Declining (or never answering) means no Meta
+  // script is fetched at all — not merely a suppressed event.
+  (function () {
+    var KEY = 'sws-consent';
+    var configured = /^[0-9]{10,20}$/.test(window.SWS_META_PIXEL_ID);
+    var stored = null;
+    try { stored = localStorage.getItem(KEY); } catch (e) { /* private mode */ }
+
+    window.SWS_CONSENT = {
+      state: stored,                      // 'granted' | 'declined' | null
+      needsPrompt: configured && !stored,
+      set: function (choice) {
+        this.state = choice;
+        try { localStorage.setItem(KEY, choice); } catch (e) {}
+        if (choice === 'granted') load();
+      }
+    };
+
+    function load() {
+      if (!configured || window.fbq) return;
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+      (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', window.SWS_META_PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+
+    if (stored === 'granted') load();
+  })();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,800;1,900&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,400&display=swap" rel="stylesheet">
