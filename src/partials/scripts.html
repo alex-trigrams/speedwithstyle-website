@@ -368,17 +368,46 @@
 
   // Marquee: duplicate the visible chips so the -50% translate loops seamlessly.
   // Done here rather than in markup so the source only lists each item once.
+  // One copy of the originals has to be at least as wide as the marquee itself,
+  // otherwise the track runs out mid-scroll and leaves empty space, so we repeat
+  // the set until it fills the rail before mirroring it. Duration is derived
+  // from the final width so the pixels-per-second speed stays constant however
+  // many copies it took.
   document.querySelectorAll('.sws-marquee-track').forEach(function (track) {
     if (reduced) return;
     track.querySelectorAll('[aria-hidden="true"]').forEach(function (dupe) {
       dupe.remove();
     });
     var originals = Array.prototype.slice.call(track.children);
-    originals.forEach(function (node) {
+    if (!originals.length) return;
+
+    var rail = track.parentElement;
+    var gap = parseFloat(getComputedStyle(track).columnGap) || 0;
+    var setWidth = originals.reduce(function (total, node) {
+      return total + node.getBoundingClientRect().width + gap;
+    }, 0);
+    if (!setWidth) return;
+
+    // Repeat the originals until one set covers the visible rail.
+    var railWidth = rail ? rail.getBoundingClientRect().width : 0;
+    var repeats = Math.max(1, Math.ceil(railWidth / setWidth));
+    for (var i = 1; i < repeats; i++) {
+      originals.forEach(function (node) {
+        var extra = node.cloneNode(true);
+        extra.setAttribute('aria-hidden', 'true');
+        track.appendChild(extra);
+      });
+    }
+
+    // Mirror the whole thing so translateX(-50%) lands on an identical frame.
+    Array.prototype.slice.call(track.children).forEach(function (node) {
       var clone = node.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
       track.appendChild(clone);
     });
+
+    // ~28px per second: slow enough to read a testimonial as it passes.
+    track.style.animationDuration = ((setWidth * repeats) / 28).toFixed(2) + 's';
   });
 
   // What-to-bring kit switcher. The three kit lists are all in the markup and
