@@ -1,0 +1,7 @@
+# Speed With Style. All crawlers welcome, including AI search crawlers.
+# Draft pages are kept out of search with a noindex tag, not here: a
+# Disallow would stop Google reading that tag.
+User-agent: *
+Allow: /
+
+Sitemap: https://www.speedwithstyle.com.au/sitemap.xml
