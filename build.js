@@ -213,7 +213,7 @@ const graphBase = [
           '@type': 'Offer',
           price: '28',
           priceCurrency: 'AUD',
-          description: 'Per 30-minute lesson ($26 for Corpus Christi College families). First lesson free.',
+          description: 'Per 30-minute lesson ($26 for Corpus Christi College families).',
           itemOffered: {
             '@type': 'Service',
             name: 'Learn to Swim',
